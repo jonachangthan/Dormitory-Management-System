@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>宿舍大樓資料</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"/>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container px-4 px-lg-5">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="list-inline-item">
+              <a href="/" class="home">
+                <span class="fa-stack fa-lg">
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁" style="width: 50px; height: 50px;color:#ffffff" class="fa-solid fa-house-user"></button>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4"
+              href="/login">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('../building.jpeg')">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>宿舍大樓資料</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+  
+    <div class="accordion" id="accordionExample">
+      <br />
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增宿舍設備 </button>
+          <i class="fa-solid fa-caret-down"></i>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">  
+            <div class="container">
+            <table
+              style="line-height: 10px"
+              class="table table-hover">
+              <thead>
+                <!--表示表格中不同直行 (column) 的標題-->
+                <tr style="background-color: #dfd1ef">
+                  <!--定義表格的橫列 (row)-->
+                  <th scope="col" align='center' valign="middle">大樓名稱</th>
+                  <th scope="col" align='center' valign="middle">房間名稱</th>
+                  <th scope="col" align='center' valign="middle">僅顯示有狀況之設備</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <form action="/managerToDormitory/action" method="post">
+                <tr>
+                  <td align='center' valign="middle">
+                    <select id="building" name="building" class="form-select">
+                      <option selected>選擇大樓</option>
+                      <option value=1>學生第一宿舍(OA-男)</option>
+                      <option value=2>學生第一宿舍(OB-女)</option>
+                      <option value=3>學生第二宿舍(OE-男)</option>
+                      <option value=4>學生第二宿舍(OF-女)</option>
+                      <option value=5>綜合宿舍(B01-男)</option>
+                    </select>
+                  </td>
+                  <td align='center' valign="middle">
+                    <input type="text" class="form-control" id="room" name="room" value=""/>
+                  </td>
+                  <td align='center' valign="middle">
+                    <input type="checkbox" name="checkBox" value="1" style="width:27px;height:27px"/>
+                  </td>
+                  <td>
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="search">  查詢設備
+                    </button>
+                  </td>                
+                  <td>
+                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 新增設備
+                    </button>
+                  </td>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold">
+                            新增設備
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">設備種類:</label>
+                            <input type="text" class="form-control" id="type" name="type"/>
+                          </div>
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >數量:</label>
+                            <input type="text" class="form-control" id="quantity" name="quantity"/>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >
+                            關閉
+                          </button>
+                          <button type="submit" name="action" value="add" class="btn btn-primary">
+                            新增設備
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </form>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <br /><br /><br />
+<div class="container">
+  <table style="line-height: 10px" class="table  table-hover">
+    <thead>
+      <!--表示表格中不同直行 (column) 的標題-->
+      <tr style="background-color: #dfd1ef">
+        <!--定義表格的橫列 (row)-->
+        <th scope="col" align='center' valign="middle">大樓名稱</th>
+        <th scope="col" align='center' valign="middle">宿舍房號</th>
+        <th scope="col" align='center' valign="middle">設備種類</th>
+        <th scope="col" align='center' valign="middle">設備數量</th>
+        <th scope="col" align='center' valign="middle">設備狀況</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each message}}
+      <tr>
+        <form action="/managerToDormitory/action" method="post">
+          <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
+          <input type="hidden" name="building" value="{{this.DB_Number}}">
+          <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">
+          <input type="hidden" name="type" value="{{this.E_Type}}">
+          <th scope="row" align='center' valign="middle">{{this.DB_Name}}</th>
+          <td align='center' valign="middle">{{this.E_D_Dormitory_No}}</td>
+          <td align='center' valign="middle">{{this.E_Type}}</td>
+          <td align='center' valign="middle">
+            <input type="text" name="quantity" value="{{this.E_D_Quantity}}" />
+          </td>
+          <td align='center' valign="middle">
+            <input type="text" name="condition" value="{{this.E_D_Condition}}" />
+          </td>
+          <td>
+            <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
+            type="submit" name="action" value="update"> 更新狀況</button>
+          </td>
+          <td>
+            <button style=" width: 120px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;"
+             type="submit" name="action" value="delete"> 刪除設備</button>
+          </td>
+        </form>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+    <!-- Footer-->
+<br /><br /><br /><br /><br /><br />
+<footer class="border-top">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div id="top-footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 contact">
+                <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                <h3>高雄大學網站:</h3>
+               
+                <a href="https://www.nuk.edu.tw/" target="_blank">https://www.nuk.edu.tw/</a>
+              </div>
+              <div class="col-md-6 social">
+                <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                <h3>moodle平台:</h3>
+                <a href="https://elearningv4.nuk.edu.tw/" target="_blank">https://elearningv4.nuk.edu.tw/</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="manager_to_dormitory.js"></script>
+  </body>
+</html>
