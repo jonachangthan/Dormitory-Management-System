@@ -45,3 +45,8 @@
 	* student_fix : 可查看及報修該學生房間之設備
 	* student_to_dormitory : 所有宿舍房型及價錢
 	* dormitory_detail : 宿舍詳細介紹
+
+
+## Manager Gmail :
+* account :a1095550manager@gmail.com
+* password :a1095550
