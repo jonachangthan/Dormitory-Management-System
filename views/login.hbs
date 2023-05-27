@@ -31,7 +31,7 @@
       margin: 50px;
       padding: 10px;
       width: 460px;
-      height: 430px;
+      height: 400px;
       background-color: white;
       border-radius: 5px;
       border-top: 25px solid #335495;
@@ -80,7 +80,7 @@
 
 background-size:100% 100%; 
 
-background-attachment: fixed;backdrop-filter:blur(3px);   "   background='../350.jpg'>
+background-attachment: fixed;backdrop-filter:blur(3px);   " background='../350.jpg'>
   <div class="system_name">
     <h2 style="color: white;">高雄大學住宿管理系統</h2>
   </div>
@@ -88,7 +88,7 @@ background-attachment: fixed;backdrop-filter:blur(3px);   "   background='../350
   <div class="login_page">
     <div id="container">
       <div class="Login">
-        <h3>登入 Login</h3>
+        <center><h3>登入 Login</h3></center>
         <form action="/auth/login" method="POST">
           <input type="text" id="username" name="username" placeholder="帳號" required="required"
             oninvalid="setCustomValidity('請輸入帳號！')" oninput="setCustomValidity('')">
@@ -98,12 +98,16 @@ background-attachment: fixed;backdrop-filter:blur(3px);   "   background='../350
           <div class="tab"></div>
           <input type="submit" value="登入" class="submit" />
         </form>
-        <a href="/register">
-          <h5>註冊帳號</h5>
+        <a href="/change_password">
+          <h5>更改密碼</h5>
         </a>
+        <a href="/forget_password">
+          <h5>忘記密碼</h5>
+        </a>
+
       </div>
       {{#if message}}
-      <h4 style="color:red"; class="alert alert-danger mt-4">{{message}}</h4>
+      <h4 style="color:red" ; class="alert alert-danger mt-4">{{message}}</h4>
       {{/if}}
     </div>
   </div>

@@ -1,0 +1,11 @@
+用戶端編號
+299278967319-q2dcanpmfrr16pb42td6v8kbqqpnhi94.apps.googleusercontent.com
+
+用戶端密鑰
+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
+
+Step1
+https://mail.google.com/
+
+應用程式密碼
+beqdywhcwbcbinwg
