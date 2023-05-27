@@ -63,12 +63,20 @@ router.get('/forget_password', (req, res) => {
     res.render('forget_password');
 });
 
+router.get('/reset_password', (req, res) => {
+    res.render('reset_password');
+});
+
 //! Manager
 router.get('/manager_to_student', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_to_student');
     }
 });
+router.get('/manager_to_warden', (req, res) => {
+    res.render('manager_to_warden');
+});
+
 
 router.get('/manager_to_apply', token, (req, res) => {
     if (req.user.Permission) {
@@ -82,18 +90,19 @@ router.get('/manager_to_dormitory', token, (req, res) => {
     }
 });
 
-router.get('/manager_to_violation', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_to_violation');
-    }
-});
+
 
 router.get('/manager_fix', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_fix');
     }
 });
-
+//! Warden
+router.get('/warden_to_violation', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('warden_to_violation');
+    }
+});
 //! Student
 router.get('/student_to_manager', token, (req, res) => {
     getManager().then(result => {
