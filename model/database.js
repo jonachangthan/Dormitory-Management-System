@@ -9,7 +9,7 @@ var db = mysql.createConnection({
     host: process.env.DMS_DATABASE_HOST,
     user: process.env.DMS_DATABASE_USER,
     password: process.env.DMS_DATABASE_PASSWORD,
-    database: process.env.DMS_DATABASE
+    database: process.env.DMS_DATABASE,
 });
 
 //* 判斷連線情形
