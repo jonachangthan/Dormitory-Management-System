@@ -1,6 +1,7 @@
 const db = require('../model/database');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const sendMail = require('../mail');
 
 // res.render: 用於呈現View，並將呈現的HTML字符串發送給Client端
 /*
@@ -137,7 +138,7 @@ exports.change_password = (req, res) => {
             //* 明碼雜湊成暗碼
             let hashed_password = await bcrypt.hash(new_password, 10); // 雜湊10次，需等待雜湊時間，因此需設置async
 
-            //* 將帳號、雜湊密碼存入資料庫中
+            //* 將更改後密碼存入資料庫中
             db.query('UPDATE account SET ? WHERE  ?', [{ Password: hashed_password }, { UserName: username }], (error, results) => {
                 if (error) {
                     console.log(error);
@@ -165,5 +166,65 @@ exports.forget_password = (req, res) => {
     //* 將表單數據指派給變數
     const { username, email } = req.body;
 
-    
+    //* 執行 SQL Select
+    db.query('SELECT * FROM account WHERE username = ?', [username], async (error, result1) => {
+        if (error) {
+            console.log(error);
+        }
+
+        //* 查詢不到帳號
+        if (!result1[0]) {
+            return res.status(401).render('forget_password', {
+                message: '此用戶不存在!'
+            });
+        }
+
+        //* 比對email是否正確
+        db.query('SELECT b.email, b.name FROM account as a, \
+        (SELECT S_ID as id, S_Email as email, S_Name as name FROM student UNION(SELECT M_ID as id, M_Email as email, M_Name as name FROM manager)) as b \
+        WHERE a.UserName = b.id and a.UserName = ?', [username], async (error, result2) => {
+            if (error) {
+                console.log(error);
+            }
+
+            if (result2[0].email !== email) {
+                return res.render('forget_password', {
+                    message: 'Email錯誤!'
+                });
+            }
+            //* 若正確生成Email
+            else {
+                let mailSubject = 'Forget Password';
+                //const randomString = randomstring.generate();
+                let content = '<p>' + result2[0].name + '您好:\n \
+                請點選此<a href="http://127.0.0.1:5500/auth/reset_password?token=' + username + '">連結</a>來重置密碼</p>';
+
+                sendMail(email, mailSubject, content);
+
+                return res.status(200).render('login', {
+                    message: '請至Email點選連結重置密碼!'
+                });
+            }
+        });
+    });
+}
+
+exports.reset_password = async (req, res) => {
+    const username = req.query.token;
+    //console.log(username);
+
+    //* 明碼雜湊成暗碼
+    let hashed_password = await bcrypt.hash(username, 10); // 雜湊10次，需等待雜湊時間，因此需設置async
+
+    //* 將更改後密碼存入資料庫中
+    db.query('UPDATE account SET ? WHERE  ?', [{ Password: hashed_password }, { UserName: username }], (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            return res.render('login', {
+                message: '重置成功，請重新登入!'
+            });
+        }
+    });
 }

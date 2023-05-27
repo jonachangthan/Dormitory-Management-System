@@ -1,7 +1,6 @@
 //! 頁面
 const express = require('express');
 const token = require("../controllers/token.js");
-const authController = require('../controllers/auth'); // 往上層
 const db = require('../model/database');
 const router = express.Router();
 
