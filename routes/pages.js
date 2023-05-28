@@ -73,8 +73,8 @@ router.get('/manager_to_student', token, (req, res) => {
         res.render('manager_to_student');
     }
 });
-router.get('/manager_to_warden', (req, res) => {
-    res.render('manager_to_warden');
+router.get('/manager_to_supervisor', (req, res) => {
+    res.render('manager_to_supervisor');
 });
 
 
@@ -89,6 +89,16 @@ router.get('/manager_to_dormitory', token, (req, res) => {
         res.render('manager_to_dormitory');
     }
 });
+router.get('/manager_change_dormitory', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('manager_change_dormitory');
+    }
+});
+router.get('/manager_checkout_dormitory', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('manager_checkout_dormitory');
+    }
+});
 
 
 
@@ -98,9 +108,9 @@ router.get('/manager_fix', token, (req, res) => {
     }
 });
 //! Warden
-router.get('/warden_to_violation', token, (req, res) => {
+router.get('/supervisor_to_violation', token, (req, res) => {
     if (req.user.Permission) {
-        res.render('warden_to_violation');
+        res.render('supervisor_to_violation');
     }
 });
 //! Student

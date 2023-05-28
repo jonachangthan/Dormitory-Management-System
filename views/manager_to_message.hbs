@@ -9,7 +9,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>高雄大學宿舍管理系統</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+   <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -57,14 +58,6 @@
                 </span>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="/dormitory_detail"
-                >Introduction</a
-              >
-            </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4"
               href="/login">Log out</a>
@@ -79,7 +72,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
-              <h1>公告及留言板</h1>
+              <h1>公告處</h1>
             </div>
           </div>
         </div>
@@ -148,6 +141,12 @@
                   <th width="8%" scope="col" style="background-color: #dfd1ef">
                     時間
                   </th>
+                  <th style="background-color: #dfd1ef">
+                  </th>
+                  <th style="background-color: #dfd1ef">
+                  </th>
+                  <th style="background-color: #dfd1ef">
+                  </th>
                 </tr>
               </thead>
 
@@ -187,6 +186,9 @@
                   <td>{{this.B_Manager_ID}}</td>
                   <td>{{this.B_Date}}</td>
                   <td>{{this.B_Time}}</td>
+                  <td></td>
+                   <td><i class='fas fa-hammer' style='font-size:32px'></i></td>   <!--修改-->
+                  <td><i class="material-icons" style="font-size:40px;color:red">delete</i></td> <!--刪除-->
                 </tr>
                 </div>
                  {{/each}} 
@@ -195,7 +197,7 @@
           </div>
         </div>
         <br /><br />
-        <div id="Main">
+        {{!-- <div id="Main">
           <div>
             <p align="center" style="color: #000000; font-weight: bold; font-size: 20px">
               留言板
@@ -263,7 +265,7 @@
                 <tr></tr>
               </tbody>
             </table>
-          </div>
+          </div> --}}
         </div>
         <br />
         <br />

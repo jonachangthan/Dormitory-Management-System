@@ -160,9 +160,22 @@
         <form action="/managerToWarden/action" method="post">
           <td valign="middle">{{this.S_Name}}</td>
           <td valign="middle">{{this.S_Sex}}</td>
-          <td valign="middle">{{this.S_Phone}}</td>
-          <td valign="middle">{{this.S_Email}}</td>
+          <td valign="middle">
+            <div class="form-floating">
+               <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
+              </div>
+          </td>
+          <td valign="middle">     
+             <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
+            </td>
           <td>
+            <div style="text-align: left">
+              <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
+                  修改
+              </button>
+            </div>
+            </td>
+            <td>
               <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
             </td>
           </form>
