@@ -34,9 +34,9 @@
 * Token:
     1. Client端發送登入請求，並提交帳號與密碼
     2. Server端收到請求，進入資料庫驗證其帳號密碼，若驗證成功會發送一組有期效性之Token至Client端
-    3. Client收到後將其儲存在Cookie
-    4. Client每次發送請求都會帶Token
-    5. Server每次收到請求都會驗證Token
+    3. Client端收到後將其儲存在Cookie中
+    4. Client端每次發送請求都會帶Token
+    5. Server端每次收到請求都會驗證Token
 
 ## 頁面功能
 * manager: 
