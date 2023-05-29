@@ -99,6 +99,16 @@ router.get('/manager_checkout_dormitory', token, (req, res) => {
         res.render('manager_checkout_dormitory');
     }
 });
+router.get('/manager_equipment', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('manager_equipment');
+    }
+});
+router.get('/manager_studentAccommodation', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('manager_studentAccommodation');
+    }
+});
 
 
 
