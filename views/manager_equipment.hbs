@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>宿舍大樓資料</title>
+    <title>房間設備資訊</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
@@ -43,7 +43,7 @@
             </li>
              <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-              href="/manager_equipment">房間設備資訊</a>
+              href="/manager_to_dormitory">大樓宿舍資料</a>
             </li>
              <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
@@ -63,7 +63,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
-              <h1>宿舍大樓資料</h1>
+              <h1>房間設備資訊</h1>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@
       <br />
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
-          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增宿舍及大樓資料 </button>
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增宿舍設備 </button>
           <i class="fa-solid fa-caret-down"></i>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -89,7 +89,8 @@
                 <tr style="background-color: #dfd1ef">
                   <!--定義表格的橫列 (row)-->
                   <th scope="col" align='center' valign="middle">大樓名稱</th>
-                  <th scope="col" align='center' valign="middle">宿舍房號</th>
+                  <th scope="col" align='center' valign="middle">房間名稱</th>
+                  <th scope="col" align='center' valign="middle">僅顯示有狀況之設備</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -109,13 +110,15 @@
                   <td align='center' valign="middle">
                     <input type="text" class="form-control" id="room" name="room" value=""/>
                   </td>
-                
+                  <td align='center' valign="middle">
+                    <input type="checkbox" name="checkBox" value="1" style="width:27px;height:27px"/>
+                  </td>
                   <td>
-                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="search">  查詢
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="search">  查詢設備
                     </button>
                   </td>                
                   <td>
-                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 新增
+                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 新增設備
                     </button>
                   </td>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,17 +126,17 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold">
-                            新增大樓或宿舍
+                            新增設備
                           </h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">大樓名稱:</label>
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">設備種類:</label>
                             <input type="text" class="form-control" id="type" name="type"/>
                           </div>
                           <div class="mb-3">
-                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >宿舍房號:</label>
+                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >數量:</label>
                             <input type="text" class="form-control" id="quantity" name="quantity"/>
                           </div>
                         </div>
@@ -142,12 +145,13 @@
                             關閉
                           </button>
                           <button type="submit" name="action" value="add" class="btn btn-primary">
-                            新增
+                            新增設備
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
+                </td>
               </tr>
             </form>
           </table>
@@ -165,7 +169,9 @@
         <!--定義表格的橫列 (row)-->
         <th scope="col" align='center' valign="middle">大樓名稱</th>
         <th scope="col" align='center' valign="middle">宿舍房號</th>
-        <th></th>
+        <th scope="col" align='center' valign="middle">設備種類</th>
+        <th scope="col" align='center' valign="middle">設備數量</th>
+        <th scope="col" align='center' valign="middle">設備狀況</th>
         <th></th>
         <th></th>
       </tr>
@@ -178,30 +184,22 @@
           <input type="hidden" name="building" value="{{this.DB_Number}}">
           <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">
           <input type="hidden" name="type" value="{{this.E_Type}}">
-          <th scope="row" align='center' valign="middle">
-            <input type="text"  class="form-control"name="DB_Name" value=" {{this.DB_Name}}" />
-          </th>
-            <td align='center' valign="middle">
-                <input type="text" class="form-control" name="Dormitory_No" value="{{this.E_D_Dormitory_No}}"/>
-            </td>
-          {{!-- <td align='center' valign="middle">
-            <input type="text" name="Dormitory_No" value="{{this.E_D_Dormitory_No}}" />
-          </td> --}}
-          {{!-- <td align='center' valign="middle">{{this.E_Type}}</td> --}}
-          {{!-- <td align='center' valign="middle">
+          <th scope="row" align='center' valign="middle">{{this.DB_Name}}</th>
+          <td align='center' valign="middle">{{this.E_D_Dormitory_No}}</td>
+          <td align='center' valign="middle">{{this.E_Type}}</td>
+          <td align='center' valign="middle">
             <input type="text" name="quantity" value="{{this.E_D_Quantity}}" />
           </td>
           <td align='center' valign="middle">
             <input type="text" name="condition" value="{{this.E_D_Condition}}" />
-          </td> --}}
-          <td></td>
+          </td>
           <td>
             <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
-            type="submit" name="action" value="update"> 修改</button>
+            type="submit" name="action" value="update"> 更新狀況</button>
           </td>
           <td>
             <button style=" width: 120px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;"
-             type="submit" name="action" value="delete"> 刪除</button>
+             type="submit" name="action" value="delete"> 刪除設備</button>
           </td>
         </form>
       </tr>

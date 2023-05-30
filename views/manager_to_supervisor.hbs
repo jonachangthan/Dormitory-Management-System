@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>學生基本資料</title>
+    <title>舍監基本資料</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
@@ -68,7 +68,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
-          <h1>學生基本資料</h1>
+          <h1>舍監基本資料</h1>
         </div>
       </div>
     </div>
@@ -90,94 +90,33 @@
             <!--表示表格中不同直行 (column) 的標題-->
             <tr style="background-color: #dfd1ef">
               <!--定義表格的橫列 (row)-->
-              <th align='center' valign="middle"scope="col">學號</th>
               <th align='center' valign="middle"scope="col">姓名</th>
               <th align='center' valign="middle"scope="col">性別</th>
-              <th align='center' valign="middle"scope="col">學年度</th>
-              <th align='center' valign="middle"scope="col">系所</th>
               <th align='center' valign="middle"scope="col">連絡電話</th>
               <th align='center' valign="middle"scope="col">Email</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
-          <form action="/managerToStudent/action" method="POST">
+          <form action="/managerToWarden/action" method="POST">
             <tr>
               <td align='center' valign="middle">
                 <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px" />
               </td>
-              <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 100px" />
-              </td>
-              <td align='center' valign="middle">
+
+            <td align='center' valign="middle">
                 <select id="sex" name="sex" style="width: 130px" class="form-select" >
                   <option selected>選擇性別</option>
                   <option value="男">男生</option>
                   <option value="女">女生</option>
                 </select>
               </td>
-              <td align='center' valign="middle">
-                <select id="academicYear" name="academicYear" style="width: 130px" class="form-select" >
-                  <option selected>選擇學年度</option>
-                  <option value="111">111</option>
-                  <option value="110">110</option>
-                  <option value="109">109</option>
-                  <option value="108">108</option>
-                  <option value="107">107</option>
-                  <option value="106">106</option>
-                </select>
-              </td>
-              <td align='center' valign="middle">
-                <select id="department" name="department" style="width: 230px" class="form-select" >
-                  <option selected>選擇系所</option>
-                  <optgroup label="人文社會科學院">
-                    <option value="西洋語文學系">西洋語文學系</option>
-                    <option value="運動健康與休閒學系">
-                      運動健康與休閒學系
-                    </option>
-                    <option value="東亞語文學系">東亞語文學系</option>
-                    <option value="運動競技學系">運動競技學系</option>
-                    <option value="建築學系">建築學系</option>
-                    <option value="工藝與創意設計學系">
-                      工藝與創意設計學系
-                    </option>
-                  </optgroup>
-                  <optgroup label="法學院">
-                    <option value="法律學系">法律學系</option>
-                    <option value="政治法律學系">政治法律學系</option>
-                    <option value="財經法律學系">財經法律學系</option>
-                  </optgroup>
-                  <optgroup label="管理學院">
-                    <option value="應用經濟學系">應用經濟學系</option>
-                    <option value="亞太工商管理學系">
-                      亞太工商管理學系
-                    </option>
-                    <option value="金融管理學系">金融管理學系</option>
-                    <option value="資訊管理學系">資訊管理學系</option>
-                  </optgroup>
-                  <optgroup label="理學院">
-                    <option value="應用數學系">應用數學系</option>
-                    <option value="生命科學系">生命科學系</option>
-                    <option value="應用化學系">應用化學系</option>
-                    <option value="應用物理學系">應用物理學系</option>
-                  </optgroup>
-                  <optgroup label="工學院">
-                    <option value="電機工程學系">電機工程學系</option>
-                    <option value="土木與環境工程學系">
-                      土木與環境工程學系
-                    </option>
-                    <option value="化學工程及材料工程學系">
-                      化學工程及材料工程學系
-                    </option>
-                    <option value="資訊工程學系">資訊工程學系</option>
-                  </optgroup>
-                </select>
-              </td>
               <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 120px" />
+                <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 150px" />
               </td>
-              <td align='center' valign="middle">
-                <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 120px" />
+      
+              <td align='center' valign="middle"> 
+                <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 180px" />
               </td>
               <td align='center' valign="middle">
                 <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
@@ -208,49 +147,37 @@
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
           <!--定義表格的橫列 (row)-->
-          <th scope="col"align='center' valign="middle" >學號</th>
           <th scope="col"align='center' valign="middle" >姓名</th>
           <th scope="col"align='center' valign="middle" >性別</th>
-          <th scope="col"align='center' valign="middle" >學年度</th>
-          <th scope="col"align='center' valign="middle" >系所</th>
           <th scope="col"align='center' valign="middle" >連絡電話</th>
           <th scope="col"align='center' valign="middle" >Email</th>
-          <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each message}}
         <tr>
-        <form action="/managerToStudent/action" method="post">
-          <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
-          <input type="hidden" name="studentID" value="{{this.S_ID}}">
-          <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
+        <form action="/managerToWarden/action" method="post">
           <td valign="middle">{{this.S_Name}}</td>
           <td valign="middle">{{this.S_Sex}}</td>
-          <td valign="middle">{{this.S_Academic_Year}}</td>
-          <td valign="middle">
-       
-            <input class="form-control"  value="{{this.S_Department}}" type="text" data-sb-validations="required"  />        
-            </td>
           <td valign="middle">
             <div class="form-floating">
-            <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
-            </div></td>
-            
-            <td valign="middle">     
-            <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
+               <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
+              </div>
+          </td>
+          <td valign="middle">     
+             <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
             </td>
           <td>
             <div style="text-align: left">
               <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
-                    修改
+                  修改
               </button>
-              </div>
-          </td>
-          <td>
-            <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
-          </td>
+            </div>
+            </td>
+            <td>
+              <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
+            </td>
           </form>
         </tr>
         {{/each}}
