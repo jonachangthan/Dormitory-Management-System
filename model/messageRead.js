@@ -12,7 +12,7 @@ module.exports = function readMessage() {
                 return;
             }
             else {
-                console.log(results);
+                // console.log(results);
                 resolve(results);
             }
         });

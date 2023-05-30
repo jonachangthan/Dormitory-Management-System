@@ -19,11 +19,7 @@ router.get('/', token, (req, res) => {
         //router.post('/', getController.readBulletin);
         readBulletin().then(Bresult => {
             readMessage().then(Mresult => {
-                return res.render('home_manager', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
-
+                return res.render('home_manager')
             })
         })
         //res.render('home_manager');
@@ -31,10 +27,7 @@ router.get('/', token, (req, res) => {
     else {
         readBulletin().then(Bresult => {
             readMessage().then(Mresult => {
-                return res.render('home_student', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
+                return res.render('home_student');
             })
         })
     }

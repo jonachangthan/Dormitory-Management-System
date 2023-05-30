@@ -12,7 +12,7 @@ module.exports = function getDormitoryData() {
                 return;
             }
             else {
-                console.log(results);
+                // console.log(results);
                 resolve(results);
             }
         });
