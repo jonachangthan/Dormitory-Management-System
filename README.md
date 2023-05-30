@@ -37,6 +37,7 @@
     3. Client端收到後將其儲存在Cookie中
     4. Client端每次發送請求都會帶Token
     5. Server端每次收到請求都會驗證Token
+    6. Token超過期限則失效，需重新登入取得
 
 ## 頁面功能
 * manager: 
