@@ -7,13 +7,15 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>申請住宿資料</title>
+    <title>住宿申請資料</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
     <!-- Google fonts-->
     <link
       href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
@@ -60,14 +62,18 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="/dormitory_detail"
-              >Introduction</a>
+           
+              <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+              href="/student_change_dormitory">換宿申請</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/login">Log out</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+              href="/student_checkout_dormitory">退宿申請</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+              href="/login">Log out</a>
             </li>
           </ul>
         </div>
@@ -79,7 +85,7 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
-              <h1>申請住宿資料</h1>
+              <h1>住宿申請資料</h1>
             </div>
           </div>
         </div>
@@ -128,6 +134,7 @@
               <th scope="col" align="center" valign="middle">核可與否</th>
               <th scope="col" align="center" valign="middle">繳費狀況</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -141,6 +148,10 @@
                 <td valign="middle">{{this.A_Bill}}</td>
                 
                 <form action="/studentToApply/delete" method="POST">
+                  <td>
+                    <button id="pay"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name=""  value="pay">  繳費
+                    </button>
+                  </td>       
                   <td>
                     <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;" type="submit" name="action" value="delete" > 刪除
                     </button>
@@ -189,5 +200,6 @@
     ></script>
     <!-- Core theme JS-->
     <script src="student_to_apply.js"></script>
+    
   </body>
 </html>
