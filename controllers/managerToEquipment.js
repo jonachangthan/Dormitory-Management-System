@@ -19,7 +19,7 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                return res.render('manager_to_dormitory', {
+                return res.render('manager_equipment', {
                     message:results,
                     searchSQL:sql
                 });
@@ -49,7 +49,7 @@ exports.action = (req, res) => {
                                 })
                             }
                             else {
-                                return res.render('manager_to_dormitory');
+                                return res.render('manager_equipment');
                             }
                         })
                     }
@@ -83,7 +83,7 @@ exports.action = (req, res) => {
                                 })
                             }
                             else {
-                                return res.render('manager_to_dormitory', {
+                                return res.render('manager_equipment', {
                                     message:results,
                                     searchSQL:searchSQL
                                 });
@@ -111,7 +111,7 @@ exports.action = (req, res) => {
                     }
                     else {
                         db.query(searchSQL, (error, results)=>{
-                            return res.render('manager_to_dormitory', {
+                            return res.render('manager_equipment', {
                                 message:results,
                                 searchSQL:searchSQL
                             })
