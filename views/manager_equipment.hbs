@@ -95,7 +95,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <form action="/managerToDormitory/action" method="post">
+              <form action="/managerToEquipment/action" method="post">
                 <tr>
                   <td align='center' valign="middle">
                     <select id="building" name="building" class="form-select">
@@ -179,7 +179,7 @@
     <tbody>
       {{#each message}}
       <tr>
-        <form action="/managerToDormitory/action" method="post">
+        <form action="/managerToEquipment/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
           <input type="hidden" name="building" value="{{this.DB_Number}}">
           <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">

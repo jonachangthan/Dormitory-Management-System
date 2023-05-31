@@ -39,7 +39,7 @@ app.use('/managerToViolation', require('./routes/managerToViolation'));
 
 app.use('/managerToApply', require('./routes/managerToApply'));
 
-app.use('/managerToDormitory', require('./routes/managerToDormitory'));
+app.use('/managerToEquipment', require('./routes/managerToEquipment'));
 
 app.use('/message', require('./routes/message'));
 
