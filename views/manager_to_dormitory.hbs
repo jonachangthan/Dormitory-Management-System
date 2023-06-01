@@ -90,6 +90,8 @@
                   <!--定義表格的橫列 (row)-->
                   <th scope="col" align='center' valign="middle">大樓名稱</th>
                   <th scope="col" align='center' valign="middle">宿舍房號</th>
+                   <th scope="col" align='center' valign="middle">容納人數</th>
+                  <th scope="col" align='center' valign="middle">費用</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -108,6 +110,13 @@
                   </td>
                   <td align='center' valign="middle">
                     <input type="text" class="form-control" id="room" name="room" value=""/>
+                  </td>
+                    <td align='center' valign="middle">
+                        <div class="form-floating">
+                    <input type="text" id="quantity" name="quantity" value=""/>
+                  </div></td>
+                     <td align='center' valign="middle">
+                    <input type="text" class="form-control" id="cost" name="cost" value=""/>
                   </td>
                 
                   <td>
@@ -165,6 +174,8 @@
         <!--定義表格的橫列 (row)-->
         <th scope="col" align='center' valign="middle">大樓名稱</th>
         <th scope="col" align='center' valign="middle">宿舍房號</th>
+         <th scope="col" align='center' valign="middle">容納人數</th>
+          <th scope="col" align='center' valign="middle">費用</th>
         <th></th>
         <th></th>
         <th></th>
@@ -184,17 +195,14 @@
             <td align='center' valign="middle">
                 <input type="text" class="form-control" name="Dormitory_No" value="{{this.E_D_Dormitory_No}}"/>
             </td>
-          {{!-- <td align='center' valign="middle">
-            <input type="text" name="Dormitory_No" value="{{this.E_D_Dormitory_No}}" />
-          </td> --}}
-          {{!-- <td align='center' valign="middle">{{this.E_Type}}</td> --}}
-          {{!-- <td align='center' valign="middle">
-            <input type="text" name="quantity" value="{{this.E_D_Quantity}}" />
-          </td>
-          <td align='center' valign="middle">
-            <input type="text" name="condition" value="{{this.E_D_Condition}}" />
-          </td> --}}
-          <td></td>
+            <td align='center' valign="middle">
+              <div class="form-floating">
+              <input type="text" name="" value=""/>
+              </div>
+            </td>
+            <td align='center' valign="middle">
+              <input type="text" class="form-control" name="" value=""/>
+            </td>
           <td>
             <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
             type="submit" name="action" value="update"> 修改</button>
