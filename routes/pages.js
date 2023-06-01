@@ -97,9 +97,13 @@ router.get('/manager_equipment', token, (req, res) => {
     }
 });
 router.get('/manager_studentAccommodation', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_studentAccommodation');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_studentAccommodation', {
+                Dormessage: result
+            })
+        }
+    })
 });
 
 
