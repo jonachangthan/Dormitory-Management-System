@@ -60,6 +60,12 @@ router.get('/reset_password', (req, res) => {
 });
 
 //! Manager
+router.get('/modify_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('modify_account');
+    }
+});
+
 router.get('/manager_to_student', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_to_student');
