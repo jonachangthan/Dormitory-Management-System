@@ -72,7 +72,6 @@ exports.login = async (req, res) => {
         if (await bcrypt.compare(password, results[0].Password)) { // 需大寫
             //* 產生Token並存放在Cookie中
             const payload = {
-                id: results[0].ID,
                 username: results[0].UserName,
                 permission: results[0].Permission
             };

@@ -14,10 +14,10 @@ const token = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const dc = jwt.decode(token);
 
-    db.query('SELECT * FROM account WHERE id = ?', [decoded.id], (error, results) => {
+    db.query('SELECT * FROM account WHERE username = ?', [decoded.username], (error, results) => {
       if (error) {
         return res.status(401).render('login', {
-          message: '查無此ID!'
+          message: '查無此帳號!'
         });
       }
       req.user = results[0];
