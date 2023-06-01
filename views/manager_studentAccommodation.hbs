@@ -98,13 +98,13 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <form action="" method="POST">
+                  <form action="/managerToStudentAccommodation/action" method="POST">
                     <tr>
                         <td align='center' valign="middle">
                             <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px"/>
                         </td>
                         <td align='center' valign="middle">
-                            <input type="text" class="form-control" id="studentName" name="studentName" value="" placeholder="" style="width: 130px"/>
+                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 130px"/>
                       </td>
                       <td align='center' valign="middle"> 
                         <select id="academicYear" name="academicYear" style="width: 130px" class="form-select">
@@ -118,17 +118,17 @@
                         </select>
                       </td>
                       <td align='center' valign="middle">
-                        <select id="semester" name="semester" style="width: 130px" class="form-select" >
+                        <select id="sex" name="sex" style="width: 130px" class="form-select" >
                           <option selected>選擇學期</option>
-                          <option value="上">上學期</option>
-                          <option value="下">下學期</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
                         </select>
                       </td>
                       <td align='center' valign="middle">
-                        <input type="text" class="form-control" id="" name="" value="" style="width: 130px" />
+                        <input type="text" class="form-control" id="building" name="building" value="" style="width: 130px" />
                       </td>
                       <td align='center' valign="middle">
-                        <input type="text" class="form-control" id="" name="" value="" style="width: 130px" />
+                        <input type="text" class="form-control" id="room" name="" value="room" style="width: 130px" />
                       </td>
                       <td>
                         <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "type="submit"name="action"value="search">查詢</button>
@@ -225,9 +225,11 @@
           <td >{{this.A_Date}}</td>
           <td >{{this.A_Approval}}</td>
           <td >{{this.A_Bill}}</td>
+          <td >{{this.A_Bill}}</td>
+          <td >{{this.A_Bill}}</td>
           <td></td>
           <td></td>
-            <form action="" method="post">
+            <form action="/managerToStudentAccommodation/action" method="post">
             <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
             <input type="hidden" name="number" value="{{this.A_Number}}">
             <input type="hidden" name="studentID" value="{{this.A_Student_ID}}">

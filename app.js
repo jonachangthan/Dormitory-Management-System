@@ -43,6 +43,8 @@ app.use('/managerToEquipment', require('./routes/managerToEquipment'));
 
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
+app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));
+
 app.use('/message', require('./routes/message'));
 
 app.use('/student', require('./routes/student'));
