@@ -12,7 +12,7 @@ module.exports = function readBulletin() {
                 return;
             }
             else {
-                console.log(results);
+                // console.log(results);
                 resolve(results);
             }
         });
