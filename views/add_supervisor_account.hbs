@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>查詢人員帳號</title>
+    <title>新增舍監</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
@@ -47,15 +47,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto py-4 py-lg-0">
-        <li class="list-inline-item">
-          <a href="/" class="home">
-            <span class="fa-stack fa-lg">
-              <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
-                style="width: 50px; height: 50px;color:#ffffff"
-                class="fa-solid fa-house-user">
-              </button>
-            </span>
-          </a>
+        <li class="nav-item">
+          <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+          href="/modify_account">查詢帳號</a>
         </li>
         <li class="nav-item">
           <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
@@ -64,10 +58,6 @@
         <li class="nav-item">
           <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
           href="/add_manager_account">新增管理員</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-          href="/add_supervisor_account">新增舍監</a>
         </li>
         <li class="nav-item"> <a class="nav-link px-lg-3 py-3 py-lg-4" href="/login" style="font-size:15px">Log out</a> </li>
       </ul>
@@ -80,7 +70,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
-          <h1>查詢人員帳號</h1>
+          <h1>新增舍監帳號</h1>
         </div>
       </div>
     </div>
@@ -88,57 +78,60 @@
 </header>
     <!-- Main Content-->
 <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000; " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢人員帳號
-      </button>
-      <i class="fa-solid fa-caret-down"></i>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div class="container">
-        <table style="line-height: 10px" class="table table-hover">
-          <thead>
-            <!--表示表格中不同直行 (column) 的標題-->
-            <tr style="background-color: #dfd1ef">
-              <!--定義表格的橫列 (row)-->
-              <th align='center' valign="middle"scope="col">帳號</th>
-              <th align='center' valign="middle"scope="col">身分</th>
-              <th></th>
-            </tr>
-          </thead>
-          <form action="/modifyAccount/search" method="POST">
-            <tr>     
-              <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="UserName" name="UserName" value="" placeholder="" style="width: 250px" />
-              </td>
-               <td align='center' valign="middle">
-                 <select id="building" name="Permission" class="form-select">
-                    <option selected>選擇身分</option>
-                    <option value=1>管理員</option>
-                    <option value=2>舍監</option>
-                    <option value=0>學生</option>
-                  </select>
-              </td> 
-              <td align='center' valign="middle">
-                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
-                    查詢
-                </button>
-              </td>
-            </tr>
-          </form>
-        </table>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000; " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 新增舍監
+            </button>
+            <i class="fa-solid fa-caret-down"></i>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container">
+                    <table style="line-height: 10px" class="table table-hover">
+                      <thead>
+                        <!--表示表格中不同直行 (column) 的標題-->
+                        <tr style="background-color: #dfd1ef">
+                          <!--定義表格的橫列 (row)-->
+                          <th align='center' valign="middle"scope="col">舍監人員編號</th>
+                          <th align='center' valign="middle"scope="col">姓名</th>
+                          <th align='center' valign="middle"scope="col">電話</th>
+                          <th align='center' valign="middle"scope="col">Email</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <form action="/modifyAccount/addSupervisor" method="POST">
+                        <tr>     
+                          <td align='center' valign="middle"> 
+                            <input type="text" class="form-control" id="supervisorId" name="supervisorId" value="" placeholder="" style="width: 250px" />
+                          </td>
+                           <td align='center' valign="middle"> 
+                            <input type="text" class="form-control" id="supervisorName" name="supervisorName" value="" placeholder="" style="width: 250px" />
+                          </td>
+                          <td align='center' valign="middle"> 
+                            <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 250px" />
+                          </td>
+                          <td align='center' valign="middle"> 
+                            <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 250px" />
+                          </td>
+                          <td align='center' valign="middle">
+                            <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                                新增
+                            </button>
+                          </td>
+                        </tr>
+                      </form>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
   {{#if err_message}}
-    <div style="text-align: center;">
-      <p style="color: #f50606; font-size: 30px;">
-        {{err_message}}
-      </p>
-    </div>
+        <div style="text-align: center;">
+          <p style="color: #f50606; font-size: 30px;">
+            {{err_message}}
+          </p>
+        </div>
     {{/if}}
     <br /><br /><br />
 <div class="container">
@@ -148,8 +141,10 @@
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
           <!--定義表格的橫列 (row)-->
-          <th scope="col"align='center' valign="middle" >帳號</th>
-          <th scope="col"align='center' valign="middle" >身分</th>
+           <th align='center' valign="middle"scope="col">舍監人員編號</th>
+           <th align='center' valign="middle"scope="col">姓名</th>
+           <th align='center' valign="middle"scope="col">電話</th>
+           <th align='center' valign="middle"scope="col">Email</th>
           <th></th>
           <th></th>
         </tr>
@@ -157,33 +152,16 @@
       <tbody>
         {{#each message}}
             <tr>
-                <form action="/modifyAccount/modify" method="post">
-                  <td valign="middle">
-                    <div class="form-floating">
-                       <input class="form-control1"  value={{this.UserName}} type="text" data-sb-validations="required"  />        
-                      </div>
-                  </td>
-                  <td valign="middle">
-                    <select id="building" name="Permission" class="form-select">
-                        {{{this.html}}}
-                    </select>       
-                  </td>
-                  <td>
-                    <div style="text-align: left">
-                      <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">修改</button>
-                    </div>
-                  </td>
-                  <td>
-                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
-                  </td>
-                </form>
+              <th scope="row" align='center' valign="middle">{{this.M_ID}}</th>
+              <td valign="middle">{{this.M_Name}}</td>
+              <td valign="middle">{{this.M_Phone}}</td>
+              <td valign="middle">{{this.M_Email}}</td>
             </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
-</div>
-        
+</div>     
     <!-- Footer-->
     <br /><br /><br /><br /><br /><br />
     <footer class="border-top">
