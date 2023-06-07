@@ -1,6 +1,6 @@
 # Dormitory-Management-System
 
-# do-to list
+# to-do list
 1. 系統管理員(總務處)： 
     * 所有的宿舍資料的管理，如宿舍大樓、房間資料、設備狀況。 
     * 所有住宿學生的資料管理，如學生資料、住宿的房間等。 
