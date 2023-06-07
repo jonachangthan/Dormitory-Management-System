@@ -98,31 +98,29 @@
                         <th align='center' valign="middle"scope="col">系所</th>
                         <th align='center' valign="middle"scope="col">連絡電話</th>
                         <th align='center' valign="middle"scope="col">Email</th>
-                        <th align='center' valign="middle"scope="col">住宿大樓</th>
-                        <th align='center' valign="middle"scope="col">宿舍房號</th>
                       <th></th>
                     </tr>
                   </thead>
-                  <form action="/addStudentAccount/action" method="POST">
+                  <form action="/modifyAccount/addStudent" method="POST" id="submitform">
                     <tr>     
                       <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 120px" />
+                        <input type="text" class="form-control" id="S_ID" name="S_ID" value="" placeholder="" style="width: 120px" />
                       </td>
                        <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 150px" />
+                        <input type="text" class="form-control" id="S_Name" name="S_Name" value="" placeholder="" style="width: 150px" />
                       </td>
                        <td align='center' valign="middle"> 
-                        <select id="sex" name="sex" style="width: 130px" class="form-select" >
+                        <select id="S_Sex" name="S_Sex" style="width: 130px" class="form-select" >
                             <option selected>選擇性別</option>
                             <option value="男">男生</option>
                             <option value="女">女生</option>
                         </select>
                       </td>
                        <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="academicYear" name="academicYear" value="" placeholder="" style="width: 100px" />
+                        <input type="text" class="form-control" id="S_Academic" name="S_Academic" value="" placeholder="" style="width: 100px" />
                       </td>
                        <td align='center' valign="middle"> 
-                        <select id="department" name="department" style="width: 230px" class="form-select" >
+                        <select id="S_Department" name="S_Department" style="width: 230px" class="form-select" >
                         <option selected>選擇系所</option>
                         <optgroup label="人文社會科學院">
                           <option value="西洋語文學系">西洋語文學系</option>
@@ -168,26 +166,13 @@
                         <select>
                       </td>
                        <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 150px" />
+                        <input type="text" class="form-control" id="S_Phone" name="S_Phone" value="" placeholder="" style="width: 150px" />
                       </td>
                        <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width:150px" />
-                      </td>
-                      <td align='center' valign="middle"> 
-                       <select id="building" name="building" class="form-select">
-                      <option selected>選擇大樓</option>
-                      <option value=1>學生第一宿舍(OA-男)</option>
-                      <option value=2>學生第一宿舍(OB-女)</option>
-                      <option value=3>學生第二宿舍(OE-男)</option>
-                      <option value=4>學生第二宿舍(OF-女)</option>
-                      <option value=5>綜合宿舍(B01-男)</option>
-                    </select>
-                      </td>
-                      <td align='center' valign="middle"> 
-                        <input type="text" class="form-control" id="domitory" name="domitory" value="" placeholder="" style="width:100px" />
+                        <input type="text" class="form-control" id="S_Email" name="S_Email" value="" placeholder="" style="width:150px" />
                       </td>
                       <td align='center' valign="middle">
-                        <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                        <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "id="add" type="button" name="action" value="search" >
                             新增
                         </button>
                       </td>
@@ -199,11 +184,15 @@
     </div>
 </div>
   {{#if err_message}}
-    <p style="color: #f50606; font-size:15px">{{err_message}}</p>
+        <div style="text-align: center;">
+          <p style="color: #f50606; font-size: 30px;">
+            {{err_message}}
+          </p>
+        </div>
     {{/if}}
     <br /><br /><br />
   <div class="accordion-body">
-    <table style="line-height: 10px" class="table table-hover">
+    <table style="line-height: 30px" class="table table-hover">
       <thead>
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
@@ -215,8 +204,6 @@
           <th align='center' valign="middle"scope="col">系所</th>
           <th align='center' valign="middle"scope="col">連絡電話</th>
           <th align='center' valign="middle"scope="col">Email</th>
-          <th align='center' valign="middle"scope="col">住宿大樓</th>
-          <th align='center' valign="middle"scope="col">宿舍房號</th>
           <th></th>
           <th></th>
         </tr>
@@ -224,30 +211,13 @@
       <tbody>
         {{#each message}}
             <tr>
-                <form action="/modifyAccount/action" method="post">
-                    <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
-                    <input type="hidden" name="studentID" value="{{this.S_ID}}">
-                    <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
-                    <td valign="middle">{{this.S_Name}}</td>
-                    <td valign="middle">{{this.S_Sex}}</td>
-                    <td valign="middle">{{this.S_Academic_Year}}</td>
-                    <td valign="middle">      
-                    <input class="form-control"  value="{{this.S_Department}}" type="text" data-sb-validations="required"  />        
-                    </td>
-                    <td valign="middle">
-                    <div class="form-floating">
-                    <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
-                    </div></td>            
-                    <td valign="middle">     
-                    <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
-                    </td>
-                     <td valign="middle">     
-                    <input class="form-control"  value="{{this.S_Dormitory_No}}" type="text" data-sb-validations="required"  />        
-                    </td>
-                     <td valign="middle">     
-                    <input class="form-control"  value="{{this.S_Building_No}}" type="text" data-sb-validations="required"  />        
-                    </td>
-                </form>
+              <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
+              <td valign="middle">{{this.S_Name}}</td>
+              <td valign="middle">{{this.S_Sex}}</td>
+              <td valign="middle">{{this.S_Academic_Year}}</td>
+              <td valign="middle">{{this.S_Department}}</td>
+              <td valign="middle">{{this.S_Phone}}</td>
+              <td valign="middle">{{this.S_Email}}</td>
             </tr>
         {{/each}}
       </tbody>
@@ -285,6 +255,7 @@
       </div>
     </footer>
     <!-- Bootstrap core JS-->
+    <script src="add_student_account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
   </body>

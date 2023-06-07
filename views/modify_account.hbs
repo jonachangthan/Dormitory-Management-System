@@ -107,17 +107,17 @@
               <th></th>
             </tr>
           </thead>
-          <form action="/managerToWarden/action" method="POST">
+          <form action="/modifyAccount/search" method="POST">
             <tr>     
               <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 250px" />
+                <input type="text" class="form-control" id="UserName" name="UserName" value="" placeholder="" style="width: 250px" />
               </td>
                <td align='center' valign="middle">
-                 <select id="building" name="building" class="form-select">
+                 <select id="building" name="Permission" class="form-select">
                     <option selected>選擇身分</option>
                     <option value=1>管理員</option>
                     <option value=2>舍監</option>
-                    <option value=3>學生</option>
+                    <option value=0>學生</option>
                   </select>
               </td> 
               <td align='center' valign="middle">
@@ -134,7 +134,11 @@
   </div>
 </div>
   {{#if err_message}}
-    <p style="color: #f50606; font-size:15px">{{err_message}}</p>
+    <div style="text-align: center;">
+      <p style="color: #f50606; font-size: 30px;">
+        {{err_message}}
+      </p>
+    </div>
     {{/if}}
     <br /><br /><br />
 <div class="container">
@@ -148,27 +152,22 @@
           <th scope="col"align='center' valign="middle" >身分</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each message}}
             <tr>
-                <form action="/modifyAccount/action" method="post">
-                  <td valign="middle">
-                    <div class="form-floating">
-                       <input class="form-control1"  value="" type="text" data-sb-validations="required"  />        
-                      </div>
-                  </td>
-                  <td valign="middle">     
-                     <input class="form-control"  value="" type="text" data-sb-validations="required"  />        
-                  </td>
+                <form action="/modifyAccount/delete" method="post">
+                  <th scope="row" align='center' valign="middle">{{this.UserName}}</th>
+                  <td valign="middle">{{this.html}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td>
-                    <div style="text-align: left">
-                      <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">修改</button>
-                    </div>
-                  </td>
-                  <td>
-                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
+                    <input type="hidden" name="sql" value="{{../searchSQL}}">
+                    <input type="hidden" name="UserName" value="{{this.UserName}}">
+                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit"> 刪除</button>
                   </td>
                 </form>
             </tr>

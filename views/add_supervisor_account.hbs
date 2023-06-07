@@ -99,7 +99,7 @@
                           <th></th>
                         </tr>
                       </thead>
-                      <form action="/managerToWarden/action" method="POST">
+                      <form action="/modifyAccount/addSupervisor" method="POST" id="submitform">
                         <tr>     
                           <td align='center' valign="middle"> 
                             <input type="text" class="form-control" id="supervisorId" name="supervisorId" value="" placeholder="" style="width: 250px" />
@@ -114,7 +114,7 @@
                             <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 250px" />
                           </td>
                           <td align='center' valign="middle">
-                            <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                            <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " id="add" type="button" name="action" value="search" >
                                 新增
                             </button>
                           </td>
@@ -127,12 +127,16 @@
     </div>
 </div>
   {{#if err_message}}
-    <p style="color: #f50606; font-size:15px">{{err_message}}</p>
+        <div style="text-align: center;">
+          <p style="color: #f50606; font-size: 30px;">
+            {{err_message}}
+          </p>
+        </div>
     {{/if}}
     <br /><br /><br />
 <div class="container">
   <div class="accordion-body">
-    <table style="line-height: 10px" class="table table-hover">
+    <table style="line-height: 30px" class="table table-hover">
       <thead>
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
@@ -148,36 +152,10 @@
       <tbody>
         {{#each message}}
             <tr>
-              <form action="/addSupervisorAccount/action" method="post">
-                  <td valign="middle">
-                    <div class="form-floating">
-                       <input class="form-control"  value="id" type="text" data-sb-validations="required"  />        
-                    </div>
-                  </td>
-                  <td valign="middle">
-                     <div class="form-floating">
-                        <input class="form-control"  value="name" type="text" data-sb-validations="required"  />        
-                     </div>
-                   </td>
-                   <td valign="middle">
-                     <div class="form-floating">
-                        <input class="form-control"  value="phone" type="text" data-sb-validations="required"  />        
-                     </div>
-                   </td>
-                   <td valign="middle">
-                     <div class="form-floating">
-                        <input class="form-control"  value="email" type="text" data-sb-validations="required"  />        
-                     </div>
-                   </td>
-                   <td>
-                     <div style="text-align: left">
-                       <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">修改</button>
-                     </div>
-                   </td>
-                   <td>
-                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
-                   </td>
-               </form>
+              <th scope="row" align='center' valign="middle">{{this.M_ID}}</th>
+              <td valign="middle">{{this.M_Name}}</td>
+              <td valign="middle">{{this.M_Phone}}</td>
+              <td valign="middle">{{this.M_Email}}</td>
             </tr>
         {{/each}}
       </tbody>
@@ -216,6 +194,7 @@
       </div>
     </footer>
     <!-- Bootstrap core JS-->
+    <script src="add_supervisor_account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
   </body>
