@@ -152,29 +152,22 @@
           <th scope="col"align='center' valign="middle" >身分</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each message}}
             <tr>
-                <form action="/modifyAccount/modify" method="post">
-                  <td valign="middle">
-                    <div class="form-floating">
-                       <input class="form-control1"  value={{this.UserName}} type="text" data-sb-validations="required"  />        
-                      </div>
-                  </td>
-                  <td valign="middle">
-                    <select id="building" name="Permission" class="form-select">
-                        {{{this.html}}}
-                    </select>       
-                  </td>
+                <form action="/modifyAccount/delete" method="post">
+                  <th scope="row" align='center' valign="middle">{{this.UserName}}</th>
+                  <td valign="middle">{{this.html}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td>
-                    <div style="text-align: left">
-                      <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">修改</button>
-                    </div>
-                  </td>
-                  <td>
-                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
+                    <input type="hidden" name="sql" value="{{../searchSQL}}">
+                    <input type="hidden" name="UserName" value="{{this.UserName}}">
+                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit"> 刪除</button>
                   </td>
                 </form>
             </tr>

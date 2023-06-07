@@ -101,7 +101,7 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <form action="/modifyAccount/addStudent" method="POST">
+                  <form action="/modifyAccount/addStudent" method="POST" id="submitform">
                     <tr>     
                       <td align='center' valign="middle"> 
                         <input type="text" class="form-control" id="S_ID" name="S_ID" value="" placeholder="" style="width: 120px" />
@@ -172,7 +172,7 @@
                         <input type="text" class="form-control" id="S_Email" name="S_Email" value="" placeholder="" style="width:150px" />
                       </td>
                       <td align='center' valign="middle">
-                        <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                        <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "id="add" type="button" name="action" value="search" >
                             新增
                         </button>
                       </td>
@@ -192,7 +192,7 @@
     {{/if}}
     <br /><br /><br />
   <div class="accordion-body">
-    <table style="line-height: 10px" class="table table-hover">
+    <table style="line-height: 30px" class="table table-hover">
       <thead>
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
@@ -255,6 +255,7 @@
       </div>
     </footer>
     <!-- Bootstrap core JS-->
+    <script src="add_student_account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
   </body>

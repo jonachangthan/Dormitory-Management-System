@@ -13,4 +13,6 @@ router.post('/addManager', token, modifyAccountController.addManager);
 
 router.post('/addSupervisor', token, modifyAccountController.addSupervisor);
 
+router.post('/delete', token, modifyAccountController.delete);
+
 module.exports = router;

@@ -39,14 +39,11 @@ exports.search = (req, res) => {
     } else {
       results.forEach((element) => {
         if (element.Permission == 0) {
-          s =
-            "<option value=1>管理員</option><option value=2>舍監</option><option value=0 selected>學生</option>";
+          s ="學生";
         } else if (element.Permission == 1) {
-          s =
-            "<option value=1 selected>管理員</option><option value=2>舍監</option><option value=0>學生</option>";
+          s = "管理員";
         } else if (element.Permission == 2) {
-          s =
-            "<option value=1>管理員</option><option value=2 selected>舍監</option><option value=0>學生</option>";
+          s = "舍監";
         }
         element.html = s;
       });
@@ -72,9 +69,9 @@ exports.addStudent = (req, res) => {
   const accountSql = `SELECT * FROM account WHERE UserName = '${student.S_ID}'`;
 
   db.query(accountSql, (error, results) => {
-    if (error) {
+    if (error || !Number.isInteger(student.S_Academic_Year)) {
       return res.render("add_student_account", {
-        err_message: "新增帳號失敗",
+        err_message: "新增帳號失敗"
       });
     }
 
@@ -271,4 +268,37 @@ exports.addSupervisor = (req, res) => {
       });
     });
   });
+};
+
+exports.delete = (req, res) => {
+    const username = req.body.UserName;
+    const searchSQL = req.body.sql;
+
+    // Build the SQL query to delete the account
+    const deleteSql = `DELETE FROM account WHERE UserName = '${username}'`;
+
+    db.query(deleteSql, (error) => {
+        if (error) {
+            return res.render("modify_account", {
+                err_message: "刪除帳號失敗",
+            });
+        } else {
+            db.query(searchSQL, (error, results) => {
+                results.forEach((element) => {
+                    if (element.Permission == 0) {
+                      s ="學生";
+                    } else if (element.Permission == 1) {
+                      s = "管理員";
+                    } else if (element.Permission == 2) {
+                      s = "舍監";
+                    }
+                    element.html = s;
+                });
+                return res.render("modify_account", {
+                    message: results,
+                    sql : searchSQL
+                });
+            });
+        }
+    });
 };

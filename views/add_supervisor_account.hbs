@@ -99,7 +99,7 @@
                           <th></th>
                         </tr>
                       </thead>
-                      <form action="/modifyAccount/addSupervisor" method="POST">
+                      <form action="/modifyAccount/addSupervisor" method="POST" id="submitform">
                         <tr>     
                           <td align='center' valign="middle"> 
                             <input type="text" class="form-control" id="supervisorId" name="supervisorId" value="" placeholder="" style="width: 250px" />
@@ -114,7 +114,7 @@
                             <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 250px" />
                           </td>
                           <td align='center' valign="middle">
-                            <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                            <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " id="add" type="button" name="action" value="search" >
                                 新增
                             </button>
                           </td>
@@ -136,7 +136,7 @@
     <br /><br /><br />
 <div class="container">
   <div class="accordion-body">
-    <table style="line-height: 10px" class="table table-hover">
+    <table style="line-height: 30px" class="table table-hover">
       <thead>
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
@@ -194,6 +194,7 @@
       </div>
     </footer>
     <!-- Bootstrap core JS-->
+    <script src="add_supervisor_account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
   </body>
