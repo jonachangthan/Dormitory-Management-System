@@ -58,7 +58,21 @@ router.get('/forget_password', (req, res) => {
 router.get('/reset_password', (req, res) => {
     res.render('reset_password');
 });
-
+router.get('/add_student_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_student_account');
+    }
+});
+router.get('/add_manager_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_manager_account');
+    }
+});
+router.get('/add_supervisor_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_supervisor_account');
+    }
+});
 //! Manager
 router.get('/modify_account', token, (req, res) => {
     if (req.user.Permission) {
