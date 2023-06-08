@@ -47,6 +47,8 @@ app.use('/message', require('./routes/message'));
 
 app.use('/student', require('./routes/student'));
 
+app.use('/supervisor', require('./routes/supervisor'));
+
 app.use('/studentToApply', require('./routes/studentToApply'));
 
 app.use('/studentToFix', require('./routes/studentToFix'));

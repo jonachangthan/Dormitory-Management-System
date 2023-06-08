@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>高雄大學宿舍管理系統</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body style="background-color: #f2f3eb">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container px-4 px-lg-5">
+        <img
+          src="logo.jpg"
+          style="margin-left: 0px"
+          width="100px"
+          height="100px"
+        /><img />
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="list-inline-item">
+              <a href="/" class="home" >
+                <span class="fa-stack fa-lg">
+                  <i 
+                    style="width: 50px; height: 50px;color:#ffffff"
+                    class="fa-solid fa-house-user"
+                  ></i>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-lg-3 py-3 py-lg-4"
+                href="/dormitory_detail"
+                >Introduction</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4"
+              href="/login">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('dormitory.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>高大住宿管理系統</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <!-- Divider-->
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor"
+              ><h2 class="post-title">舍監基本資料</h2>
+              <h5 class="post-subtitle">
+                舍監可以在此查看基本資料，並提供更新資料之功能
+              </h5></a>
+          </div>
+            <hr class="my-4" />
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor_to_manager">
+              <h2 class="post-title">管理人員基本資料</h2>
+              <h5 class="post-subtitle">
+                舍監可以在此查詢管理人員基本資料
+              </h5>
+            </a>
+          </div>
+          <hr class="my-4" />
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor_to_student">
+              <h2 class="post-title">學生基本資料</h2>
+              <h5 class="post-subtitle">
+                舍監可以在此查詢學生基本資料
+              </h5>
+            </a>
+          </div>
+          <!-- Divider-->
+          <hr class="my-4" />
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor_to_dormitory">
+              <h2 class="post-title">宿舍大樓資料</h2>
+              <h5 class="post-subtitle">
+                舍監可以在此查詢學生住宿資訊以及所有房間或公共空間之設備種類、數量及狀況，並提供報修功能可更新目前設備狀況
+              </h5>
+            </a>
+          </div>
+          <!-- Divider-->
+           <hr class="my-4" />
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor_to_violation">
+              <h2 class="post-title">學生違規紀錄</h2>
+              <h5 class="post-subtitle">
+                舍監可以查詢、新增學生違規紀錄並提供修改及刪除違規內容及懲處之功能
+              </h5>
+            </a>
+          </div> 
+          <!-- Divider-->
+          <hr class="my-4" />
+          <!-- Pager-->
+          <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary text-uppercase" href="supervisor_to_message"
+              >公告及留言板 →</a>
+          </div>
+        </div>
+      </div>
+      <br><br><br>
+    </div>   
+    <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
+    <!-- Footer-->
+    <footer class="border-top">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div id="top-footer">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 contact">
+                    <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                    <h3>高雄大學網站:</h3>
+                   
+                    <a href="https://www.nuk.edu.tw/" target="_blank" 
+                      >https://www.nuk.edu.tw/</a
+                    >
+                  </div>
+                  <div class="col-md-6 social">
+                    <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                    <h3>moodle平台:</h3>
+                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank">
+                    https://elearningv4.nuk.edu.tw/</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="script.js"></script>
+  </body>
+</html>
