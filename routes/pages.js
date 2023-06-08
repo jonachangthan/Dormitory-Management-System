@@ -14,22 +14,17 @@ const getEquipment = require('../model/student/getEquipment');
 //* 進入首頁view
 router.get('/', token, (req, res) => {
     if (req.user.Permission == 1) {
-        //router.post('home_manager', authController.readBulletin);
-        //router.post('../auth/readBulletin', authController.readBulletin);
-        //router.post('/', getController.readBulletin);
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_manager')
-            })
-        })
-        //res.render('home_manager');
+
+        return res.render('home_manager');
+
     }
     else if(req.user.Permission == 0) {
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_student');
-            })
-        })
+
+        return res.render('home_student');
+
+    }else if(req.user.Permission == 2){
+        
+        return res.render('home_supervisor');
     }
 });
 
@@ -73,6 +68,7 @@ router.get('/add_supervisor_account', token, (req, res) => {
         res.render('add_supervisor_account');
     }
 });
+
 //! Manager
 router.get('/modify_account', token, (req, res) => {
     if (req.user.Permission) {
@@ -122,19 +118,55 @@ router.get('/manager_studentAccommodation', token, (req, res) => {
     }
 });
 
-
-
 router.get('/manager_fix', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_fix');
     }
 });
-//! Warden
+
+//! supervisor
+router.get('/supervisor_equipment', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_equipment');
+    }
+});
+
+router.get('/supervisor_fix', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_fix');
+    }
+});
+
+router.get('/supervisor_to_dormitory', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_dormitory');
+    }
+});
+
+router.get('/supervisor_to_manager', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_manager');
+    }
+});
+
+router.get('/supervisor_to_message', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_message');
+    }
+});
+
+router.get('/supervisor_to_student', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_student');
+    }
+});
+
 router.get('/supervisor_to_violation', token, (req, res) => {
     if (req.user.Permission) {
         res.render('supervisor_to_violation');
     }
 });
+
 //! Student
 router.get('/student_to_manager', token, (req, res) => {
     getManager().then(result => {
