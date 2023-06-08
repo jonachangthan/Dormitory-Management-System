@@ -6,4 +6,8 @@ const router = express.Router();
 //* 撰寫
 router.post('/write',token, bulletinController.write);
 
+router.post('/delete',token, bulletinController.delete);
+
+router.post('/modify',token, bulletinController.modify);
+
 module.exports = router;
