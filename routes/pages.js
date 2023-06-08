@@ -13,28 +13,21 @@ const getEquipment = require('../model/student/getEquipment');
 
 //* 進入首頁view
 router.get('/', token, (req, res) => {
-    if (req.user.Permission) {
+    if (req.user.Permission == 1) {
         //router.post('home_manager', authController.readBulletin);
         //router.post('../auth/readBulletin', authController.readBulletin);
         //router.post('/', getController.readBulletin);
         readBulletin().then(Bresult => {
             readMessage().then(Mresult => {
-                return res.render('home_manager', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
-
+                return res.render('home_manager')
             })
         })
         //res.render('home_manager');
     }
-    else {
+    else if(req.user.Permission == 0) {
         readBulletin().then(Bresult => {
             readMessage().then(Mresult => {
-                return res.render('home_student', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
+                return res.render('home_student');
             })
         })
     }
@@ -65,8 +58,28 @@ router.get('/forget_password', (req, res) => {
 router.get('/reset_password', (req, res) => {
     res.render('reset_password');
 });
-
+router.get('/add_student_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_student_account');
+    }
+});
+router.get('/add_manager_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_manager_account');
+    }
+});
+router.get('/add_supervisor_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('add_supervisor_account');
+    }
+});
 //! Manager
+router.get('/modify_account', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('modify_account');
+    }
+});
+
 router.get('/manager_to_student', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_to_student');

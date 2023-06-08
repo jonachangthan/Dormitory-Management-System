@@ -13,7 +13,7 @@ module.exports = function getViolationData(data) {
                 return;
             }
             else {
-                console.log(results);
+                // console.log(results);
                 resolve(results);
             }
         });

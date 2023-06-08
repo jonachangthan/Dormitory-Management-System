@@ -7,6 +7,4 @@ const router = express.Router();
 //* 撰寫
 router.post('/action',token, managerToApplyController.action);
 
-
-
 module.exports = router;

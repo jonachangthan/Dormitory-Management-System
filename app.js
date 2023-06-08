@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require("cookie-parser");
 const path = require('path')
 const app = express();
-const port = 5500; // server port
+const port = process.env.PORT || 5500; // server port
 
 //* 放置任何前端文件之地方
 const publicDirectory = path.join(__dirname, './public') // __dirname: 用以訪問當前目錄之nodejs變數
@@ -40,6 +40,8 @@ app.use('/managerToViolation', require('./routes/managerToViolation'));
 app.use('/managerToApply', require('./routes/managerToApply'));
 
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
+
+app.use('/modifyAccount', require('./routes/modifyAccount'));
 
 app.use('/message', require('./routes/message'));
 

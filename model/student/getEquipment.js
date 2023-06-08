@@ -11,7 +11,7 @@ module.exports = function getEquipmentData(data) {
                 return;
             }
             else {
-                console.log(results);
+                // console.log(results);
                 resolve(results,sql);
             }
         });
