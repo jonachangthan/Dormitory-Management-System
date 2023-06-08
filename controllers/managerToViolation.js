@@ -12,7 +12,7 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                res.render('manager_to_violation')
+                res.render('supervisor_to_violation')
             }
         })
     }
@@ -46,7 +46,7 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                return res.render('manager_to_violation', {
+                return res.render('supervisor_to_violation', {
                     message:results,
                     searchSQL:sql
                 });
@@ -75,7 +75,7 @@ exports.action = (req, res) => {
                         })
                     }
                     else {
-                        return res.render('manager_to_violation', {
+                        return res.render('supervisor_to_violation', {
                             message:results,
                             searchSQL:searchSQL
                         });
@@ -102,7 +102,7 @@ exports.action = (req, res) => {
                         console.log(error);
                     }
                     else {
-                        return res.render('manager_to_violation', {
+                        return res.render('supervisor_to_violation', {
                             message:results,
                             searchSQL:searchSQL
                         });

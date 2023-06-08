@@ -14,23 +14,16 @@ const getEquipment = require('../model/student/getEquipment');
 //* 進入首頁view
 router.get('/', token, (req, res) => {
     if (req.user.Permission == 1) {
-        //router.post('home_manager', authController.readBulletin);
-        //router.post('../auth/readBulletin', authController.readBulletin);
-        //router.post('/', getController.readBulletin);
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_manager')
-            })
-        })
-        //res.render('home_manager');
+
+        return res.render('home_manager');
+
     }
     else if(req.user.Permission == 0) {
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_student');
-            })
-        })
+
+        return res.render('home_student');
+
     }else if(req.user.Permission == 2){
+        
         return res.render('home_supervisor');
     }
 });
