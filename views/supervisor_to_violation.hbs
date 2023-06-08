@@ -112,7 +112,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <form action="/managerToViolation/action" method="POST">
+              <form action="/supervisorToViolation/action" method="POST">
                 <tr>
                   <td align="center" valign="middle">
                     <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px"/>
@@ -168,7 +168,7 @@
               <td valign="middle">{{this.VR_Content}}</td>
               <td valign="middle">{{this.VR_Date}}</td>
               <td valign="middle">{{this.VR_Penalty}}</td>
-              <form action="/managerToViolation/action" method="POST">
+              <form action="/supervisorToViolation/action" method="POST">
                 <td>
                   <div style="text-align: left">
                   <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;"
@@ -195,7 +195,7 @@
                           </div>
                           <div class="mb-3">
                             <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >懲處:</label>
-                            <textarea class="form-control"  id="penality" name="penality" value="{{this.VR_Penalty}}"></textarea>
+                            <textarea class="form-control"  id="penality" name="penality" value="{{this.VR_Penalty}}">{{this.VR_Penalty}}</textarea>
                           </div>
                         </div>
                         <div class="modal-footer">

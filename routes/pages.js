@@ -251,9 +251,7 @@ router.get('/student_fix', token, (req, res) => {
 });
 
 router.get('/dormitory_detail', token, (req, res) => {
-    if (!req.user.Permission) {
-        res.render('dormitory_detail');
-    }
+    res.render('dormitory_detail');
 });
 
 router.get('/student_to_message', token, (req, res) => {

@@ -35,13 +35,13 @@ app.use('/manager', require('./routes/manager'));
 
 app.use('/managerToStudent', require('./routes/managerToStudent'));
 
-app.use('/managerToViolation', require('./routes/managerToViolation'));
-
 app.use('/managerToApply', require('./routes/managerToApply'));
 
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
 app.use('/modifyAccount', require('./routes/modifyAccount'));
+
+app.use('/supervisorToViolation', require('./routes/supervisorToViolation'));
 
 app.use('/message', require('./routes/message'));
 
