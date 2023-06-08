@@ -105,6 +105,7 @@
               <th align='center' valign="middle"scope="col">帳號</th>
               <th align='center' valign="middle"scope="col">身分</th>
               <th></th>
+              
             </tr>
           </thead>
           <form action="/modifyAccount/search" method="POST">
@@ -152,7 +153,7 @@
           <th scope="col"align='center' valign="middle" >身分</th>
           <th></th>
           <th></th>
-          <th></th>
+      
         </tr>
       </thead>
       <tbody>
@@ -162,8 +163,7 @@
                   <th scope="row" align='center' valign="middle">{{this.UserName}}</th>
                   <td valign="middle">{{this.html}}</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
+                 
                   <td>
                     <input type="hidden" name="sql" value="{{../searchSQL}}">
                     <input type="hidden" name="UserName" value="{{this.UserName}}">
