@@ -151,46 +151,48 @@
               </thead>
 
               <tbody>
-                {{#each Bmessage}} 
-                <div>
-                <tr>
-                  <th scope="row">{{this.B_Number}}</th>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button
-                      type="button"
-                      style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#b{{this.B_Number}}">
-                      {{this.B_Title}}
-                    </button>
-                    <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
-                            </h5>
+                {{#each Bmessage}}
+                  <form action="/bulletin/action" method="POST">
+                    <div>
+                      <tr>
+                        <th scope="row">{{this.B_Number}}</th>
+                        <td>
+                          <!-- Button trigger modal -->
+                          <button
+                            type="button"
+                            style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#b{{this.B_Number}}">
+                            {{this.B_Title}}
+                          </button>
+                          <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="staticBackdropLabel">
+                                    留言內容
+                                  </h5>
+                                </div>
+                                <div class="modal-body">
+                                  {{this.B_Content}}
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="modal-body">
-                            {{this.B_Content}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                          </div>
-                        </div>
-                      </div>
+                        </td>
+                        <td>{{this.B_Manager_ID}}</td>
+                        <td>{{this.B_Date}}</td>
+                        <td>{{this.B_Time}}</td>
+                        <td></td>
+                        <td><buuton class='fas fa-hammer' style="font-size:32px;background-color:unset;border: none" name="action" value="modify" >modify</buuton></td>   <!--修改-->
+                        <td><button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none" name="action" value="delete">delete</button></td> <!--刪除-->
+                      </tr>
                     </div>
-                  </td>
-                  <td>{{this.B_Manager_ID}}</td>
-                  <td>{{this.B_Date}}</td>
-                  <td>{{this.B_Time}}</td>
-                  <td></td>
-                   <td><i class='fas fa-hammer' style='font-size:32px'></i></td>   <!--修改-->
-                  <td><i class="material-icons" style="font-size:40px;color:red">delete</i></td> <!--刪除-->
-                </tr>
-                </div>
+                  </form>
                  {{/each}} 
               </tbody>
             </table>
