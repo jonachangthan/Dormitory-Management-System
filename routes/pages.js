@@ -122,6 +122,21 @@ router.get('/manager_studentAccommodation', token, (req, res) => {
     }
 });
 
+//! Visitor
+router.get('/home_visitor', (req, res) => {
+    res.render('home_visitor');
+});
+router.get('/visitor_to_supervisor', (req, res) => {
+    res.render('visitor_to_supervisor');
+});
+router.get('/visitor_to_manager', (req, res) => {
+    res.render('visitor_to_manager');
+});
+
+router.get('/visitor_to_reservation', (req, res) => {
+    res.render('visitor_to_reservation');
+});
+
 
 
 router.get('/manager_fix', token, (req, res) => {
