@@ -113,7 +113,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                  <button type="submit" class="btn btn-primary">發布公告</button>
+                  <button type="submit" class="btn btn-primary">Send message</button>
                 </div>
                 </form>
               </div>
@@ -151,48 +151,74 @@
               </thead>
 
               <tbody>
-                {{#each Bmessage}} 
-                <form action="/bulletin/action" method="POST">
-                  <div>
-                  <tr>
-                    <th scope="row">{{this.B_Number}}</th>
-                    <td>
-                      <!-- Button trigger modal -->
-                      <button
-                        type="button"
-                        style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#b{{this.B_Number}}">
-                        {{this.B_Title}}
-                      </button>
-                      <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="staticBackdropLabel">
-                                公告內容
-                              </h5>
-                            </div>
-                            <div class="modal-body">
-                              {{this.B_Content}}
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                {{#each Bmessage}}
+                  <form action="/bulletin/action" method="POST">
+                    <div>
+                      <tr>
+                        <th scope="row">{{this.B_Number}}</th>
+                        <td>
+                          <!-- Button trigger modal -->
+                          <button
+                            type="button"
+                            style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#b{{this.B_Number}}">
+                            {{this.B_Title}}
+                          </button>
+                          <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="staticBackdropLabel">
+                                    留言內容
+                                  </h5>
+                                </div>
+                                <div class="modal-body">
+                                  {{this.B_Content}}
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{{this.B_Manager_ID}}</td>
-                    <td>{{this.B_Date}}</td>
-                    <td>{{this.B_Time}}</td>
-                    <td></td>
-                    <td><button class='fas fa-hammer' style='font-size:32px' type="submit" name="action" value="update"></button></td>   <!--修改-->
-                    <td><button class="material-icons" style="font-size:40px;color:red" type="submit" name="action" value="delete">delete</button></td> <!--刪除-->
-                  </tr>
-                  </div>
-                </form>
+                        </td>
+                        <td>{{this.B_Manager_ID}}</td>
+                        <td>{{this.B_Date}}</td>
+                        <td>{{this.B_Time}}</td>
+                        <td></td>
+                        <td><buuton class='fas fa-hammer' style="font-size:32px;background-color:unset;border: none" data-bs-toggle="modal"  data-bs-target="#bc{{this.B_Number}}"name="action" value="modify" >modify</buuton></td>   <!--修改-->
+                          <div class="modal fade" id="bc{{this.B_Number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title"id="exampleModalLabel"style="color: #000000; font-weight: bold">修改公告</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <form action="/bulletin/write" method="POST">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
+                                      <input type="text" class="form-control" id="title" name="title" value=" {{this.B_Title}}"/>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold">內容:</label> 
+                                      <textarea class="form-control" id="content" name="content" >{{this.B_Content}}</textarea>
+                                    </div>       
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                                  <button type="submit" class="btn btn-primary">Modify message</button>
+                                </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        <td><button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none" name="action" value="delete">delete</button></td> <!--刪除-->
+                      </tr>
+                    </div>
+                  </form>
                  {{/each}} 
               </tbody>
             </table>

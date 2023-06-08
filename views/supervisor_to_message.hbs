@@ -196,6 +196,8 @@
           </div>
         </div>
         <br /><br />
+
+
         <div id="Main">
           <div>
             <p align="center" style="color: #000000; font-weight: bold; font-size: 20px">
@@ -298,8 +300,34 @@
                   <td>{{this.M_Student_ID}}</td>
                   <td>{{this.M_Date}}</td>
                   <td>{{this.M_Time}}</td>
-                  <td><i class='fas fa-hammer' style='font-size:32px'></i></td>   <!--修改-->
-                  <td><i class="material-icons" style="font-size:40px;color:red">delete</i></td> <!--刪除-->
+                  <td><buuton class='fas fa-hammer' style="font-size:32px;background-color:unset;border: none" data-bs-toggle="modal"  data-bs-target="#bc{{this.M_Number}}"name="action" value="modify" >modify</buuton></td>   <!--修改-->
+                          <div class="modal fade" id="bc{{this.M_Number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title"id="exampleModalLabel"style="color: #000000; font-weight: bold">修改公告</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                 <form action="/bulletin/write" method="POST">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
+                                      <input type="text" class="form-control" id="title" name="title" value=" {{this.M_Title}}"/>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold">內容:</label> 
+                                      <textarea class="form-control" id="content" name="content" >{{this.M_Content}}</textarea>
+                                    </div>       
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                                  <button type="submit" class="btn btn-primary">Modify message</button>
+                                </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                  <td><button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none" name="action" value="delete">delete</button></td> <!--刪除-->
                 </tr>
                  {{/each}} 
                 <tr></tr>
