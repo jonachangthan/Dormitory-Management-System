@@ -124,6 +124,21 @@ router.get('/manager_fix', token, (req, res) => {
     }
 });
 
+
+router.get('/manager_to_message', token, (req, res) => {
+    if (req.user.Permission) {
+        readBulletin().then(Bresult => {
+            readMessage().then(Mresult => {
+                return res.render('manager_to_message', {
+                    Bmessage: Bresult,
+                    Mmessage: Mresult,
+                });
+
+            })
+        })
+    }
+});
+
 //! supervisor
 router.get('/supervisor_equipment', token, (req, res) => {
     if (req.user.Permission) {
@@ -151,7 +166,14 @@ router.get('/supervisor_to_manager', token, (req, res) => {
 
 router.get('/supervisor_to_message', token, (req, res) => {
     if (req.user.Permission) {
-        res.render('supervisor_to_message');
+        readBulletin().then(Bresult => {
+            readMessage().then(Mresult => {
+                return res.render('supervisor_to_message', {
+                    Bmessage: Bresult,
+                    Mmessage: Mresult,
+                });
+            })
+        })
     }
 });
 
@@ -262,20 +284,6 @@ router.get('/student_to_message', token, (req, res) => {
                     Bmessage: Bresult,
                     Mmessage: Mresult,
                 });
-            })
-        })
-    }
-});
-
-router.get('/manager_to_message', token, (req, res) => {
-    if (req.user.Permission) {
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('manager_to_message', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
-
             })
         })
     }

@@ -28,7 +28,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
@@ -108,7 +108,7 @@
                   <h5 class="modal-title"id="exampleModalLabel"style="color: #000000; font-weight: bold">撰寫公告</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                 <form action="/bulletin/write" method="POST">
+                 <form action="/supervisorToMessage/writeBulletin" method="POST">
                 <div class="modal-body">
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
@@ -120,8 +120,8 @@
                     </div>       
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                  <button type="submit" class="btn btn-primary">Send message</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > 關閉</button>
+                  <button type="submit" class="btn btn-primary">發布公告</button>
                 </div>
                 </form>
               </div>
@@ -172,14 +172,14 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
+                              公告內容
                             </h5>
                           </div>
                           <div class="modal-body">
                             {{this.B_Content}}
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > 關閉</button>
                           </div>
                         </div>
                       </div>
@@ -219,7 +219,7 @@
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/message/write" method="POST">
+                <form action="/supervisorToMessage/writeMessage" method="POST">
                 <div class="modal-body">          
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
@@ -231,8 +231,8 @@
                     </div>                
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                  <button type="submit" class="btn btn-primary">Send message</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > 關閉</button>
+                  <button type="submit" class="btn btn-primary">發布留言</button>
                 </div>
                 </form>
               </div>
@@ -308,26 +308,34 @@
                                   <h5 class="modal-title"id="exampleModalLabel"style="color: #000000; font-weight: bold">修改公告</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                 <form action="/bulletin/write" method="POST">
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                      <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
-                                      <input type="text" class="form-control" id="title" name="title" value=" {{this.M_Title}}"/>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold">內容:</label> 
-                                      <textarea class="form-control" id="content" name="content" >{{this.M_Content}}</textarea>
-                                    </div>       
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                                  <button type="submit" class="btn btn-primary">Modify message</button>
-                                </div>
+                                 <form action="/supervisorToMessage/modify" method="POST">
+                                  <input type="hidden" name="number" value="{{this.M_Number}}">
+                                  <div class="modal-body">
+                                      <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
+                                        <input type="text" class="form-control" id="title" name="title" value=" {{this.M_Title}}"/>
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold">內容:</label> 
+                                        <textarea class="form-control" id="content" name="content" >{{this.M_Content}}</textarea>
+                                      </div>       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >關閉</button>
+                                    <button type="submit" class="btn btn-primary">更改留言</button>
+                                  </div>
                                 </form>
                               </div>
                             </div>
                           </div>
-                  <td><button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none" name="action" value="delete">delete</button></td> <!--刪除-->
+                          <form action="/supervisorToMessage/delete" method="POST">
+                            <input type="hidden" name="number" value="{{this.M_Number}}">
+                            <td> <!--刪除-->
+                              <button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none" name="action" value="delete">
+                              delete
+                              </button>
+                            </td>
+                          </form>
                 </tr>
                  {{/each}} 
                 <tr></tr>
