@@ -67,11 +67,11 @@ exports.addStudent = (req, res) => {
   };
 
   const accountSql = `SELECT * FROM account WHERE UserName = '${student.S_ID}'`;
-
+  
   db.query(accountSql, (error, results) => {
-    if (error || !Number.isInteger(student.S_Academic_Year)) {
+    if (error) {
       return res.render("add_student_account", {
-        err_message: "新增帳號失敗"
+        err_message: "新增帳號失敗1"
       });
     }
 
@@ -94,7 +94,7 @@ exports.addStudent = (req, res) => {
     db.query(insertAccountSql, (error) => {
       if (error) {
         return res.render("add_student_account", {
-          err_message: "新增帳號失敗",
+          err_message: "新增帳號失敗2",
         });
       }
 
