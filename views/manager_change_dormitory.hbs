@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+ <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -28,11 +27,13 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/styles.css" rel="stylesheet" />
+    <link href="/change_dormitory.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
       <div class="container px-4 px-lg-5">
+        <!-- <a class="navbar-brand" href="index.html">Start Bootstrap</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -50,20 +51,24 @@
             <li class="list-inline-item">
               <a href="/" class="home">
                 <span class="fa-stack fa-lg">
-                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
-                  style="width: 50px; height: 50px;color:#ffffff"
-                  class="fa-solid fa-house-user"
-                ></button>
+                  <button
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="返回首頁"
+                    style="width: 50px; height: 50px;color:#ffffff"
+                    class="fa-solid fa-house-user"
+                  ></button>
                 </span>
               </a>
             </li>
-            <li class="nav-item">
+           
+              <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-              href="/manager_to_apply">住宿申請</a>
+              href="/student_to_apply">住宿申請</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-              href="/manager_checkout_dormitory">退宿申請</a>
+              href="/student_checkout_dormitory">退宿申請</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
@@ -74,9 +79,7 @@
       </div>
     </nav>
     <!-- Page Header-->
-    <header
-      class="masthead"
-      style="background-image: url('../apply1.jpg')">
+    <header class="masthead" style="background-image: url('../apply1.jpg')">
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
@@ -87,149 +90,59 @@
         </div>
       </div>
     </header>
-    <!-- Main Content-->
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000; " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢資料</button>
-          <i class="fa-solid fa-caret-down"></i>
-        </h2>
-        <div
-          id="collapseOne"
-          class="accordion-collapse collapse"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div class="container">
-            <table style="line-height: 10px" class="table table-hover">
-              <thead>
-                <!--表示表格中不同直行 (column) 的標題-->
-                <tr style="background-color: #dfd1ef">
-                  <!--定義表格的橫列 (row)-->
-                  <th scope="col"align='center' valign="middle">學生編號</th>
-                  <th scope="col"align='center' valign="middle">學年度</th>
-                  <th scope="col"align='center' valign="middle">學期</th>
-                  <th scope="col"align='center' valign="middle">申請日期</th>
-                  <th scope="col"align='center' valign="middle">審核狀況</th>
-                  <th scope="col"align='center' valign="middle">繳費狀況</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <form action="" method="POST">
-                <tr>
-                  <td align='center' valign="middle">
-                    <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px"/>
-                  </td>
-                  <td align='center' valign="middle"> 
-                    <select id="academicYear" name="academicYear" style="width: 130px" class="form-select">
-                      <option selected>選擇學年度</option>
-                      <option value="111">111</option>
-                      <option value="110">110</option>
-                      <option value="109">109</option>
-                      <option value="108">108</option>
-                      <option value="107">107</option>
-                      <option value="106">106</option>
-                    </select>
-                  </td>
-                  <td align='center' valign="middle">
-                    <select id="semester" name="semester" style="width: 130px" class="form-select" >
-                      <option selected>選擇學期</option>
-                      <option value="上">上學期</option>
-                      <option value="下">下學期</option>
-                    </select>
-                  </td>
-                  <td align='center' valign="middle">
-                    <input type="text" class="form-control" id="date" name="date" value="" placeholder="xxxx/xx/xx" style="width: 120px" />
-                  </td>
-                  <td align='center' valign="middle"> 
-                    <select id="approval" name="approval" style="width: 130px" class="form-select" >
-                      <option selected>審核狀況</option>
-                      <option value="2">尚未審核</option>
-                      <option value="1">已核准</option>
-                      <option value="0">不核准</option>
-                    </select>
-                  </td>
-                  <td align='center' valign="middle">
-                    <select id="bill" name="bill" style="width: 130px" class="form-select" > 
-                    <option selected>繳費狀況</option> 
-                    <option value="1">已繳交</option> 
-                    <option value="0">未繳交</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button
-                      style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "
-                      type="submit"
-                      name="action"
-                      value="search">
-                      查詢
-                    </button>
-                  </td>
-                </tr>
-              </form>
-            </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br /><br /><br />
-<div class="container">
-  <div class="accordion-body">
-    <table style="line-height: 10px" class="table table-hover">
-      <thead>
-        <!--表示表格中不同直行 (column) 的標題-->
-        <tr style="background-color: #dfd1ef">
-          <!--定義表格的橫列 (row)-->
-          <th scope="col">學生編號</th>
-          <th scope="col">學年度</th>
-          <th scope="col">學期</th>
-          <th scope="col">申請日期</th>
-          <th scope="col">審核狀況</th>
-          <th scope="col">繳費狀況</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each message}}
-        <tr>
-          <td >{{this.A_Student_ID}}</td>
-          <td >{{this.A_Academic_Year}}</td>
-          <td >{{this.A_Semester}}</td>
-          <td >{{this.A_Date}}</td>
-          <td >{{this.A_Approval}}</td>
-          <td >{{this.A_Bill}}</td>
-          <td></td>
-          <td></td>
-            {{#if this.boolean}}
-              <form action="/managerToApply/action" method="post">
-              <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
-              <input type="hidden" name="number" value="{{this.A_Number}}">
-              <input type="hidden" name="studentID" value="{{this.A_Student_ID}}">
-              <td>
-                <button type="submit" name="action"  style=" width: 100px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset; "value="approval">核准</button>
-              </td>
-              <td>
-                <button type="submit" name="action" style=" width: 100px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; "value="deny">不核准</button>
-              </td>
-              </form>
-            {{/if}}
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    {{#if full_message}}
-    <div class="alert alert-danger" role="alert">
-        {{full_message}}
-    </div>
-    {{/if}}
+
+    <div id="container" style="background-color: #F2F3EB;">
+
+  <div class="icon_wrapper">
+      <h1>&bull;換宿表單 &bull;</h1>
   </div>
-</div>
-    <!-- Footer-->
-    <br /><br /><br /><br /><br /><br />
+
+  <form action="#" method="post" id="contact_form">
+    <div class="name">
+      <label for="name"></label>
+      <input type="text" placeholder="請輸入學生1學號" name="name" id="name_input" required>
+    </div>
+    <div class="name1">
+      <label for="name1"></label>
+      <input type="text" placeholder="請輸入學生2學號" name="name" id="name_input1" required>
+    </div>
+
+    <div class="subject">
+      <label for="subject"></label>
+      <select name="subject" id="subject_input" required>
+       <option selected>請選擇換宿棟別</option>
+       <option value=1>學生第一宿舍(OA-男)</option>
+       <option value=2>學生第一宿舍(OB-女)</option>
+       <option value=3>學生第二宿舍(OE-男)</option>
+       <option value=4>學生第二宿舍(OF-女)</option>
+       <option value=5>綜合宿舍(B01-男)</option>
+      </select>
+    </div>
+
+    <div class="name">
+      <label for="name"></label>
+      <input type="text" placeholder="請輸入學生1原始房間" name="name" id="name_input" required>
+    </div>
+    <div class="name1">
+      <label for="name1"></label>
+      <input type="text" placeholder="請輸入學生2原始房間" name="name" id="name_input1" required>
+    </div>
+        <div class="name">
+      <label for="name"></label>
+      <input type="text" placeholder="請輸入學生1欲換至的房間" name="name" id="name_input" required>
+    </div>
+    <div class="name1">
+      <label for="name1"></label>
+      <input type="text" placeholder="請輸入學生2欲換至的房間" name="name" id="name_input1" required>
+    </div>
+
+    <div class="submit">
+      <input type="submit" value="確認送出" id="form_button" />
+    </div>
+  </form><!-- // End form -->
+</div><!-- // End #container -->
+
+    <br /><br /><br />
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -248,7 +161,9 @@
                   <div class="col-md-6 social">
                     <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
                     <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank">https://elearningv4.nuk.edu.tw/</a>
+                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
+                      >https://elearningv4.nuk.edu.tw/</a
+                    >
                   </div>
                 </div>
               </div>
@@ -260,5 +175,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-  </body>
-</html>
+</body>
+</html> 
+
+
