@@ -175,7 +175,10 @@
           <td >{{this.S_Academic_Year}}</td>
           <td >{{this.S_Sex}}</td>
           <td ><select id="building" name="building" class="form-select">
-                        <option value={{this.DB_Number}} selected>{{this.DB_Name}}</option>
+
+                        <option value={{this.db.DB_Number}} selected>{{this.db.DB_Name}}</option>
+
+                        <option value=""></option>
                         {{#each this.dor}}
                         <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
                         {{/each}}
@@ -240,3 +243,8 @@
     <script src="manager_to_dormitory.js"></script>
   </body>
 </html>
+
+
+
+
+

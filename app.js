@@ -41,6 +41,8 @@ app.use('/managerToApply', require('./routes/managerToApply'));
 
 app.use('/managerToEquipment', require('./routes/managerToEquipment'));
 
+app.use('/managerToEquipmentType', require('./routes/managerToEquipmentType'));
+
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
 app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));

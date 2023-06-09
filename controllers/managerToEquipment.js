@@ -49,7 +49,13 @@ exports.action = (req, res) => {
                                 })
                             }
                             else {
-                                return res.render('manager_equipment');
+                                sql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number'
+                                db.query(sql, (error, results)=>{
+                                    return res.render('manager_equipment', {
+                                        message:results,
+                                        searchSQL:searchSQL
+                                    })
+                                })
                             }
                         })
                     }

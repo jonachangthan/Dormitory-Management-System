@@ -69,16 +69,145 @@
         </div>
       </div>
     </header>
-    <!-- Main Content-->
-  
+    <!-- 大樓-->
     <div class="accordion" id="accordionExample">
       <br />
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
-          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增宿舍及大樓資料 </button>
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增大樓資料 </button>
           <i class="fa-solid fa-caret-down"></i>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">  
+            <div class="container">
+            <table
+              style="line-height: 10px"
+              class="table table-hover">
+              <thead>
+                <!--表示表格中不同直行 (column) 的標題-->
+                <tr style="background-color: #dfd1ef">
+                  <!--定義表格的橫列 (row)-->
+                  <th scope="col" align='center' valign="middle">大樓名稱</th>
+                  <th scope="col" align='center' valign="middle">大樓管理員</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <form action="/managerToDormitory/action" method="post">
+                <tr>
+                  {{!-- <td align='center' valign="middle">
+                    <select id="building" name="building" class="form-select">
+                      <option selected>選擇大樓</option>
+                      <option value=1>學生第一宿舍(OA-男)</option>
+                      <option value=2>學生第一宿舍(OB-女)</option>
+                      <option value=3>學生第二宿舍(OE-男)</option>
+                      <option value=4>學生第二宿舍(OF-女)</option>
+                      <option value=5>綜合宿舍(B01-男)</option>
+                    </select>
+                  </td>
+                  <td align='center' valign="middle">
+                    <input type="text" class="form-control" id="manager" name="manager" value=""/>
+                  </td> --}}
+                    <td align='center' valign="middle">  
+                  <td>
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="searchDormitory">  查詢
+                    </button>
+                  </td>                
+                  <td>
+                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 新增
+                    </button>
+                  </td>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold">
+                            新增大樓
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">大樓名稱:</label>
+                            <input type="text" class="form-control" id="buildingAdd" name="buildingAdd"/>
+                          </div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">大樓管理員:</label>
+                            <input type="text" class="form-control" id="managerID" name="managerID"/>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >
+                            關閉
+                          </button>
+                          <button type="submit" name="action" value="addDormitory" class="btn btn-primary">
+                            新增
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </tr>
+              </form>
+           </table>
+           <br>
+          </div>
+        </div>
+     </div>  
+    </div>
+  </div>
+  <br> <br>
+   <div class="container">
+    <table style="line-height: 10px" class="table  table-hover">
+      <thead>
+        <!--表示表格中不同直行 (column) 的標題-->
+        <tr style="background-color: #dfd1ef">
+          <!--定義表格的橫列 (row)-->
+          <th scope="col" align='center' valign="middle">大樓名稱</th>
+          <th scope="col" align='center' valign="middle">大樓管理員</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each Buildingmessage}}
+        <tr>
+          <form action="/managerToDormitory/action" method="post">
+            <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
+            <input type="hidden" name="buildingNum" value="{{this.DB_Number}}">
+            {{!-- <input type="hidden" name="managerID" value="{{this.DB_Manager_ID}}"> --}}
+            <th scope="row" align='center' valign="middle">
+              <input type="text"  class="form-control"name="building" value=" {{this.DB_Name}}" />
+            </th>
+              <td align='center' valign="middle">
+                  <input type="text" class="form-control" name="managerID" value="{{this.DB_Manager_ID}}"/>
+              </td>
+            <td>
+              <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
+              type="submit" name="action" value="updateDormitory"> 修改</button>
+            </td>
+            <td>
+              <button style=" width: 120px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;"
+               type="submit" name="action" value="deleteDormitory"> 刪除</button>
+            </td>
+          </form>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+  <hr style="border:3px #cccccc solid;" >
+  {{!-- 宿舍 --}}
+    <div class="accordion" id="accordionExample1">
+      <br />
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne1">
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1"> 查詢 / 新增宿舍資料 </button>
+          <i class="fa-solid fa-caret-down"></i>
+        </h2>
+        <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1" data-bs-parent="#accordionExample1">
           <div class="accordion-body">  
             <div class="container">
             <table
@@ -93,57 +222,57 @@
                   <th></th>
                   <th></th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <form action="/managerToDormitory/action" method="post">
                 <tr>
                   <td align='center' valign="middle">
-                    <select id="building" name="building" class="form-select">
-                      <option selected>選擇大樓</option>
-                      <option value=1>學生第一宿舍(OA-男)</option>
-                      <option value=2>學生第一宿舍(OB-女)</option>
-                      <option value=3>學生第二宿舍(OE-男)</option>
-                      <option value=4>學生第二宿舍(OF-女)</option>
-                      <option value=5>綜合宿舍(B01-男)</option>
+                    <select id="building" name="buildingSearch" class="form-select">
+                      {{#each Dormessage}}
+                        <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                      {{/each}}
                     </select>
                   </td>
                   <td align='center' valign="middle">
-                    <input type="text" class="form-control" id="room" name="room" value=""/>
+                    <input type="text" class="form-control" id="roomSearch" name="roomSearch" value=""/>
                   </td>
                     <td align='center' valign="middle">  
                   <td>
-                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="search">  查詢
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="searchRoom">  查詢
                     </button>
                   </td>                
                   <td>
-                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> 新增
+                    <button type="button" style=" width: 120px; height: 40px; background-color: #585aa5; color: #ffffff; border: 2px #787ac2 outset;" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo"> 新增
                     </button>
                   </td>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold">
-                            新增大樓或宿舍
+                          <h5 class="modal-title" id="exampleModalLabel1" style="color: #000000; font-weight: bold">
+                            新增宿舍
                           </h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">大樓名稱:</label>
-                            <input type="text" class="form-control" id="dormitory_name" name="dormitory_name"/>
+                            <select id="building" name="building" class="form-select">
+                            {{#each Dormessage}}
+                              <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                            {{/each}}
+                            </select>
                           </div>
                           <div class="mb-3">
-                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >宿舍房號:</label>
-                            <input type="text" class="form-control" id="roomid" name="roomid"/>
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">宿舍房號:</label>
+                            <input type="text" class="form-control" id="room" name="room"/>
                           </div>
-                           <div class="mb-3">
-                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >容納人數:</label>
-                            <input type="text" class="form-control" id="quantity" name="quantity"/>
+                            <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">容納人數:</label>
+                            <input type="text" class="form-control" id="capacity" name="capacity"/>
                           </div>
-                           <div class="mb-3">
-                            <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >宿舍費用:</label>
+                            <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">費用:</label>
                             <input type="text" class="form-control" id="cost" name="cost"/>
                           </div>
                         </div>
@@ -151,23 +280,24 @@
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >
                             關閉
                           </button>
-                          <button type="submit" name="action" value="add" class="btn btn-primary">
+                          <button type="submit" name="action" value="addRoom" class="btn btn-primary">
                             新增
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-              </tr>
-            </form>
-          </table>
+                </tr>
+              </form>
+           </table>
+           <br>
+          </div>
         </div>
-      </div>
+     </div>  
     </div>
   </div>
-</div>
-    <br /><br /><br />
-<div class="container">
+  <br><br>
+ <div class="container">
   <table style="line-height: 10px" class="table  table-hover">
     <thead>
       <!--表示表格中不同直行 (column) 的標題-->
@@ -187,30 +317,30 @@
       <tr>
         <form action="/managerToDormitory/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
-          <input type="hidden" name="building" value="{{this.DB_Number}}">
-          <input type="hidden" name="room" value="{{this.D_Number}}">
+          <input type="hidden" name="buildingNumber" value="{{this.DB_Number}}">
+          <input type="hidden" name="roomNumber" value="{{this.D_Number}}">
           {{!-- <input type="hidden" name="type" value="{{this.E_Type}}"> --}}
           <th scope="row" align='center' valign="middle">
-            <input type="text"  class="form-control"name="DB_Name" value=" {{this.DB_Name}}" />
+            <input type="text"  class="form-control"name="building" value=" {{this.DB_Name}}" />
           </th>
             <td align='center' valign="middle">
-                <input type="text" class="form-control" name="Dormitory_No" value="{{this.D_Number}}"/>
+                <input type="text" class="form-control" name="room" value="{{this.D_Number}}"/>
             </td>
             <td align='center' valign="middle">
               <div class="form-floating">
-              <input type="text" name="" value=""/>
+              <input type="text" name="capacity" value="{{this.D_Capacity}}"/>
               </div>
             </td>
             <td align='center' valign="middle">
-              <input type="text" class="form-control" name="" value=""/>
+              <input type="text" class="form-control" name="cost" value="{{this.D_Cost}}"/>
             </td>
           <td>
             <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
-            type="submit" name="action" value="update"> 修改</button>
+            type="submit" name="action" value="updateRoom"> 修改</button>
           </td>
           <td>
             <button style=" width: 120px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;"
-             type="submit" name="action" value="delete"> 刪除</button>
+             type="submit" name="action" value="deleteRoom"> 刪除</button>
           </td>
         </form>
       </tr>
@@ -218,6 +348,7 @@
     </tbody>
   </table>
 </div>
+
     <!-- Footer-->
 <br /><br /><br /><br /><br /><br />
 <footer class="border-top">
