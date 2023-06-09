@@ -1,11 +1,11 @@
-const managerToViolationController = require('../controllers/managerToViolation');
+const supervisorToViolationController = require('../controllers/supervisorToViolation');
 const token = require("../controllers/token.js");
 const express = require('express');
 const req = require('express/lib/request');
 
 const router = express.Router();
 //* 撰寫
-router.post('/action',token, managerToViolationController.action);
+router.post('/action',token, supervisorToViolationController.action);
 
 
 

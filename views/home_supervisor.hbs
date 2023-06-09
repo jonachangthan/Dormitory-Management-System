@@ -27,7 +27,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
   </head>
   <body style="background-color: #f2f3eb">
     <!-- Navigation-->
@@ -65,8 +65,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4"
-              href="/modify_account">Modify account</a>
+              <a
+                class="nav-link px-lg-3 py-3 py-lg-4"
+                href="/dormitory_detail"
+                >Introduction</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4"
@@ -79,7 +82,7 @@
     <!-- Page Header-->
     <header
       class="masthead"
-      style="background-image: url('../dormitory.jpg')"
+      style="background-image: url('dormitory.jpg')"
     >
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -98,29 +101,29 @@
           <!-- Divider-->
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/manager"
-              ><h2 class="post-title">管理人員資料</h2>
+            <a href="supervisor"
+              ><h2 class="post-title">舍監基本資料</h2>
               <h5 class="post-subtitle">
-                管理人員可以在此查看基本資料，並提供更新資料之功能
+                舍監可以在此查看基本資料，並提供更新資料之功能
               </h5></a>
           </div>
             <hr class="my-4" />
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/manager_to_supervisor">
-              <h2 class="post-title">舍監基本資料</h2>
+            <a href="supervisor_to_manager">
+              <h2 class="post-title">管理人員基本資料</h2>
               <h5 class="post-subtitle">
-                管理人員可以在此新增新舍監 刪除舍監 查詢舍監 修改舍監基本資料
+                舍監可以在此查詢管理人員基本資料
               </h5>
             </a>
           </div>
           <hr class="my-4" />
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/manager_to_student">
+            <a href="supervisor_to_student">
               <h2 class="post-title">學生基本資料</h2>
               <h5 class="post-subtitle">
-                管理人員可以在此 刪除學生 查詢學生 修改學生基本資料
+                舍監可以在此查詢學生基本資料
               </h5>
             </a>
           </div>
@@ -128,30 +131,30 @@
           <hr class="my-4" />
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/manager_to_apply">
-              <h2 class="post-title">申請住宿資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此查詢並審核尚未審核之住宿、退宿、換宿申請
-              </h5>
-            </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager_to_dormitory">
+            <a href="supervisor_to_dormitory">
               <h2 class="post-title">宿舍大樓資料</h2>
               <h5 class="post-subtitle">
-                管理人員可以在此查詢所有房間或公共空間之設備種類、數量及狀況，<br>並提供報修功能可更新目前設備狀況
+                舍監可以在此查詢學生住宿資訊以及所有房間或公共空間之設備種類、數量及狀況，並提供報修功能可更新目前設備狀況
               </h5>
             </a>
           </div>
+          <!-- Divider-->
+           <hr class="my-4" />
+          <!-- Post preview-->
+          <div class="post-preview">
+            <a href="supervisor_to_violation">
+              <h2 class="post-title">學生違規紀錄</h2>
+              <h5 class="post-subtitle">
+                舍監可以查詢、新增學生違規紀錄並提供修改及刪除違規內容及懲處之功能
+              </h5>
+            </a>
+          </div> 
           <!-- Divider-->
           <hr class="my-4" />
           <!-- Pager-->
           <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="/manager_to_message"
-              >公告處 →</a>
+            <a class="btn btn-primary text-uppercase" href="supervisor_to_message"
+              >公告及留言板 →</a>
           </div>
         </div>
       </div>

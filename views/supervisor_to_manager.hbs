@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>高雄大學宿舍管理系統</title>
+    <title>管理人員資料</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
@@ -27,19 +27,13 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
   </head>
-  <body style="background-color: #f2f3eb">
+  <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
       <div class="container px-4 px-lg-5">
-        <img
-          src="logo.jpg"
-          style="margin-left: 0px"
-          width="100px"
-          height="100px"
-        /><img />
-
+        <!-- <a class="navbar-brand" href="index.html">Start Bootstrap</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -48,25 +42,24 @@
           aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
+         >
           Menu
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="list-inline-item">
-              <a href="/" class="home" >
+              <a href="/" class="home">
                 <span class="fa-stack fa-lg">
-                  <i 
-                    style="width: 50px; height: 50px;color:#ffffff"
-                    class="fa-solid fa-house-user"
-                  ></i>
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
+                  style="width: 50px; height: 50px;color:#ffffff"
+                  class="fa-solid fa-house-user"
+                ></button>
                 </span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4"
-              href="/modify_account">Modify account</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail" >Introduction</a  >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4"
@@ -77,88 +70,45 @@
       </div>
     </nav>
     <!-- Page Header-->
-    <header
-      class="masthead"
-      style="background-image: url('../dormitory.jpg')"
-    >
+    <header class="masthead" style="background-image: url('../home-bg.jpg')" >
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
-              <h1>高大住宿管理系統</h1>
+              <h1>管理人員資料</h1>
             </div>
           </div>
         </div>
       </div>
     </header>
-    <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <!-- Divider-->
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager"
-              ><h2 class="post-title">管理人員資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此查看基本資料，並提供更新資料之功能
-              </h5></a>
-          </div>
-            <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager_to_supervisor">
-              <h2 class="post-title">舍監基本資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此新增新舍監 刪除舍監 查詢舍監 修改舍監基本資料
-              </h5>
-            </a>
-          </div>
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager_to_student">
-              <h2 class="post-title">學生基本資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此 刪除學生 查詢學生 修改學生基本資料
-              </h5>
-            </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager_to_apply">
-              <h2 class="post-title">申請住宿資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此查詢並審核尚未審核之住宿、退宿、換宿申請
-              </h5>
-            </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/manager_to_dormitory">
-              <h2 class="post-title">宿舍大樓資料</h2>
-              <h5 class="post-subtitle">
-                管理人員可以在此查詢所有房間或公共空間之設備種類、數量及狀況，<br>並提供報修功能可更新目前設備狀況
-              </h5>
-            </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Pager-->
-          <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="/manager_to_message"
-              >公告處 →</a>
-          </div>
-        </div>
-      </div>
-      <br><br><br>
-    </div>   
+    <!-- Post Content-->
+    <div class="container">
+      <table style="line-height: 30px" class="table table-hover">
+        <!--表示表格中不同直行 (column) 的標題-->
+        <tr style="background-color: #dfd1ef">
+          <!--定義表格的橫列 (row)-->
+          <th scope="col" align='center' valign="middle">管理人員編號</th>
+          <th scope="col" align='center' valign="middle">名稱</th>
+          <th scope="col" align='center' valign="middle">連絡電話</th>
+          <th scope="col" align='center' valign="middle">Email</th>
+        </tr>
+
+        <tbody>
+           <!-- {{#each message}}  -->
+          <tr>
+            <th scope="row" align='center' valign="middle">{{this.M_ID}}</th>
+            <td >{{this.M_Name}}</td>
+            <td >{{this.M_Phone}}</td>
+            <td >{{this.M_Email}}</td>
+          </tr>      
+          <!-- {{/each}}  -->
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
     <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
     <!-- Footer-->
+    <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -177,8 +127,9 @@
                   <div class="col-md-6 social">
                     <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
                     <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank">
-                    https://elearningv4.nuk.edu.tw/</a>
+                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
+                      >https://elearningv4.nuk.edu.tw/</a
+                    >
                   </div>
                 </div>
               </div>

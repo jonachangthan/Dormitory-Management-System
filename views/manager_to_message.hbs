@@ -113,15 +113,12 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                  <button type="submit" class="btn btn-primary">Send message</button>
+                  <button type="submit" class="btn btn-primary">發布公告</button>
                 </div>
                 </form>
               </div>
             </div>
           </div>
-      {{#if contentMessage}}
-      <h4 style="color:red"; class="alert alert-danger mt-4">{{contentMessage}}</h4>
-      {{/if}}
           <div class="box">
             <table class="table table-hover">
               <thead style="position:sticky;top: 0;"> 
@@ -151,121 +148,86 @@
               </thead>
 
               <tbody>
-                {{#each Bmessage}} 
-                <div>
-                <tr>
-                  <th scope="row">{{this.B_Number}}</th>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button
-                      type="button"
-                      style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#b{{this.B_Number}}">
-                      {{this.B_Title}}
-                    </button>
-                    <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
-                            </h5>
+                {{#each Bmessage}}
+                    <div>
+                      <tr>
+                        <th scope="row">{{this.B_Number}}</th>
+                        <td>
+                          <!-- Button trigger modal -->
+                          <button
+                            type="button"
+                            style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#b{{this.B_Number}}">
+                            {{this.B_Title}}
+                          </button>
+                          <div class="modal fade" id="b{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="staticBackdropLabel">
+                                    公告內容
+                                  </h5>
+                                </div>
+                                <div class="modal-body">
+                                  {{this.B_Content}}
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="modal-body">
-                            {{this.B_Content}}
+                        </td>
+                        <td>{{this.B_Manager_ID}}</td>
+                        <td>{{this.B_Date}}</td>
+                        <td>{{this.B_Time}}</td>
+                        <td></td>
+                        <td><buuton class='fas fa-hammer' style="font-size:32px;background-color:unset;border: none" data-bs-toggle="modal"  data-bs-target="#bc{{this.B_Number}}"name="action" value="modify" >modify</buuton></td>   <!--修改-->
+                          <div class="modal fade" id="bc{{this.B_Number}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title"id="exampleModalLabel"style="color: #000000; font-weight: bold">修改公告</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="/bulletin/modify" method="POST">
+                                  <input type="hidden" name="B_Number" value="{{this.B_Number}}">
+                                  <div class="modal-body">
+                                      <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="{{this.B_Title}}"/>
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold">內容:</label> 
+                                        <textarea class="form-control" id="content" name="content" value= "{{this.B_Content}}">{{this.B_Content}}</textarea>
+                                      </div>       
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > 關閉</button>
+                                    <button type="submit" class="btn btn-primary">修改公告</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                          </div>
-                        </div>
-                      </div>
+                      <form action="/bulletin/delete" method="POST">
+                        <input type="hidden" name="B_Number" value="{{this.B_Number}}">
+                        <td>
+                          <button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none">
+                            delete
+                          </button>
+                        </td>
+                      </form>
+                      </tr>
                     </div>
-                  </td>
-                  <td>{{this.B_Manager_ID}}</td>
-                  <td>{{this.B_Date}}</td>
-                  <td>{{this.B_Time}}</td>
-                  <td></td>
-                   <td><i class='fas fa-hammer' style='font-size:32px'></i></td>   <!--修改-->
-                  <td><i class="material-icons" style="font-size:40px;color:red">delete</i></td> <!--刪除-->
-                </tr>
-                </div>
                  {{/each}} 
               </tbody>
             </table>
           </div>
         </div>
         <br /><br />
-        {{!-- <div id="Main">
-          <div>
-            <p align="center" style="color: #000000; font-weight: bold; font-size: 20px">
-              留言板
-            </p>
-          </div>
-
-          <div class="box">
-            <table class="table table-hover">
-              <thead style="position:sticky;top: 0;">
-                <tr>
-                  <th width="2%" scope="col" style="background-color: #dfd1ef">
-                    No
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    標題
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    學號
-                  </th>
-                  <th width="10%" scope="col" style="background-color: #dfd1ef">
-                    日期
-                  </th>
-                  <th width="8%" scope="col" style="background-color: #dfd1ef">
-                    時間
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                 {{#each Mmessage}} 
-                <tr>
-                  <th scope="row">{{this.M_Number}}</th>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button
-                      type="button"
-                      style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;height: 40px;text-decoration: underline "
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#m{{this.M_Number}}">
-                      {{this.M_Title}}
-                    </button>
-                    <div class="modal fade" id="m{{this.M_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
-                            </h5>
-                          </div>
-                          <div class="modal-body">
-                            {{this.M_Content}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{{this.M_Student_ID}}</td>
-                  <td>{{this.M_Date}}</td>
-                  <td>{{this.M_Time}}</td>
-                </tr>
-                 {{/each}} 
-                <tr></tr>
-              </tbody>
-            </table>
-          </div> --}}
         </div>
         <br />
         <br />

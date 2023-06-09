@@ -1,6 +1,6 @@
-var search = document.getElementById("search")
-var building = document.getElementById("building")
-var room = document.getElementById("room")
+// var search = document.getElementById("search")
+// var building = document.getElementById("building")
+// var room = document.getElementById("room")
 
 
 // search.addEventListener("click", (event) => {
