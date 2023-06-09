@@ -98,13 +98,13 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <form action="" method="POST">
+                  <form action="/managerToStudentAccommodation/action" method="POST">
                     <tr>
                         <td align='center' valign="middle">
                             <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px"/>
                         </td>
                         <td align='center' valign="middle">
-                            <input type="text" class="form-control" id="studentName" name="studentName" value="" placeholder="" style="width: 130px"/>
+                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 130px"/>
                       </td>
                       <td align='center' valign="middle"> 
                         <select id="academicYear" name="academicYear" style="width: 130px" class="form-select">
@@ -118,29 +118,27 @@
                         </select>
                       </td>
                       <td align='center' valign="middle">
-                        <select id="semester" name="semester" style="width: 130px" class="form-select" >
-                          <option selected>選擇學期</option>
-                          <option value="上">上學期</option>
-                          <option value="下">下學期</option>
+                        <select id="sex" name="sex" style="width: 130px" class="form-select" >
+                          <option selected>選擇性別</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
                         </select>
                       </td>
-                     <td align='center' valign="middle">
-                    <select id="building" name="building" class="form-select">
-                      <option selected>選擇大樓</option>
-                      <option value=1>學生第一宿舍(OA-男)</option>
-                      <option value=2>學生第一宿舍(OB-女)</option>
-                      <option value=3>學生第二宿舍(OE-男)</option>
-                      <option value=4>學生第二宿舍(OF-女)</option>
-                      <option value=5>綜合宿舍(B01-男)</option>
-                    </select>
-                  </td>
                       <td align='center' valign="middle">
-                        <input type="text" class="form-control" id="" name="" value="" style="width: 130px" />
+                      <select id="building" name="building" class="form-select">
+                        <option selected>選擇大樓</option>
+                        {{#each Dormessage}}
+                        <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                        {{/each}}
+                      </select>
+                    </td>
+
+                      <td align='center' valign="middle">
+                        <input type="text" class="form-control" id="room" name="room" value="" style="width: 130px" />
                       </td>
                       <td>
                         <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "type="submit"name="action"value="search">查詢</button>
                       </td>
-
                     </tr>
                   </form>
                 </table>
@@ -172,20 +170,31 @@
       <tbody>
         {{#each message}}
         <tr>
-          <td >{{this.A_Student_ID}}</td>
-          <td >{{this.A_Academic_Year}}</td>
-          <td >{{this.A_Semester}}</td>
-          <td >{{this.A_Date}}</td>
-          <td >{{this.A_Approval}}</td>
-          <td >{{this.A_Bill}}</td>
+          <form action="/managerToStudentAccommodation/action" method="post">
+          <td >{{this.S_ID}}</td>
+          <td >{{this.S_Name}}</td>
+          <td >{{this.S_Academic_Year}}</td>
+          <td >{{this.S_Sex}}</td>
+          <td ><select id="building" name="building" class="form-select">
+
+                        <option value={{this.db.DB_Number}} selected>{{this.db.DB_Name}}</option>
+
+                        <option value=""></option>
+                        {{#each this.dor}}
+                        <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                        {{/each}}
+            </select></td>
           <td></td>
           <td></td>
-            <form action="" method="post">
+
             <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
-            <input type="hidden" name="number" value="{{this.A_Number}}">
-            <input type="hidden" name="studentID" value="{{this.A_Student_ID}}">
+            {{!-- <input type="hidden" name="number" value="{{this.A_Number}}"> --}}
+            <input type="hidden" name="studentID" value="{{this.S_ID}}">
+            <td align='center' valign="middle">
+                <input type="text" class="form-control" name="room" value="{{this.S_Dormitory_No}}"/>
+            </td>
             <td>
-              <button type="submit" name="action"  style=" width: 100px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset; "value="">修改</button>
+              <button type="submit" name="action"  style=" width: 100px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset; "value="update">修改</button>
             </td>
             <td>
               <button type="submit" name="action" style=" width: 100px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; "value="delete">刪除</button>
@@ -235,3 +244,8 @@
     <script src="manager_to_dormitory.js"></script>
   </body>
 </html>
+
+
+
+
+

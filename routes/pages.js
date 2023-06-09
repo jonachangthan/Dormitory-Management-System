@@ -93,9 +93,13 @@ router.get('/manager_to_apply', token, (req, res) => {
 });
 
 router.get('/manager_to_dormitory', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_to_dormitory');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_to_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
 });
 router.get('/manager_change_dormitory', token, (req, res) => {
     if (req.user.Permission) {
@@ -113,9 +117,13 @@ router.get('/manager_equipment', token, (req, res) => {
     }
 });
 router.get('/manager_studentAccommodation', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_studentAccommodation');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_studentAccommodation', {
+                Dormessage: result
+            })
+        }
+    })
 });
 
 router.get('/manager_fix', token, (req, res) => {

@@ -179,7 +179,7 @@
     <tbody>
       {{#each message}}
       <tr>
-        <form action="/managerToDormitory/action" method="post">
+        <form action="/managerToEquipment/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
           <input type="hidden" name="building" value="{{this.DB_Number}}">
           <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">
@@ -232,9 +232,9 @@
                   <th></th>
                 </tr>
               </thead>
-              <form action="/managerToEquipment/action" method="post">     
+              <form action="/managerToEquipmentType/action" method="post">     
                   <td align='center' valign="middle">
-                    <input type="text" class="form-control" id="type" name="type" value=""/>
+                    <input type="text" class="form-control" id="typeResearch" name="typeResearch" value=""/>
                   </td>               
                   <td>
                     <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="search">  查詢設備
@@ -256,7 +256,7 @@
                         <div class="modal-body">
                           <div class="mb-3">
                             <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold">設備種類:</label>
-                            <input type="text" class="form-control" id="type" name="type"/>
+                            <input type="text" class="form-control" id="typeAdd" name="typeAdd"/>
                           </div>                      
                         </div>
                         <div class="modal-footer">
@@ -293,16 +293,16 @@
       </tr>
     </thead>
     <tbody>
-      {{#each message}}
+      {{#each Typemessage}}
       <tr>
-        <form action="/managerToEquipment/action" method="post">
+        <form action="/managerToEquipmentType/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>             
           <input type="hidden" name="type" value="{{this.E_Type}}">         
           <td align='center' valign="middle">{{this.E_Type}}</td>
-          <td>
+          {{!-- <td>
             <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
             type="submit" name="action" value="update"> 更新狀況</button>
-          </td>
+          </td> --}}
           <td>
             <button style=" width: 120px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;"
              type="submit" name="action" value="delete"> 刪除設備</button>
