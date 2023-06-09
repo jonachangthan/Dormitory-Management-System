@@ -54,9 +54,61 @@ exports.writeMessage = (req, res) => {
 }
 
 exports.delete = (req, res) => {
+    const M_Number  = req.body.number;
 
-}
+    db.query('DELETE FROM message WHERE M_Number = ?', [M_Number], (error, results) => {
+      if (error) {
+        console.log(error);
+        return res.render('error');
+      }
+  
+      readBulletin()
+        .then(Bresult => {
+          readMessage().then(Mresult => {
+            const BresContent = Bresult;
+            const MresContent = Mresult;
+            return res.render('supervisor_to_message', {
+              Bmessage: BresContent,
+              Mmessage: MresContent,
+            });
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          return res.render('error');
+        });
+    });
+  };
+  
+
 
 exports.modify = (req, res) => {
-    
-}
+    const { M_Number, M_Title, M_Content } = req.body;
+    db.query(
+      'UPDATE message SET M_Title = ?, M_Content = ? WHERE M_Number = ?',
+      [M_Title, M_Content, M_Number],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          return res.render('error');
+        }
+  
+        readBulletin()
+          .then(Bresult => {
+            readMessage().then(Mresult => {
+              const BresContent = Bresult;
+              const MresContent = Mresult;
+              return res.render('supervisor_to_message', {
+                Bmessage: BresContent,
+                Mmessage: MresContent,
+              });
+            });
+          })
+          .catch(error => {
+            console.log(error);
+            return res.render('error');
+          });
+      }
+    );
+  };
+
