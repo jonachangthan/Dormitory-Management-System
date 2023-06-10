@@ -74,6 +74,7 @@
     </header>
     <!-- Main Content-->
   
+       <!-- Main Content-->
     <div class="accordion" id="accordionExample">
       <br />
       <div class="accordion-item">
@@ -95,10 +96,9 @@
                   <th scope="col" align='center' valign="middle">房間名稱</th>
                   <th scope="col" align='center' valign="middle">僅顯示有狀況之設備</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
-              <form action="/managerToDormitory/action" method="post">
+              <form action="/managerToEquipment/action" method="post">
                 <tr>
                   <td align='center' valign="middle">
                     <select id="building" name="building" class="form-select">
@@ -123,12 +123,13 @@
               </tr>
             </form>
           </table>
+              <br>
         </div>
       </div>
     </div>
   </div>
 </div>
-    <br /><br /><br />
+<br><br>
 <div class="container">
   <table style="line-height: 10px" class="table  table-hover">
     <thead>
@@ -141,13 +142,12 @@
         <th scope="col" align='center' valign="middle">設備數量</th>
         <th scope="col" align='center' valign="middle">設備狀況</th>
         <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
-      <!-- {{#each message}} -->
+      {{#each message}}
       <tr>
-        <form action="/managerToDormitory/action" method="post">
+        <form action="/managerToEquipment/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
           <input type="hidden" name="building" value="{{this.DB_Number}}">
           <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">
@@ -161,16 +161,19 @@
           <td align='center' valign="middle">
             <input type="text" name="condition" value="{{this.E_D_Condition}}" />
           </td>
-          
+          <td>
+            <button style=" width: 120px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;" 
+            type="submit" name="action" value="update"> 更新狀況</button>
+          </td>
+        
         </form>
       </tr>
-      <!-- {{/each}} -->
+      {{/each}}
     </tbody>
   </table>
-  <div class="d-flex justify-content-end mb-4">
-    <a class="btn btn-primary text-uppercase" href="supervisor_fix">報修設備 →</a>
-  </div>
 </div>
+  <br><br>
+
     <!-- Footer-->
 <br /><br /><br /><br /><br /><br />
 <footer class="border-top">
