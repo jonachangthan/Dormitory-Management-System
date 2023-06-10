@@ -58,12 +58,13 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="/dormitory_detail"
-                >Introduction</a
-              >
+             <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+              href="/supervisor_equipment">房間設備資訊</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
+              href="/supervisor_to_studentAccommodation">學生住宿資訊</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4"
@@ -74,58 +75,200 @@
       </div>
     </nav>
     <!-- Page Header-->
-    <header
-      class="masthead"
-      style="background-image: url('../building.jpeg')">
+       <!-- Page Header-->
+    <header class="masthead" style="background-image: url('../building.jpeg')">
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
             <div class="site-heading">
               <h1>宿舍大樓資料</h1>
-              <!-- <span class="subheading">A Blog Theme by Start Bootstrap</span> -->
             </div>
           </div>
         </div>
       </div>
     </header>
-    <!-- Post Content-->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p align="center" style="color: #000000; font-weight: bold; font-size: 20px"> 學生住宿資訊 </p>
-          <table style="line-height: 30px" class="table table-hover">
-            <thead>
-              <!--表示表格中不同直行 (column) 的標題-->
-              <tr style="background-color: #dfd1ef">
-                <!--定義表格的橫列 (row)-->
-                <th scope="col" >姓名</th>
-                <th scope="col" >學號</th>
-                <th scope="col" >大樓代號</th>
-                <th scope="col" >名稱</th>
-                <th scope="col" >房型</th>
-                <th scope="col" >住宿費用</th>
-              </tr>
-            </thead>
-            <tbody>
-            <!-- {{#each message}} -->
-              <tr>
-                <td valign="middle">{{this.DB_Number}}</td>
-                <td valign="middle">{{this.DB_Name}}</td>
-                <td valign="middle">{{this.D_Capacity}}</td>
-                <td valign="middle">{{this.D_Cost}}</td>
-                <td valign="middle">{{this.D_Cost}}</td>
-                <td valign="middle">{{this.D_Cost}}</td>
-              </tr>
-            <!-- {{/each}} -->
-          </tbody>
-          </table>
-
-          <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="supervisor_equipment">查詢房間設備資訊 →</a>
+    <!-- 大樓-->
+    <div class="accordion" id="accordionExample">
+      <br />
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+           <form action="/managerToDormitory/action" method="post">
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="submit"  name="action"  value="searchDormitory" > 查詢大樓資料 </button>
+          </form>
+          {{!-- <i class="fa-solid fa-caret-down"></i> --}}
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">  
+            <div class="container">
+            <table
+              style="line-height: 10px"
+              class="table table-hover">
+              <thead>
+                <!--表示表格中不同直行 (column) 的標題-->
+                <tr style="background-color: #dfd1ef">
+                  <!--定義表格的橫列 (row)-->
+                 <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              {{!-- <form action="/managerToDormitory/action" method="post">
+                {{!-- <tr>
+                  {{!-- <td align='center' valign="middle">
+                    <select id="building" name="building" class="form-select">
+                      <option selected>選擇大樓</option>
+                      <option value=1>學生第一宿舍(OA-男)</option>
+                      <option value=2>學生第一宿舍(OB-女)</option>
+                      <option value=3>學生第二宿舍(OE-男)</option>
+                      <option value=4>學生第二宿舍(OF-女)</option>
+                      <option value=5>綜合宿舍(B01-男)</option>
+                    </select>
+                  </td>
+                  <td align='center' valign="middle">
+                    <input type="text" class="form-control" id="manager" name="manager" value=""/>
+                  </td> --}}
+                    
+                  <td>
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="searchDormitory">  查詢
+                    </button>
+                  </td>                
+                </tr> --}}
+              </form> --}}
+           </table>
+           <br>
           </div>
         </div>
-      </div>
+     </div>  
     </div>
+  </div>
+  <br> <br>
+   <div class="container">
+    <table style="line-height: 10px" class="table  table-hover">
+      <thead>
+        <!--表示表格中不同直行 (column) 的標題-->
+        <tr style="background-color: #dfd1ef">
+          <!--定義表格的橫列 (row)-->
+          <th scope="col" align='center' valign="middle">大樓名稱</th>
+          <th scope="col" align='center' valign="middle">大樓管理員</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each Buildingmessage}}
+        <tr>
+          <form action="/managerToDormitory/action" method="post">
+            <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
+            <input type="hidden" name="buildingNum" value="{{this.DB_Number}}">
+            {{!-- <input type="hidden" name="managerID" value="{{this.DB_Manager_ID}}"> --}}
+            <th scope="row" align='center' valign="middle">
+            {{this.DB_Name}}
+            </th>
+              <td>{{this.DB_Manager_ID}}</td>
+          </form>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+  <hr style="border:3px #cccccc solid;" >
+  {{!-- 宿舍 --}}
+    <div class="accordion" id="accordionExample1">
+      <br />
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne1">
+          <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1"> 查詢宿舍資料 </button>
+          <i class="fa-solid fa-caret-down"></i>
+        </h2>
+        <div id="collapseOne1" class="accordion-collapse collapse" aria-labelledby="headingOne1" data-bs-parent="#accordionExample1">
+          <div class="accordion-body">  
+            <div class="container">
+            <table
+              style="line-height: 10px"
+              class="table table-hover">
+              <thead>
+                <!--表示表格中不同直行 (column) 的標題-->
+                <tr style="background-color: #dfd1ef">
+                  <!--定義表格的橫列 (row)-->
+                  <th scope="col" align='center' valign="middle">大樓名稱</th>
+                  <th scope="col" align='center' valign="middle">宿舍房號</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <form action="/managerToDormitory/action" method="post">
+                <tr>
+                  <td align='center' valign="middle">
+                    <select id="building" name="buildingSearch" class="form-select">
+                      {{#each Dormessage}}
+                        <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                      {{/each}}
+                    </select>
+                  </td>
+                  <td align='center' valign="middle">
+                    <input type="text" class="form-control" id="roomSearch" name="roomSearch" value=""/>
+                  </td>
+                    <td align='center' valign="middle">  
+                  <td>
+                    <button  id="search"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="submit"  name="action"  value="searchRoom">  查詢
+                    </button>
+                  </td>                
+                </tr>
+              </form>
+           </table>
+           <br>
+          </div>
+        </div>
+     </div>  
+    </div>
+  </div>
+  <br><br>
+ <div class="container">
+  <table style="line-height: 10px" class="table  table-hover">
+    <thead>
+      <!--表示表格中不同直行 (column) 的標題-->
+      <tr style="background-color: #dfd1ef">
+        <!--定義表格的橫列 (row)-->
+        <th scope="col" align='center' valign="middle">大樓名稱</th>
+        <th scope="col" align='center' valign="middle">宿舍房號</th>
+         <th scope="col" align='center' valign="middle">容納人數</th>
+          <th scope="col" align='center' valign="middle">費用</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each message}}
+      <tr>
+        <form action="/managerToDormitory/action" method="post">
+          <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
+          <input type="hidden" name="buildingNumber" value="{{this.DB_Number}}">
+          <input type="hidden" name="roomNumber" value="{{this.D_Number}}">
+          {{!-- <input type="hidden" name="type" value="{{this.E_Type}}"> --}}
+          <th scope="row" align='center' valign="middle">
+            <input type="text"  class="form-control"name="building" value=" {{this.DB_Name}}" />
+          </th>
+            <td align='center' valign="middle">
+                <input type="text" class="form-control" name="room" value="{{this.D_Number}}"/>
+            </td>
+            <td align='center' valign="middle">
+              <div class="form-floating">
+              <input type="text" name="capacity" value="{{this.D_Capacity}}"/>
+              </div>
+            </td>
+            <td align='center' valign="middle">
+              <input type="text" class="form-control" name="cost" value="{{this.D_Cost}}"/>
+            </td>
+
+        </form>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
     <a href="#top" class="top" style="float: right;display: none" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
     <!-- Footer-->
     <br /><br /><br /><br /><br /><br /><br />

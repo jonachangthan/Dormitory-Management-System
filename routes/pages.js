@@ -164,6 +164,12 @@ router.get('/supervisor_fix', token, (req, res) => {
     }
 });
 
+router.get('/supervisor_to_studentAccommodation', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_studentAccommodation');
+    }
+});
+
 router.get('/supervisor_to_dormitory', token, (req, res) => {
     if (req.user.Permission) {
         res.render('supervisor_to_dormitory');

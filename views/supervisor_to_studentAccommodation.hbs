@@ -43,11 +43,11 @@
             </li>
              <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-              href="/manager_to_dormitory">大樓宿舍資料</a>
+              href="/supervisor_to_dormitory">大樓宿舍資料</a>
             </li>
              <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
-              href="/manager_equipment">房間設備資訊</a>
+              href="/supervisor_equipment">房間設備資訊</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" style="font-size:15px"
@@ -159,8 +159,6 @@
           <th align='center' valign="middle"scope="col">性別</th>
           <th align='center' valign="middle"scope="col">住宿大樓</th>
           <th align='center' valign="middle"scope="col">宿舍房號</th>
-          <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -183,12 +181,6 @@
             <input type="hidden" name="studentID" value="{{this.S_ID}}">
             <td valign="middle">
                 <input type="text" class="form-control" name="room" value="{{this.S_Dormitory_No}}"/>
-            </td>
-            <td>
-              <button type="submit" name="action"  style=" width: 100px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset; "value="update">修改</button>
-            </td>
-            <td>
-              <button type="submit" name="action" style=" width: 100px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; "value="delete">刪除</button>
             </td>
             </form>
         </tr>
