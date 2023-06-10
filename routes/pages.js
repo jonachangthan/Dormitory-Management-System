@@ -102,9 +102,13 @@ router.get('/manager_to_dormitory', token, (req, res) => {
     })
 });
 router.get('/manager_change_dormitory', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_change_dormitory');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_change_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
 });
 router.get('/manager_checkout_dormitory', token, (req, res) => {
     if (req.user.Permission) {

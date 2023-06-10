@@ -46,6 +46,8 @@ app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
 app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));
 
+app.use('/managerToChangeDormitory', require('./routes/managerToChangeDormitory'));
+
 app.use('/modifyAccount', require('./routes/modifyAccount'));
 
 //* supervisor
