@@ -11,7 +11,7 @@ exports.action = (req, res) => {
     console.log(req.body)
     if(action=="update"){
         sql = 'UPDATE  student SET S_Building_No ='+building + ',S_Dormitory_No = '+room+ ' WHERE  S_ID='+'"'+studentID+'"';
-        console.log(sql)
+        // console.log(sql)
         db.query(sql, (error, results) => {
             if (error) {
                 res.render('error', {
@@ -33,15 +33,19 @@ exports.action = (req, res) => {
                             })
                         }
                         else {
-                            console.log('result2',results2)
+                            // console.log('result2',results2)
                             getDormitory(req).then(result => {
                                 let i = 0;
                                 results.forEach(element => {
+                                    results2.forEach(element2 => {  
+                                        if(element.S_Building_No==element2.DB_Number){
+                                            element.db = element2
+                                        }                            
+                                    });
                                     element.dor = result,
-                                    element.db = results2[i];
+                                    // element.db = results2[i];
                                     i+=1;
                                 });
-                                console.log(results)
                                 return res.render('manager_studentAccommodation', {
                                     message:results,
                                     Dormessage: result,
@@ -87,7 +91,7 @@ exports.action = (req, res) => {
             serchsql = serchsql.substring(0, serchsql.length-4);
             serchsql +='GROUP BY S_ID'
         }
-        console.log(serchsql)
+        // console.log(serchsql)
         db.query(serchsql, (error, results) => {
             // console.log(results)
             if (error) {
@@ -102,8 +106,7 @@ exports.action = (req, res) => {
                 });
                 searchsql2 = searchsql2.substring(0, searchsql2.length-3);
                 //searchsql2 = 'SELECT * FROM dormitory_building WHERE DB_Number = '+results[0].S_Building_No
-                console.log(searchsql2)
-                console.log(results)
+                // console.log(searchsql2)
                 db.query(searchsql2, (error, results2) => {
                     // console.log(results)
                     if (error) {
@@ -116,8 +119,13 @@ exports.action = (req, res) => {
                         getDormitory(req).then(result => {
                             let i = 0;
                             results.forEach(element => {
+                                results2.forEach(element2 => {  
+                                    if(element.S_Building_No==element2.DB_Number){
+                                        element.db = element2
+                                    }                            
+                                });
                                 element.dor = result,
-                                element.db = results2[i];
+                                // element.db = results2[i];
                                 i+=1;
                             });
                             console.log(results)
@@ -150,7 +158,6 @@ exports.action = (req, res) => {
                     });
                     searchsql2 = searchsql2.substring(0, searchsql2.length-3);
                     db.query(searchsql2, (error, results2) => {
-                        // console.log(results)
                         if (error) {
                             res.render('error', {
                                 err_message: "資料庫錯誤"
@@ -174,11 +181,17 @@ exports.action = (req, res) => {
                                     getDormitory(req).then(result => {
                                         let i = 0;
                                         results.forEach(element => {
+                                            results2.forEach(element2 => {  
+                                                if(element.S_Building_No==element2.DB_Number){
+                                                    element.db = element2
+                                                }                            
+                                            });
                                             element.dor = result,
-                                            element.db = results2[i];
+                                            // element.db = results2[i];
                                             i+=1;
                                         });
-                                        console.log(results)
+                                        // console.log('result1',results)
+                                        // console.log('result2',results2)
                                         return res.render('manager_studentAccommodation', {
                                             message:results,
                                             Dormessage: result,
@@ -187,7 +200,7 @@ exports.action = (req, res) => {
                                     });
                                 }
                             });
-                            console.log('result2',results2)
+                            // console.log('result2',results2)
                         }
                     })
                 })
