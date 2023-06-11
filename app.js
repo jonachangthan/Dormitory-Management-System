@@ -76,6 +76,10 @@ app.use('/studentToFix', require('./routes/studentToFix'));
 
 //app.use('/student_to_manager', require('./routes/studentToManager'));
 
+// app.use('/visitorToManager', require('./routes/visitorToManager'));
+
+// app.use('/visitorToSupervisor', require('./routes/visitorToSupervisor'));
+
 //* 告訴express監聽哪個port，以便開始第一個項目
 app.listen(port, () => { 
     console.log(`Server start on http://localhost:${port}/login`);
