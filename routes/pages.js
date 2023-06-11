@@ -202,12 +202,10 @@ router.get('/supervisor_equipment', token, (req, res) => {
     })
 });
 router.get('/other_supervisor', token, (req, res) => {
-    getDormitory(req).then(result => {
-        if (req.user.Permission) {
-            return res.render('other_supervisor', {
-                Dormessage: result
-            })
-        }
+    getSupervisor().then(result => {
+        return res.render('other_supervisor', {
+            message: result
+        })
     })
 });
 
@@ -239,6 +237,7 @@ router.get('/supervisor_to_manager', token, (req, res) => {
         }
     })
 });
+
 
 router.get('/supervisor_to_message', token, (req, res) => {
     if (req.user.Permission) {
