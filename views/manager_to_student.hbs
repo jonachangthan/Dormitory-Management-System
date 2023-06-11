@@ -100,7 +100,7 @@
               <th></th>
             </tr>
           </thead>
-          <form action="/managerToStudent/action" method="POST">
+          <form action="/managerToStudent/search" method="POST">
             <tr>
               <td align='center' valign="middle">
                 <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px" />
@@ -179,7 +179,7 @@
                 <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 120px" />
               </td>
               <td align='center' valign="middle">
-                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit">
                     查詢
                 </button>
               </td>
@@ -210,39 +210,33 @@
               <th align='center' valign="middle"scope="col">連絡電話</th>
               <th align='center' valign="middle"scope="col">Email</th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each message}}
         <tr>
-        <form action="/managerToStudent/action" method="post">
+        <form action="/managerToStudent/modify" method="post">
           <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
           <input type="hidden" name="studentID" value="{{this.S_ID}}">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
           <td valign="middle">{{this.S_Name}}</td>
           <td valign="middle">{{this.S_Sex}}</td>
           <td valign="middle">{{this.S_Academic_Year}}</td>
-          <td valign="middle">      
-            <input class="form-control"  value="{{this.S_Department}}" type="text" data-sb-validations="required"  />        
-            </td>
+          <td valign="middle">{{this.S_Department}}</td>
           <td valign="middle">
             <div class="form-floating">
-            <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
+            <input class="form-control1" name="phone" value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
             </div></td>
             
             <td valign="middle">     
-            <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
+            <input class="form-control" name="email" value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
             </td>
           <td>
             <div style="text-align: left">
-              <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
+              <button type="submit" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
                     修改
               </button>
               </div>
-          </td>
-          <td>
-            <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
           </td>
           </form>
         </tr>

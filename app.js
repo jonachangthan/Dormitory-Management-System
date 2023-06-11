@@ -55,11 +55,13 @@ app.use('/supervisorToViolation', require('./routes/supervisorToViolation'));
 
 app.use('/supervisorToMessage', require('./routes/supervisorToMessage'));
 
+app.use('/supervisorToStudent', require('./routes/supervisorToStudent'));
+
 app.use('/message', require('./routes/message'));
 
+//* student
 app.use('/student', require('./routes/student'));
 
-//* student
 app.use('/studentToApply', require('./routes/studentToApply'));
 
 app.use('/studentToFix', require('./routes/studentToFix'));
