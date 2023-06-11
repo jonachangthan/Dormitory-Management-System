@@ -46,6 +46,8 @@ app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
 app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));
 
+app.use('/managerToChangeDormitory', require('./routes/managerToChangeDormitory'));
+
 app.use('/modifyAccount', require('./routes/modifyAccount'));
 
 //* supervisor
@@ -54,6 +56,12 @@ app.use('/supervisor', require('./routes/supervisor'));
 app.use('/supervisorToViolation', require('./routes/supervisorToViolation'));
 
 app.use('/supervisorToMessage', require('./routes/supervisorToMessage'));
+
+app.use('/supervisorToDormitory', require('./routes/supervisorToDormitory'));
+
+app.use('/supervisorToStudentAccommodation', require('./routes/supervisorToStudentAccommodation'));
+
+app.use('/supervisorToEquipment', require('./routes/supervisorToEquipment'));
 
 app.use('/supervisorToStudent', require('./routes/supervisorToStudent'));
 

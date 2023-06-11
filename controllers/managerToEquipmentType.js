@@ -2,18 +2,20 @@ const db = require('../model/database');
 //const token = require("token.js");
 const e = require('express');
 
+const getDormitory = require('../model/student/getDormitory');
+
 exports.action = (req, res) => {
     console.log(req.body)
     const {action,quantity,type,typeAdd,typeResearch,searchSQL} = req.body;
     if(action=="search"){
-        sql = 'SELECT * FROM `equipment` WHERE 1'
+        searchsql = 'SELECT * FROM `equipment` WHERE 1'
         if(typeResearch==''){
-            sql = 'SELECT * FROM `equipment` WHERE 1'
+            searchsql = 'SELECT * FROM `equipment` WHERE 1'
         }
         else{
-            sql = 'SELECT * FROM `equipment` WHERE E_Type = "'+typeResearch+'"'
+            searchsql = 'SELECT * FROM `equipment` WHERE E_Type = "'+typeResearch+'"'
         }
-        db.query(sql, (error, results) => {
+        db.query(searchsql, (error, results) => {
             console.log(results)
             if (error) {
                 res.render('error', {
@@ -21,9 +23,16 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                return res.render('manager_equipment', {
-                    Typemessage:results,
-                    searchSQL:sql
+                getDormitory(req).then(result => {
+                    // results.forEach(element => {
+                    //     element.dor = result
+                    // });
+                    console.log(results)
+                    return res.render('manager_equipment', {
+                        Typemessage:results,
+                        Dormessage: result,
+                        searchSQL:searchsql
+                    });
                 });
             }
         })
@@ -36,8 +45,8 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                sql = 'SELECT * FROM `equipment` WHERE 1'
-                db.query(sql, (error, results) => {
+                searchsql = 'SELECT * FROM `equipment` WHERE 1'
+                db.query(searchsql, (error, results) => {
                     console.log(results)
                     if (error) {
                         res.render('error', {
@@ -45,9 +54,16 @@ exports.action = (req, res) => {
                         })
                     }
                     else {
-                        return res.render('manager_equipment', {
-                            Typemessage:results,
-                            searchSQL:sql
+                        getDormitory(req).then(result => {
+                            // results.forEach(element => {
+                            //     element.dor = result
+                            // });
+                            console.log(results)
+                            return res.render('manager_equipment', {
+                                Typemessage:results,
+                                Dormessage: result,
+                                searchSQL:searchsql
+                            });
                         });
                     }
                 })
@@ -64,10 +80,17 @@ exports.action = (req, res) => {
             }
             else {
                 db.query(searchSQL, (error, results)=>{
-                    return res.render('manager_equipment', {
-                        Typemessage:results,
-                        searchSQL:searchSQL
-                    })
+                    getDormitory(req).then(result => {
+                        // results.forEach(element => {
+                        //     element.dor = result
+                        // });
+                        console.log(results)
+                        return res.render('manager_equipment', {
+                            Typemessage:results,
+                            Dormessage: result,
+                            searchSQL:searchSQL
+                        });
+                    });
                 })
             }
         })

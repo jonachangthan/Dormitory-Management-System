@@ -2,6 +2,8 @@ const db = require('../model/database');
 //const token = require("token.js");
 const e = require('express');
 
+const sendMail = require('../mail');
+
 const getDormitory = require('../model/student/getDormitory');
 
 exports.action = (req, res) => {
@@ -79,7 +81,7 @@ exports.action = (req, res) => {
         if(room!=''){
             serchsql+='S_Dormitory_No= '+room+' AND ';
         }
-        if(sql == 'SELECT * FROM student WHERE '){
+        if(serchsql == 'SELECT * FROM student WHERE '){
             serchsql = 'SELECT * FROM student'
         }else{
             serchsql = serchsql.substring(0, serchsql.length-4);
@@ -155,21 +157,37 @@ exports.action = (req, res) => {
                             })
                         }
                         else {
-                            console.log('result2',results2)
-                            getDormitory(req).then(result => {
-                                let i = 0;
-                                results.forEach(element => {
-                                    element.dor = result,
-                                    element.db = results2[i];
-                                    i+=1;
-                                });
-                                console.log(results)
-                                return res.render('manager_studentAccommodation', {
-                                    message:results,
-                                    Dormessage: result,
-                                    searchSQL:searchSQL
-                                });
+                            sql6 = 'SELECT S_Name,S_ID ,S_Email FROM student WHERE S_ID='+'"'+studentID+'"'
+                            db.query(sql6, async (error, result6) => {
+                                if (error) {
+                                    console.log(error);
+                                }
+                                //* 若正確生成Email
+                                else {
+                                    let mailSubject = 'Checkout Dormitory';
+                                    //const randomString = randomstring.generate();
+                                    let content = '<p>' + result6[0].S_Name + '您好:\n \
+                                    已經退宿成功';
+
+                                    sendMail(result6[0].S_Email, mailSubject, content);
+
+                                    getDormitory(req).then(result => {
+                                        let i = 0;
+                                        results.forEach(element => {
+                                            element.dor = result,
+                                            element.db = results2[i];
+                                            i+=1;
+                                        });
+                                        console.log(results)
+                                        return res.render('manager_studentAccommodation', {
+                                            message:results,
+                                            Dormessage: result,
+                                            searchSQL:searchSQL
+                                        });
+                                    });
+                                }
                             });
+                            console.log('result2',results2)
                         }
                     })
                 })

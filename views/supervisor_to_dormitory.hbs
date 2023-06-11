@@ -27,7 +27,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
@@ -92,7 +92,7 @@
       <br />
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
-           <form action="/managerToDormitory/action" method="post">
+           <form action="/supervisorToDormitory/action" method="post">
           <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000;" type="submit"  name="action"  value="searchDormitory" > 查詢大樓資料 </button>
           </form>
           {{!-- <i class="fa-solid fa-caret-down"></i> --}}
@@ -198,7 +198,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <form action="/managerToDormitory/action" method="post">
+              <form action="/supervisorToDormitory/action" method="post">
                 <tr>
                   <td align='center' valign="middle">
                     <select id="building" name="buildingSearch" class="form-select">
