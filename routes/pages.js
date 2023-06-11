@@ -155,6 +155,23 @@ router.get('/manager_to_message', token, (req, res) => {
     }
 });
 
+
+//! Visitor
+router.get('/home_visitor', (req, res) => {
+    res.render('home_visitor');
+});
+router.get('/visitor_to_supervisor', (req, res) => {
+    res.render('visitor_to_supervisor');
+});
+router.get('/visitor_to_manager', (req, res) => {
+    res.render('visitor_to_manager');
+});
+
+router.get('/visitor_to_reservation', (req, res) => {
+    res.render('visitor_to_reservation');
+});
+
+
 //! supervisor
 router.get('/supervisor_equipment', token, (req, res) => {
     getDormitory(req).then(result => {
@@ -165,6 +182,7 @@ router.get('/supervisor_equipment', token, (req, res) => {
         }
     })
 });
+
 
 router.get('/supervisor_fix', token, (req, res) => {
     if (req.user.Permission) {
@@ -230,6 +248,34 @@ router.get('/student_to_manager', token, (req, res) => {
     })
 });
 
+router.get('/student_to_supervisor', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (!req.user.Permission) {
+            return res.render('student_to_supervisor', {
+                message: result
+            })
+        }
+    })
+});
+
+router.get('/student_change_dormitory', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (!req.user.Permission) {
+            return res.render('student_change_dormitory', {
+                message: result
+            })
+        }
+    })
+});
+router.get('/student_checkout_dormitory', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (!req.user.Permission) {
+            return res.render('student_checkout_dormitory', {
+                message: result
+            })
+        }
+    })
+});
 router.get('/student_to_apply', token, (req, res) => {
     if (!req.user.Permission) {
         let notapplied = true

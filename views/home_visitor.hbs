@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="list-inline-item">
-              <a href="/">
+             <a href="/">
                 <span class="fa-stack fa-lg">
                   <i
                     style="width: 50px; height: 50px;color:#ffffff"
@@ -64,16 +64,9 @@
                 </span>
               </a>
             </li>
+
             <li class="nav-item">
-              <a
-                class="nav-link px-lg-3 py-3 py-lg-4"
-                href="/dormitory_detail"
-                >Introduction</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4"
-              href="/login">Log out</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail" >Introduction</a >
             </li>
           </ul>
         </div>
@@ -98,79 +91,42 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
+          <!-- Divider-->
           <!-- Post preview-->
           <div class="post-preview">
-  
-            <a href="/student">
-              <h2 class="post-title" style="display: inline;">學生基本資料</h2>
-              <h5 class="post-subtitle">學生可以在此查看自己的基本資料，並可修改連絡電話及e-mail</h5>
-            </a>
+            <a href="/visitor_to_manager"
+              ><h2 class="post-title">管理人員資料</h2>
+              <h5 class="post-subtitle">
+                訪客可以在此查看管理人員基本資料
+              </h5></a>
           </div>
             <hr class="my-4" />
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/student_to_supervisor"
-              ><h2 class="post-title">舍監基本資料</h2>
+            <a href="/visitor_to_supervisor">
+              <h2 class="post-title">舍監基本資料</h2>
               <h5 class="post-subtitle">
-                學生可以在此查看所有舍監的基本資料，以利學生聯絡
-              </h5></a
-            >
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/student_to_manager"
-              ><h2 class="post-title">管理人員資料</h2>
-              <h5 class="post-subtitle">
-                學生可以在此查看所有管理人員的基本資料，以利學生聯絡
-              </h5></a
-            >
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/student_to_apply">
-              <h2 class="post-title">申請住宿資料</h2>
-              <h5 class="post-subtitle">學生可以在此申請住宿資料，並可瀏覽目前申請狀況及自動分發後的房間</h5>
-            </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Post preview-->
-          <div class="post-preview">
-            <a href="/student_to_dormitory">
-              <h2 class="post-title">宿舍大樓資料</h2>
-              <h5 class="post-subtitle">
-                學生可以瀏覽所有的宿舍介紹，並可查看及報修該學生房間之設備
+                訪客可以在此查詢舍監基本資料
               </h5>
             </a>
           </div>
+         
           <!-- Divider-->
-          <hr class="my-4" />
+          {{!-- <hr class="my-4" />
           <!-- Post preview-->
           <div class="post-preview">
-            <a href="/student_to_violation">
-              <h2 class="post-title">學生違規紀錄</h2>
-              <h5 class="post-subtitle">學生可以查看自己的違規紀錄</h5>
+            <a href="/visitor_to_reservation">
+              <h2 class="post-title">預約參觀宿舍</h2>
+              <h5 class="post-subtitle">
+              訪客可以在此預約參觀宿舍
+              </h5>
             </a>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          <!-- Pager-->
-          <div class="d-flex justify-content-end mb-4">
-            <a
-              class="btn btn-primary text-uppercase"
-              href="/student_to_message"
-              >公告及留言板 →</a
-            >
-          </div>
+          </div> --}}
+        <hr class="my-4" />
         </div>
       </div>
       <br><br><br>
-    </div>
-
+    </div>   
     <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
     <!-- Footer-->
     <footer class="border-top">
@@ -191,9 +147,8 @@
                   <div class="col-md-6 social">
                     <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
                     <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
-                      >https://elearningv4.nuk.edu.tw/</a
-                    >
+                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank">
+                    https://elearningv4.nuk.edu.tw/</a>
                   </div>
                 </div>
               </div>
