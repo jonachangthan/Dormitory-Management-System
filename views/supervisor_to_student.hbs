@@ -31,50 +31,57 @@
   </head>
   <body>
     <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-  <div class="container px-4 px-lg-5">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarResponsive"
-      aria-controls="navbarResponsive"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      Menu
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ms-auto py-4 py-lg-0">
-        <li class="list-inline-item">
-          <a href="/" class="home">
-            <span class="fa-stack fa-lg">
-              <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
-                style="width: 50px; height: 50px;color:#ffffff"
-                class="fa-solid fa-house-user">
-              </button>
-            </span>
-          </a>
-        </li>
-        <li class="nav-item"> <a class="nav-link px-lg-3 py-3 py-lg-4" href="/login">Log out</a> </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-    <!-- Page Header-->
-<header class="masthead" style="background-image: url('../home-bg.jpg')">
-  <div class="container position-relative px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <div class="site-heading">
-          <h1>學生基本資料</h1>
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container px-4 px-lg-5">
+        <!-- <a class="navbar-brand" href="index.html">Start Bootstrap</a> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+         >
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="list-inline-item">
+              <a href="/" class="home">
+                <span class="fa-stack fa-lg">
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
+                  style="width: 50px; height: 50px;color:#ffffff"
+                  class="fa-solid fa-house-user"
+                ></button>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail" >Introduction</a  >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4"
+              href="/login">Log out</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-  </div>
-</header>
-    <!-- Main Content-->
+    </nav>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('../home-bg.jpg')" >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>學生基本資料</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Post Content-->
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
@@ -100,7 +107,7 @@
               <th></th>
             </tr>
           </thead>
-          <form action="/managerToStudent/search" method="POST">
+          <form action="/supervisorToStudent/search" method="POST">
             <tr>
               <td align='center' valign="middle">
                 <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px" />
@@ -191,10 +198,6 @@
     </div>
   </div>
 </div>
-  {{#if err_message}}
-    <p style="color: #f50606; font-size:15px">{{err_message}}</p>
-    {{/if}}
-    <br /><br /><br />
 <div class="container">
   <div class="accordion-body">
     <table style="line-height: 10px" class="table table-hover">
@@ -209,45 +212,27 @@
               <th align='center' valign="middle"scope="col">系所</th>
               <th align='center' valign="middle"scope="col">連絡電話</th>
               <th align='center' valign="middle"scope="col">Email</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#each message}}
         <tr>
-        <form action="/managerToStudent/modify" method="post">
           <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
-          <input type="hidden" name="studentID" value="{{this.S_ID}}">
-          <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
           <td valign="middle">{{this.S_Name}}</td>
           <td valign="middle">{{this.S_Sex}}</td>
           <td valign="middle">{{this.S_Academic_Year}}</td>
           <td valign="middle">{{this.S_Department}}</td>
-          <td valign="middle">
-            <div class="form-floating">
-            <input class="form-control1" name="phone" value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
-            </div></td>
-            
-            <td valign="middle">     
-            <input class="form-control" name="email" value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
-            </td>
-          <td>
-            <div style="text-align: left">
-              <button type="submit" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
-                    修改
-              </button>
-              </div>
-          </td>
-          </form>
+          <td valign="middle">{{this.S_Phone}}</td>
+          <td valign="middle">{{this.S_Email}}</td>
         </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
 </div>
-        
+    <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
     <!-- Footer-->
-    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -280,5 +265,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
+    <script src="script.js"></script>
   </body>
 </html>

@@ -14,22 +14,17 @@ const getEquipment = require('../model/student/getEquipment');
 //* 進入首頁view
 router.get('/', token, (req, res) => {
     if (req.user.Permission == 1) {
-        //router.post('home_manager', authController.readBulletin);
-        //router.post('../auth/readBulletin', authController.readBulletin);
-        //router.post('/', getController.readBulletin);
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_manager')
-            })
-        })
-        //res.render('home_manager');
+
+        return res.render('home_manager');
+
     }
     else if(req.user.Permission == 0) {
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('home_student');
-            })
-        })
+
+        return res.render('home_student');
+
+    }else if(req.user.Permission == 2){
+        
+        return res.render('home_supervisor');
     }
 });
 
@@ -73,6 +68,7 @@ router.get('/add_supervisor_account', token, (req, res) => {
         res.render('add_supervisor_account');
     }
 });
+
 //! Manager
 router.get('/modify_account', token, (req, res) => {
     if (req.user.Permission) {
@@ -97,14 +93,22 @@ router.get('/manager_to_apply', token, (req, res) => {
 });
 
 router.get('/manager_to_dormitory', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_to_dormitory');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_to_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
 });
 router.get('/manager_change_dormitory', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_change_dormitory');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_change_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
 });
 router.get('/manager_checkout_dormitory', token, (req, res) => {
     if (req.user.Permission) {
@@ -112,15 +116,45 @@ router.get('/manager_checkout_dormitory', token, (req, res) => {
     }
 });
 router.get('/manager_equipment', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('manager_equipment');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_equipment', {
+                Dormessage: result
+            })
+        }
+    })
 });
 router.get('/manager_studentAccommodation', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_studentAccommodation', {
+                Dormessage: result
+            })
+        }
+    })
+});
+
+router.get('/manager_fix', token, (req, res) => {
     if (req.user.Permission) {
-        res.render('manager_studentAccommodation');
+        res.render('manager_fix');
     }
 });
+
+
+router.get('/manager_to_message', token, (req, res) => {
+    if (req.user.Permission) {
+        readBulletin().then(Bresult => {
+            readMessage().then(Mresult => {
+                return res.render('manager_to_message', {
+                    Bmessage: Bresult,
+                    Mmessage: Mresult,
+                });
+
+            })
+        })
+    }
+});
+
 
 //! Visitor
 router.get('/home_visitor', (req, res) => {
@@ -138,18 +172,71 @@ router.get('/visitor_to_reservation', (req, res) => {
 });
 
 
+//! supervisor
+router.get('/supervisor_equipment', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('supervisor_equipment', {
+                Dormessage: result
+            })
+        }
+    })
+});
 
-router.get('/manager_fix', token, (req, res) => {
+
+router.get('/supervisor_fix', token, (req, res) => {
     if (req.user.Permission) {
-        res.render('manager_fix');
+        res.render('supervisor_fix');
     }
 });
-//! Warden
+
+router.get('/supervisor_to_studentAccommodation', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_studentAccommodation');
+    }
+});
+
+router.get('/supervisor_to_dormitory', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_dormitory');
+    }
+});
+
+router.get('/supervisor_to_manager', token, (req, res) => {
+    getManager().then(result => {
+        if (req.user.Permission) {
+            return res.render('student_to_manager', {
+                message: result
+            })
+        }
+    })
+});
+
+router.get('/supervisor_to_message', token, (req, res) => {
+    if (req.user.Permission) {
+        readBulletin().then(Bresult => {
+            readMessage().then(Mresult => {
+                return res.render('supervisor_to_message', {
+                    Bmessage: Bresult,
+                    Mmessage: Mresult,
+                });
+            })
+        })
+    }
+});
+
+router.get('/supervisor_to_student', token, (req, res) => {
+    if (req.user.Permission) {
+        res.render('supervisor_to_student');
+    }
+});
+
 router.get('/supervisor_to_violation', token, (req, res) => {
     if (req.user.Permission) {
         res.render('supervisor_to_violation');
     }
 });
+
 //! Student
 router.get('/student_to_manager', token, (req, res) => {
     getManager().then(result => {
@@ -262,9 +349,7 @@ router.get('/student_fix', token, (req, res) => {
 });
 
 router.get('/dormitory_detail', token, (req, res) => {
-    if (!req.user.Permission) {
-        res.render('dormitory_detail');
-    }
+    res.render('dormitory_detail');
 });
 
 router.get('/student_to_message', token, (req, res) => {
@@ -275,20 +360,6 @@ router.get('/student_to_message', token, (req, res) => {
                     Bmessage: Bresult,
                     Mmessage: Mresult,
                 });
-            })
-        })
-    }
-});
-
-router.get('/manager_to_message', token, (req, res) => {
-    if (req.user.Permission) {
-        readBulletin().then(Bresult => {
-            readMessage().then(Mresult => {
-                return res.render('manager_to_message', {
-                    Bmessage: Bresult,
-                    Mmessage: Mresult,
-                });
-
             })
         })
     }

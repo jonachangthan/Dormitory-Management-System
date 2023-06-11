@@ -12,7 +12,7 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                res.render('manager_to_violation')
+                res.render('supervisor_to_violation')
             }
         })
     }
@@ -39,14 +39,13 @@ exports.action = (req, res) => {
             results.forEach(element => {
                 element.VR_Date = element.VR_Date.getFullYear()+ '-' + (parseInt(element.VR_Date.getMonth()) + 1) + '-' + element.VR_Date.getDate()
             });
-            console.log(results)
             if (error) {
                 res.render('error', {
                     err_message: "資料庫錯誤"
                 })
             }
             else {
-                return res.render('manager_to_violation', {
+                return res.render('supervisor_to_violation', {
                     message:results,
                     searchSQL:sql
                 });
@@ -56,7 +55,6 @@ exports.action = (req, res) => {
     else if(action=="update"){
         sql = 'UPDATE  violation_record SET VR_Content='+'"'+content+'"'+',VR_Penalty='+'"'+penality+'"'+ ' WHERE  VR_Number='+'"'+id+'"';
         db.query(sql, (error, results) => {
-            console.log(results)
             if (error) {
                 console.log(error);
                 res.render('error', {
@@ -68,14 +66,13 @@ exports.action = (req, res) => {
                     results.forEach(element => {
                         element.VR_Date = element.VR_Date.getFullYear()+ '-' + (parseInt(element.VR_Date.getMonth()) + 1) + '-' + element.VR_Date.getDate()
                     });
-                    console.log(results)
                     if (error) {
                         res.render('error', {
                             err_message: "資料庫錯誤"
                         })
                     }
                     else {
-                        return res.render('manager_to_violation', {
+                        return res.render('supervisor_to_violation', {
                             message:results,
                             searchSQL:searchSQL
                         });
@@ -97,12 +94,11 @@ exports.action = (req, res) => {
                     results.forEach(element => {
                         element.VR_Date = element.VR_Date.getFullYear()+ '-' + (parseInt(element.VR_Date.getMonth()) + 1) + '-' + element.VR_Date.getDate()
                     });
-                    console.log(results)
                     if (error) {
                         console.log(error);
                     }
                     else {
-                        return res.render('manager_to_violation', {
+                        return res.render('supervisor_to_violation', {
                             message:results,
                             searchSQL:searchSQL
                         });

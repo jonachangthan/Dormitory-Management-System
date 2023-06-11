@@ -29,22 +29,45 @@ app.use('/', require('./routes/pages'));
 //* 提交表單驗證時，訪問auth路由
 app.use('/auth', require('./routes/auth'));
 
+//* manager
 app.use('/bulletin', require('./routes/bulletin'));
 
 app.use('/manager', require('./routes/manager'));
 
 app.use('/managerToStudent', require('./routes/managerToStudent'));
 
-app.use('/managerToViolation', require('./routes/managerToViolation'));
-
 app.use('/managerToApply', require('./routes/managerToApply'));
+
+app.use('/managerToEquipment', require('./routes/managerToEquipment'));
+
+app.use('/managerToEquipmentType', require('./routes/managerToEquipmentType'));
 
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
+app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));
+
+app.use('/managerToChangeDormitory', require('./routes/managerToChangeDormitory'));
+
 app.use('/modifyAccount', require('./routes/modifyAccount'));
+
+//* supervisor
+app.use('/supervisor', require('./routes/supervisor'));
+
+app.use('/supervisorToViolation', require('./routes/supervisorToViolation'));
+
+app.use('/supervisorToMessage', require('./routes/supervisorToMessage'));
+
+app.use('/supervisorToDormitory', require('./routes/supervisorToDormitory'));
+
+app.use('/supervisorToStudentAccommodation', require('./routes/supervisorToStudentAccommodation'));
+
+app.use('/supervisorToEquipment', require('./routes/supervisorToEquipment'));
+
+app.use('/supervisorToStudent', require('./routes/supervisorToStudent'));
 
 app.use('/message', require('./routes/message'));
 
+//* student
 app.use('/student', require('./routes/student'));
 
 app.use('/studentToApply', require('./routes/studentToApply'));

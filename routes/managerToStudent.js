@@ -5,8 +5,8 @@ const req = require('express/lib/request');
 
 const router = express.Router();
 //* 撰寫
-router.post('/action',token, managerToStudentController.action);
+router.post('/search',token, managerToStudentController.search);
 
-
+router.post('/modify',token, managerToStudentController.modify);
 
 module.exports = router;
