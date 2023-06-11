@@ -7,6 +7,7 @@ const router = express.Router();
 const readBulletin = require('../model/bulletinRead');
 const readMessage = require('../model/messageRead');
 const getManager = require('../model/student/getManager');
+const getSupervisor = require('../model/student/getSupervisor');
 const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
@@ -82,7 +83,11 @@ router.get('/manager_to_student', token, (req, res) => {
     }
 });
 router.get('/manager_to_supervisor', (req, res) => {
-    res.render('manager_to_supervisor');
+    getSupervisor().then(result => {
+        return res.render('manager_to_supervisor', {
+            message: result
+        })
+    })
 });
 
 
