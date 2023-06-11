@@ -6,8 +6,10 @@ const router = express.Router();
 
 const readBulletin = require('../model/bulletinRead');
 const readMessage = require('../model/messageRead');
+
 const getManager = require('../model/visitor/getManager');
 const getSupervisor = require('../model/visitor/getSupervisor');
+
 const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
@@ -87,7 +89,11 @@ router.get('/manager_to_student', token, (req, res) => {
     }
 });
 router.get('/manager_to_supervisor', (req, res) => {
-    res.render('manager_to_supervisor');
+    getSupervisor().then(result => {
+        return res.render('manager_to_supervisor', {
+            message: result
+        })
+    })
 });
 
 
@@ -190,6 +196,15 @@ router.get('/supervisor_equipment', token, (req, res) => {
     getDormitory(req).then(result => {
         if (req.user.Permission) {
             return res.render('supervisor_equipment', {
+                Dormessage: result
+            })
+        }
+    })
+});
+router.get('/other_supervisor', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('other_supervisor', {
                 Dormessage: result
             })
         }

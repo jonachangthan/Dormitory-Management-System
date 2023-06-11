@@ -74,72 +74,6 @@
     </div>
   </div>
 </header>
-    <!-- Main Content-->
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="button" style=" text-align: center; background-color: #ffffff; border: 4px #a67fd2 outset; color: #000000; " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 查詢 / 新增資料
-      </button>
-      <i class="fa-solid fa-caret-down"></i>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <div class="container">
-        <table style="line-height: 10px" class="table table-hover">
-          <thead>
-            <!--表示表格中不同直行 (column) 的標題-->
-            <tr style="background-color: #dfd1ef">
-              <!--定義表格的橫列 (row)-->
-              <th align='center' valign="middle"scope="col">姓名</th>
-              <th align='center' valign="middle"scope="col">性別</th>
-              <th align='center' valign="middle"scope="col">連絡電話</th>
-              <th align='center' valign="middle"scope="col">Email</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <form action="/managerToWarden/action" method="POST">
-            <tr>
-              <td align='center' valign="middle">
-                <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px" />
-              </td>
-
-            <td align='center' valign="middle">
-                <select id="sex" name="sex" style="width: 130px" class="form-select" >
-                  <option selected>選擇性別</option>
-                  <option value="男">男生</option>
-                  <option value="女">女生</option>
-                </select>
-              </td>
-              <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="name" name="name" value="" placeholder="" style="width: 150px" />
-              </td>
-      
-              <td align='center' valign="middle"> 
-                <input type="text" class="form-control" id="phone" name="phone" value="" placeholder="" style="width: 180px" />
-              </td>
-              <td align='center' valign="middle">
-                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
-                    查詢
-                </button>
-              </td>
-              <td>
-                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="add">
-                  新增
-                </button>
-              </td>
-            </tr>
-          </form>
-        </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  {{#if err_message}}
-    <p style="color: #f50606; font-size:15px">{{err_message}}</p>
-    {{/if}}
-    <br /><br /><br />
 <div class="container">
   <div class="accordion-body">
     <table style="line-height: 10px" class="table table-hover">
@@ -147,8 +81,8 @@
         <!--表示表格中不同直行 (column) 的標題-->
         <tr style="background-color: #dfd1ef">
           <!--定義表格的橫列 (row)-->
+          <th scope="col"align='center' valign="middle" >舍監編號</th>
           <th scope="col"align='center' valign="middle" >姓名</th>
-          <th scope="col"align='center' valign="middle" >性別</th>
           <th scope="col"align='center' valign="middle" >連絡電話</th>
           <th scope="col"align='center' valign="middle" >Email</th>
           <th></th>
@@ -157,27 +91,25 @@
       <tbody>
         {{#each message}}
         <tr>
-        <form action="/managerToWarden/action" method="post">
-          <td valign="middle">{{this.S_Name}}</td>
-          <td valign="middle">{{this.S_Sex}}</td>
+        <form action="/managerToSupervisor/modify" method="post">
+          <td valign="middle">{{this.M_ID}}</td>
+          <input type="hidden" name="M_ID" value="{{this.M_ID}}">
+          <td valign="middle">{{this.M_Name}}</td>
           <td valign="middle">
-            <div class="form-floating">
-               <input class="form-control1"  value="{{this.S_Phone}}" type="text" data-sb-validations="required"  />        
-              </div>
+            <div class="middle">
+               <input class="form-control1" name="phone" value="{{this.M_Phone}}" type="text" data-sb-validations="required"  />        
+            </div>
           </td>
           <td valign="middle">     
-             <input class="form-control"  value="{{this.S_Email}}" type="text" data-sb-validations="required"  />        
-            </td>
+             <input class="form-control" name="email" value="{{this.M_Email}}" type="text" data-sb-validations="required"  />        
+          </td>
           <td>
             <div style="text-align: left">
-              <button type="button" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
+              <button type="submit" style=" width: 75px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset;">
                   修改
               </button>
             </div>
-            </td>
-            <td>
-              <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit" name="action" value="delete"> 刪除</button>
-            </td>
+          </td>
           </form>
         </tr>
         {{/each}}

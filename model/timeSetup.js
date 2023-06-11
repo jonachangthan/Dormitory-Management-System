@@ -12,13 +12,6 @@ class checkDue {
     static applyOpeningDate = new Date('2023-06-01T00:00:00Z');
     static applyDueDate = new Date('2023-06-30T23:59:59Z');
 
-    // 繳費deadline
-    static paymentDueDate = new Date('2023-09-30T23:59:59Z');
-
-    // 退換宿申請開放時間
-    static exitExchanegOpeningDate = new Date('2023-06-01T00:00:00Z');
-    static exitExchanegDueDate = new Date('2023-06-30T23:59:59Z');
-
     static currentDate = new Date();
 
     static checkApplyDue(){
