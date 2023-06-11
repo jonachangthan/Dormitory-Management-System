@@ -190,6 +190,10 @@ router.get('/visitor_to_reservation', (req, res) => {
     res.render('visitor_to_reservation');
 });
 
+router.get('/bill', (req, res) => {
+    res.render('bill');
+});
+
 
 //! supervisor
 router.get('/supervisor_equipment', token, (req, res) => {

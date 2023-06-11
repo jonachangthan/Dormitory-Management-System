@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>下載繳費單</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="container">
+<div class="col-md-5">
+ <h3 style="text-align: center;">繳費單</h3>
+ <hr>
+ <div class="row">
+  <div class="col-md-4">
+    姓名 :
+  </div>
+  <div class="col-md-4">
+    學號 :
+  </div>
+  <div class="col-md-4">
+   系別 :
+  </div>
+</div>
+ <br>
+<table  style="border:3px #cccccc solid;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">項目</th>
+      <th scope="col">應繳金額</th>   
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">學費</th>
+      <td>16300</td>     
+    </tr>
+    <tr>
+      <th scope="row">雜費</th>
+      <td >10420</td>
+    </tr>
+    <tr>
+      <th scope="row">電腦與網路通訊使用費</th>
+      <td>257</td>    
+    </tr>
+    <tr>
+      <th scope="row">語言設備使用費</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th scope="row">外語設備實習費</th>
+      <td>0</td>   
+    </tr>
+    <tr>
+      <th scope="row">學分費</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th scope="row">學生團體保險費</th>
+      <td>406</td>  
+    </tr>
+    <tr>
+      <th scope="row">健保費</th>
+      <td>0</td>  
+    </tr>
+    <tr>
+      <th scope="row">僑保費</th>
+      <td>0</td>  
+    </tr>
+    <tr>
+      <th scope="row">外籍保險費</th>
+      <td>0</td>  
+    </tr>
+    <tr>
+      <th scope="row">住宿費</th>
+      <td>0</td>   
+    </tr>
+    <tr>
+      <th scope="row">住宿保證金</th>
+      <td>0</td>   
+    </tr>
+
+  </tbody>
+</table>
+</div>
+<button style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"id="downloadButton">下載繳費單</button>
+</div>
+ 
+
+
+  <script>
+    var jsPDF = window.jspdf.jsPDF;
+
+    document.getElementById('downloadButton').addEventListener('click', function() {
+      var button = this;
+      button.disabled = true;
+      button.style.display = 'none';
+
+      var doc = new jsPDF();
+
+      html2canvas(document.documentElement).then(function(canvas) {
+        doc.addImage(canvas, 'JPEG', 0, 0, doc.internal.pageSize.getWidth()+200, doc.internal.pageSize.getHeight());
+        doc.save('繳費單.pdf');
+
+        button.disabled = false;
+        button.style.display = 'block';
+        
+      });
+    });
+  </script>
+
+
+</body>
+</html>
