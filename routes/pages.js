@@ -199,6 +199,15 @@ router.get('/supervisor_equipment', token, (req, res) => {
         }
     })
 });
+router.get('/other_supervisor', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('other_supervisor', {
+                Dormessage: result
+            })
+        }
+    })
+});
 
 
 router.get('/supervisor_fix', token, (req, res) => {
