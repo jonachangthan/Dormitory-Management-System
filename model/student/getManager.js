@@ -2,14 +2,17 @@ const db = require("./../database")
 
 module.exports = function getManagerData() {   
     return new Promise((resolve, reject) => {
-        db.query('SELECT * From manager;', async (error, results) => {
+        sql = `SELECT manager.*, account.Permission FROM manager JOIN account ON manager.M_ID = account.UserName`
+        db.query(sql, async (error, results) => {
             if (error) {
                 console.log(error);
                 reject(error);
                 return;
             }
             else {
-                // console.log(results);
+                results.forEach(element => {
+                    element.Permission = element.Permission == 1 ? "管理員" : "舍監";
+                });
                 resolve(results);
             }
         });

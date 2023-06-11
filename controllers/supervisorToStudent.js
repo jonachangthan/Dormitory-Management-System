@@ -39,36 +39,9 @@ exports.search = (req, res) => {
             })
         }
         else {
-            return res.render('manager_to_student', {
-                message:results,
-                searchSQL:sql
+            return res.render('supervisor_to_student', {
+                message:results
             });
         }
     })
 }
-exports.modify = (req, res) => {
-    const {email, phone, studentID, searchSQL} = req.body;
-
-    const sql = `UPDATE student SET S_Phone = '${phone}', S_Email = '${email}' WHERE S_ID = '${studentID}'`;
-
-    db.query(sql, (error, results) => {
-        if (error) {
-            console.log(error)
-            res.render('error')
-        }
-        else {
-            db.query(searchSQL, (error, results) => {
-                if (error) {
-                    console.log(error)
-                    res.render('error')
-                }else {
-                    return res.render('manager_to_student', {
-                        message:results,
-                        searchSQL:searchSQL
-                    });
-                }
-            })
-        }
-    })
-}
-

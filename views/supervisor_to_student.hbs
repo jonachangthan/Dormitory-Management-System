@@ -27,7 +27,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
@@ -107,7 +107,7 @@
               <th></th>
             </tr>
           </thead>
-          <form action="/managerToStudent/action" method="POST">
+          <form action="/supervisorToStudent/search" method="POST">
             <tr>
               <td align='center' valign="middle">
                 <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px" />
@@ -186,7 +186,7 @@
                 <input type="text" class="form-control" id="email" name="email" value="" placeholder="" style="width: 120px" />
               </td>
               <td align='center' valign="middle">
-                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit" name="action" value="search" >
+                <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; " type="submit">
                     查詢
                 </button>
               </td>
@@ -196,6 +196,38 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <div class="accordion-body">
+    <table style="line-height: 10px" class="table table-hover">
+      <thead>
+        <!--表示表格中不同直行 (column) 的標題-->
+        <tr style="background-color: #dfd1ef">
+          <!--定義表格的橫列 (row)-->
+          <th align='center' valign="middle"scope="col">學號</th>
+              <th align='center' valign="middle"scope="col">姓名</th>
+              <th align='center' valign="middle"scope="col">性別</th>
+              <th align='center' valign="middle"scope="col">學年度</th>
+              <th align='center' valign="middle"scope="col">系所</th>
+              <th align='center' valign="middle"scope="col">連絡電話</th>
+              <th align='center' valign="middle"scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each message}}
+        <tr>
+          <th scope="row" align='center' valign="middle">{{this.S_ID}}</th>
+          <td valign="middle">{{this.S_Name}}</td>
+          <td valign="middle">{{this.S_Sex}}</td>
+          <td valign="middle">{{this.S_Academic_Year}}</td>
+          <td valign="middle">{{this.S_Department}}</td>
+          <td valign="middle">{{this.S_Phone}}</td>
+          <td valign="middle">{{this.S_Email}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 </div>
     <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
