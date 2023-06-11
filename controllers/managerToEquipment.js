@@ -2,16 +2,18 @@ const db = require('../model/database');
 //const token = require("token.js");
 const e = require('express');
 
+const getDormitory = require('../model/student/getDormitory');
+
 exports.action = (req, res) => {
     console.log(req.body)
     const {building,room,action,quantity,type,condition,checkBox,searchSQL} = req.body;
     if(action=="search"){
         if(checkBox=="1"){
-            sql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number AND E_D_Condition <> ""'
+            searchsql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number AND E_D_Condition <> ""'
         }else{
-            sql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number'
+            searchsql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number'
         }
-        db.query(sql, (error, results) => {
+        db.query(searchsql, (error, results) => {
             console.log(results)
             if (error) {
                 res.render('error', {
@@ -19,9 +21,16 @@ exports.action = (req, res) => {
                 })
             }
             else {
-                return res.render('manager_equipment', {
-                    message:results,
-                    searchSQL:sql
+                getDormitory(req).then(result => {
+                    // results.forEach(element => {
+                    //     element.dor = result
+                    // });
+                    console.log(results)
+                    return res.render('manager_equipment', {
+                        message:results,
+                        Dormessage: result,
+                        searchSQL:searchsql
+                    });
                 });
             }
         })
@@ -51,10 +60,17 @@ exports.action = (req, res) => {
                             else {
                                 sql = 'SELECT DB_Number, DB_Name,E_D_Dormitory_No,E_Type,E_D_Quantity,E_D_Condition, D_Capacity,D_Cost FROM dormitory_building NATURAL join dormitory NATURAL JOIN equipment NATURAL join equipment_in_dormitory WHERE DB_number= '+building+' AND E_D_dormitory_no = '+room +' AND D_building_no = DB_number AND E_number = E_D_Equipment_No AND E_D_Building_No = DB_Number AND E_D_Dormitory_No = D_Number'
                                 db.query(sql, (error, results)=>{
-                                    return res.render('manager_equipment', {
-                                        message:results,
-                                        searchSQL:searchSQL
-                                    })
+                                    getDormitory(req).then(result => {
+                                        // results.forEach(element => {
+                                        //     element.dor = result
+                                        // });
+                                        console.log(results)
+                                        return res.render('manager_equipment', {
+                                            message:results,
+                                            Dormessage: result,
+                                            searchSQL:searchSQL
+                                        });
+                                    });
                                 })
                             }
                         })
@@ -89,9 +105,16 @@ exports.action = (req, res) => {
                                 })
                             }
                             else {
-                                return res.render('manager_equipment', {
-                                    message:results,
-                                    searchSQL:searchSQL
+                                getDormitory(req).then(result => {
+                                    // results.forEach(element => {
+                                    //     element.dor = result
+                                    // });
+                                    console.log(results)
+                                    return res.render('manager_equipment', {
+                                        message:results,
+                                        Dormessage: result,
+                                        searchSQL:searchSQL
+                                    });
                                 });
                             }
                         })
@@ -117,10 +140,61 @@ exports.action = (req, res) => {
                     }
                     else {
                         db.query(searchSQL, (error, results)=>{
-                            return res.render('manager_equipment', {
-                                message:results,
-                                searchSQL:searchSQL
-                            })
+                            getDormitory(req).then(result => {
+                                // results.forEach(element => {
+                                //     element.dor = result
+                                // });
+                                console.log(results)
+                                return res.render('manager_equipment', {
+                                    message:results,
+                                    Dormessage: result,
+                                    searchSQL:searchSQL
+                                });
+                            });
+                        })
+                    }
+                })
+            }
+        })
+    }
+    else if(action=='finish'){
+        sql = "SELECT E_Number FROM equipment WHERE E_Type = "+"'"+type+"'"
+        db.query(sql, (error, results) => {
+            if (error) {
+                res.render('error', {
+                    err_message: "資料庫錯誤"
+                })
+            }
+            else {
+                sql = 'UPDATE equipment_in_dormitory SET E_D_Quantity='+quantity+ ' ,E_D_Condition  = NULL WHERE E_D_Dormitory_No ='+room+' AND E_D_Building_No = '+building+' AND E_D_Equipment_No = '+results[0].E_Number;
+                db.query(sql, (error, results) => {
+                    console.log("result: ",results)
+                    if (error) {
+                        res.render('error', {
+                            err_message: "資料庫錯誤"
+                        })
+                    }
+                    else {
+                        db.query(searchSQL, (error, results) => {
+                            console.log(results)
+                            if (error) {
+                                res.render('error', {
+                                    err_message: "資料庫錯誤"
+                                })
+                            }
+                            else {
+                                getDormitory(req).then(result => {
+                                    // results.forEach(element => {
+                                    //     element.dor = result
+                                    // });
+                                    console.log(results)
+                                    return res.render('manager_equipment', {
+                                        message:results,
+                                        Dormessage: result,
+                                        searchSQL:searchSQL
+                                    });
+                                });
+                            }
                         })
                     }
                 })

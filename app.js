@@ -57,6 +57,12 @@ app.use('/supervisorToViolation', require('./routes/supervisorToViolation'));
 
 app.use('/supervisorToMessage', require('./routes/supervisorToMessage'));
 
+app.use('/supervisorToDormitory', require('./routes/supervisorToDormitory'));
+
+app.use('/supervisorToStudentAccommodation', require('./routes/supervisorToStudentAccommodation'));
+
+app.use('/supervisorToEquipment', require('./routes/supervisorToEquipment'));
+
 app.use('/message', require('./routes/message'));
 
 app.use('/student', require('./routes/student'));

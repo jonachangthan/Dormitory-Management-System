@@ -23,7 +23,7 @@
       rel="stylesheet"
       type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="/styles.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Navigation-->
@@ -98,17 +98,15 @@
                   <th></th>
                 </tr>
               </thead>
-              <form action="/managerToEquipment/action" method="post">
+              <form action="/supervisorToEquipment/action" method="post">
                 <tr>
                   <td align='center' valign="middle">
                     <select id="building" name="building" class="form-select">
-                      <option selected>選擇大樓</option>
-                      <option value=1>學生第一宿舍(OA-男)</option>
-                      <option value=2>學生第一宿舍(OB-女)</option>
-                      <option value=3>學生第二宿舍(OE-男)</option>
-                      <option value=4>學生第二宿舍(OF-女)</option>
-                      <option value=5>綜合宿舍(B01-男)</option>
-                    </select>
+                        <option selected>選擇大樓</option>
+                        {{#each Dormessage}}
+                        <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
+                        {{/each}}
+                      </select>
                   </td>
                   <td align='center' valign="middle">
                     <input type="text" class="form-control" id="room" name="room" value=""/>
@@ -147,7 +145,7 @@
     <tbody>
       {{#each message}}
       <tr>
-        <form action="/managerToEquipment/action" method="post">
+        <form action="/supervisorToEquipment/action" method="post">
           <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
           <input type="hidden" name="building" value="{{this.DB_Number}}">
           <input type="hidden" name="room" value="{{this.E_D_Dormitory_No}}">

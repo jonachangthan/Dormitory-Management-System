@@ -81,7 +81,7 @@ exports.action = (req, res) => {
         if(room!=''){
             serchsql+='S_Dormitory_No= '+room+' AND ';
         }
-        if(sql == 'SELECT * FROM student WHERE '){
+        if(serchsql == 'SELECT * FROM student WHERE '){
             serchsql = 'SELECT * FROM student'
         }else{
             serchsql = serchsql.substring(0, serchsql.length-4);
