@@ -165,9 +165,10 @@ exports.action = (req, res) => {
     }
     else if(action=="addRoom"){
         sql = 'INSERT INTO dormitory (D_Number , D_Building_No ,D_Capacity ,D_Cost) VALUES ('+room+','+building+','+capacity+','+cost+')'
-        //sql = 'INSERT INTO  dormitory VALUES (6, '+'"'+dormitory_name+'",'+'"123")'
+        //sql = 'INSERT INTO  dormitory VALUES (6, '+'"'+dormitory_name+'",'+'"123")
         if(room==""){
-            sql = 'INSERT INTO dormitory (D_Number , D_Building_No ,D_Capacity ,D_Cost) SELECT MAX( D_Number)+1,'+building+','+capacity+','+cost+' FROM dormitory;'
+            sql = 'INSERT INTO dormitory (D_Number , D_Building_No ,D_Capacity ,D_Cost) SELECT MAX( D_Number)+1,'+building+','+capacity+','+cost+' FROM dormitory Where D_Building_No = '+building+';'
+            console.log(sql)
         }
         db.query(sql, (error, results) => {
             if (error) {
