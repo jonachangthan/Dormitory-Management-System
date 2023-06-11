@@ -185,9 +185,13 @@ router.get('/supervisor_to_dormitory', token, (req, res) => {
 });
 
 router.get('/supervisor_to_manager', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('supervisor_to_manager');
-    }
+    getManager().then(result => {
+        if (req.user.Permission) {
+            return res.render('student_to_manager', {
+                message: result
+            })
+        }
+    })
 });
 
 router.get('/supervisor_to_message', token, (req, res) => {

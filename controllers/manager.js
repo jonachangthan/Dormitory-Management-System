@@ -14,7 +14,7 @@ exports.action = (req, res) => {
             }
             else {
                 db.query('SELECT * From manager Where ?',{ M_ID:req.user.UserName}, (error, results) => {
-                    console.log(results)
+                    // console.log(results)
                     if (error) {
                         res.render('error', {
                             err_message: "資料庫錯誤"
