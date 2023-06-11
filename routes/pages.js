@@ -12,6 +12,10 @@ const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
 
+const visitorGetManager = require('../model/visitor/getManager');
+const visitorGetSupervisor = require('../model/visitor/getSupervisor');
+
+
 //* 進入首頁view
 router.get('/', token, (req, res) => {
     if (req.user.Permission == 1) {
@@ -166,10 +170,18 @@ router.get('/home_visitor', (req, res) => {
     res.render('home_visitor');
 });
 router.get('/visitor_to_supervisor', (req, res) => {
-    res.render('visitor_to_supervisor');
+    visitorGetSupervisor().then(result => {
+        return res.render('visitor_to_manager', {
+            message: result
+        })
+    })
 });
 router.get('/visitor_to_manager', (req, res) => {
-    res.render('visitor_to_manager');
+    visitorGetManager().then(result => {
+        return res.render('visitor_to_manager', {
+            message: result
+        })
+    })
 });
 
 router.get('/visitor_to_reservation', (req, res) => {
