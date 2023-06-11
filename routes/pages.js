@@ -6,8 +6,10 @@ const router = express.Router();
 
 const readBulletin = require('../model/bulletinRead');
 const readMessage = require('../model/messageRead');
-const getManager = require('../model/student/getManager');
-const getSupervisor = require('../model/student/getSupervisor');
+
+const getManager = require('../model/visitor/getManager');
+const getSupervisor = require('../model/visitor/getSupervisor');
+
 const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
@@ -275,7 +277,7 @@ router.get('/student_to_manager', token, (req, res) => {
 });
 
 router.get('/student_to_supervisor', token, (req, res) => {
-    getDormitory(req).then(result => {
+    getSupervisor().then(result => {
         if (!req.user.Permission) {
             return res.render('student_to_supervisor', {
                 message: result
