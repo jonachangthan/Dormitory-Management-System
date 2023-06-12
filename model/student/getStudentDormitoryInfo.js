@@ -15,6 +15,7 @@ module.exports = function getStudentDormitoryInfo(studentId) {
         console.log(error);
         reject(error);
       } else {
+        console.log(results);
         result = results[0].DB_Name + " " + results[0].D_Number + "號房";
         resolve(result || null);
       }
