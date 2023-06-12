@@ -32,63 +32,76 @@ exports.get = (req, res) => {
         results.A_Bill = results.A_Bill == 0 ? "未繳交" : "已繳交"
 
         results = [results]
-        getStudentDormitoryInfo(req.user.UserName).then(result => {
-            let html = ""
-            let room = ""
-            room = result
         
-            if(!approval){
-                html = `<link href="/p.css" rel="stylesheet" />
-                            <div class="container">
-                            <div class="progress-container"> 
-                                <div id="progress" class="progress"></div>
-                                <div class="circle active">1
-                                    <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                                </div>
-                                <div class="circle">2</div>
-                                <div class="circle">3</div>
+        if(!approval){
+            html = `<link href="/p.css" rel="stylesheet" />
+                        <div class="container">
+                        <div class="progress-container"> 
+                            <div id="progress" class="progress"></div>
+                            <div class="circle active">1
+                                <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
                             </div>
-                            </div> `
-            }else{
-                    html = `<link href="/p.css" rel="stylesheet" />
-                                <div class="container">
-                                <div class="progress-container"> 
-                                    <div id="progress" class="progress"></div>
-                                    <div class="circle active">1
-                                        <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                                    </div>
-                                    <div class="circle active">2
-                                        <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
-                                    </div>
-                                    <div class="circle">3</div>
-                                </div>
-                                </div> `
-            }
-            if(results[0].A_Bill=="已繳交"){
-                html = `<link href="/p.css" rel="stylesheet" />
-                            <div class="container">
-                                <div class="progress-container"> 
-                                    <div id="progress" class="progress"></div>
-                                    <div class="circle active">1
-                                        <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                                    </div>
-                                    <div class="circle active">2
-                                        <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
-                                    </div>
-                                    <div class="circle">3
-                                        <span style="color:black;font-weight:bold">繳費完成</span>
-                                    </div>
-                                </div>
-                            </div> `
-            }
-
+                            <div class="circle">2</div>
+                            <div class="circle">3</div>
+                        </div>
+                        </div> `
             return res.render('student_to_apply', {
                 message: results,
                 notapplied: false,
                 approval: approval,
                 html:html
             });
-        })
+            
+        }else if(results[0].A_Approval=="已核可" && results[0].A_Bill=="未繳交"){
+                getStudentDormitoryInfo(req.user.UserName).then(result => {
+                    room = result
+                    html = `<link href="/p.css" rel="stylesheet" />
+                            <div class="container">
+                            <div class="progress-container"> 
+                                <div id="progress" class="progress"></div>
+                                <div class="circle active">1
+                                    <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
+                                </div>
+                                <div class="circle active">2
+                                    <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
+                                </div>
+                                <div class="circle">3</div>
+                            </div>
+                            </div> `
+                    return res.render('student_to_apply', {
+                        message: results,
+                        notapplied: false,
+                        approval: approval,
+                        html:html
+                    });
+                })
+        }
+        else{
+            getStudentDormitoryInfo(req.user.UserName).then(result => {
+                room = result
+                html = `<link href="/p.css" rel="stylesheet" />
+                        <div class="container">
+                        <div class="progress-container"> 
+                            <div id="progress" class="progress"></div>
+                            <div class="circle active">1
+                                <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
+                            </div>
+                            <div class="circle active">2
+                                <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
+                            </div>
+                            <div class="circle">3
+                                <span style="color:black;font-weight:bold">已繳交住宿費 完成申請流程</span>
+                            </div>
+                        </div>
+                        </div> `
+                return res.render('student_to_apply', {
+                    message: results,
+                    notapplied: false,
+                    approval: approval,
+                    html:html
+                });
+            })
+        }
     })
 }
 
