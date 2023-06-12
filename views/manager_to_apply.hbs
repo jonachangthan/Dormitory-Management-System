@@ -196,14 +196,14 @@
       <tbody>
         {{#each message}}
         <tr>
-          <td >{{this.A_Student_ID}}</td>
-          <td >{{this.A_Academic_Year}}</td>
-          <td >{{this.A_Semester}}</td>
-          <td >{{this.A_Date}}</td>
-          <td >{{this.A_Approval}}</td>
-          <td >{{this.A_Bill}}</td>
-          <td></td>
-          <td></td>
+          <td valign="middle" >{{this.A_Student_ID}}</td>
+          <td valign="middle">{{this.A_Academic_Year}}</td>
+          <td valign="middle">{{this.A_Semester}}</td>
+          <td valign="middle">{{this.A_Date}}</td>
+          <td valign="middle">{{this.A_Approval}}</td>
+          <td valign="middle">{{this.A_Bill}}</td>
+          <td valign="middle"></td>
+          <td valign="middle"></td>
             {{#if this.boolean}}
               <form action="/managerToApply/action" method="post">
               <input type="hidden" name="searchSQL" value="{{../searchSQL}}">

@@ -97,11 +97,13 @@
           <td valign="middle">{{this.M_Name}}</td>
           <td valign="middle">
             <div class="middle">
-               <input class="form-control1" name="phone" value="{{this.M_Phone}}" type="text" data-sb-validations="required"  />        
+               <div class="form-floating"> 
+               <input name="phone" value="{{this.M_Phone}}" type="text" data-sb-validations="required"  /> 
+               </div>       
             </div>
           </td>
-          <td valign="middle">     
-             <input class="form-control" name="email" value="{{this.M_Email}}" type="text" data-sb-validations="required"  />        
+          <td valign="middle">    
+             <input name="email" value="{{this.M_Email}}" type="text" data-sb-validations="required"  />        
           </td>
           <td>
             <div style="text-align: left">
