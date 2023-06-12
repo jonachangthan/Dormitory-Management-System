@@ -74,6 +74,8 @@ app.use('/student', require('./routes/student'));
 
 app.use('/studentToApply', require('./routes/studentToApply'));
 
+app.use('/student_to_apply', require('./routes/studentToApply'));
+
 app.use('/studentToFix', require('./routes/studentToFix'));
 
 //app.use('/student_to_manager', require('./routes/studentToManager'));

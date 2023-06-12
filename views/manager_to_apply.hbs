@@ -107,8 +107,6 @@
                 <tr style="background-color: #dfd1ef">
                   <!--定義表格的橫列 (row)-->
                   <th scope="col"align='center' valign="middle">學生編號</th>
-                  <th scope="col"align='center' valign="middle">學年度</th>
-                  <th scope="col"align='center' valign="middle">學期</th>
                   <th scope="col"align='center' valign="middle">申請日期</th>
                   <th scope="col"align='center' valign="middle">審核狀況</th>
                   <th scope="col"align='center' valign="middle">繳費狀況</th>
@@ -119,24 +117,6 @@
                 <tr>
                   <td align='center' valign="middle">
                     <input type="text" class="form-control" id="studentID" name="studentID" value="" placeholder="" style="width: 100px"/>
-                  </td>
-                  <td align='center' valign="middle"> 
-                    <select id="academicYear" name="academicYear" style="width: 130px" class="form-select">
-                      <option selected>選擇學年度</option>
-                      <option value="111">111</option>
-                      <option value="110">110</option>
-                      <option value="109">109</option>
-                      <option value="108">108</option>
-                      <option value="107">107</option>
-                      <option value="106">106</option>
-                    </select>
-                  </td>
-                  <td align='center' valign="middle">
-                    <select id="semester" name="semester" style="width: 130px" class="form-select" >
-                      <option selected>選擇學期</option>
-                      <option value="上">上學期</option>
-                      <option value="下">下學期</option>
-                    </select>
                   </td>
                   <td align='center' valign="middle">
                     <input type="text" class="form-control" id="date" name="date" value="" placeholder="xxxx/xx/xx" style="width: 120px" />
@@ -182,8 +162,6 @@
         <tr style="background-color: #dfd1ef">
           <!--定義表格的橫列 (row)-->
           <th scope="col">學生編號</th>
-          <th scope="col">學年度</th>
-          <th scope="col">學期</th>
           <th scope="col">申請日期</th>
           <th scope="col">審核狀況</th>
           <th scope="col">繳費狀況</th>
@@ -197,8 +175,6 @@
         {{#each message}}
         <tr>
           <td >{{this.A_Student_ID}}</td>
-          <td >{{this.A_Academic_Year}}</td>
-          <td >{{this.A_Semester}}</td>
           <td >{{this.A_Date}}</td>
           <td >{{this.A_Approval}}</td>
           <td >{{this.A_Bill}}</td>
@@ -217,6 +193,19 @@
               </td>
               </form>
             {{/if}}
+            {{#unless this.pay}}
+              <form action="/managerToApply/pay" method="post">
+              <input type="hidden" name="searchSQL" value="{{../searchSQL}}">
+              <input type="hidden" name="number" value="{{this.A_Number}}">
+              <input type="hidden" name="studentID" value="{{this.A_Student_ID}}">
+              <td>
+                <button type="submit" name="action"  style=" width: 150px; height: 40px; background-color: #5769b4; color: #ffffff; border: 2px #5769b4 outset; "value="pay">標註為已繳費</button>
+              </td>
+              <td>
+                <button type="submit" name="action" style=" width: 150px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; "value="info">寄送催繳通知</button>
+              </td>
+              </form>
+            {{/unless}}
         </tr>
         {{/each}}
       </tbody>

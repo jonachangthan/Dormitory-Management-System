@@ -4,9 +4,13 @@ const express = require('express');
 const req = require('express/lib/request');
 
 const router = express.Router();
-//* 撰寫
-router.post('/apply',token, studentToApply.apply);
-router.post('/delete',token, studentToApply.delete);
 
+router.get('/', token, studentToApply.get);
+
+router.get('/bill', token, studentToApply.bill);
+
+router.post('/apply', token, studentToApply.apply);
+
+router.post('/delete', token, studentToApply.delete);
 
 module.exports = router;

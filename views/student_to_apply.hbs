@@ -119,6 +119,8 @@
 </div>
 {{/if}}
 
+{{{html}}}
+
     <br /><br /><br />
     <div class="container">
       <div class="accordion-body">
@@ -128,12 +130,9 @@
             <tr style="background-color: #dfd1ef">
               <!--定義表格的橫列 (row)-->
               <th scope="col" align="center" valign="middle" style="font-size:20px">學生編號</th>
-              <th scope="col" align="center" valign="middle" style="font-size:20px">學年度</th>
-              <th scope="col" align="center" valign="middle" style="font-size:20px">學期</th>
               <th scope="col" align="center" valign="middle" style="font-size:20px">申請日期</th>
               <th scope="col" align="center" valign="middle" style="font-size:20px">核可與否</th>
               <th scope="col" align="center" valign="middle" style="font-size:20px">繳費狀況</th>
-              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -141,23 +140,27 @@
             {{#each message}}
               <tr>
                 <td valign="middle">{{this.A_Student_ID}}</td>
-                <td valign="middle">{{this.A_Academic_Year}}</td>
-                <td valign="middle">{{this.A_Semester}}</td>
                 <td valign="middle">{{this.A_Date}}</td>
                 <td valign="middle">{{this.A_Approval}}</td>
                 <td valign="middle">{{this.A_Bill}}</td>
                 
-                <form action="/studentToApply/delete" method="POST">
-                  <td>
-                    <a href="/bill"><button id="pay"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="button"  name=""  value="pay">  繳費
-                    </button></a>
+                {{#if ../approval}}
+                <td>
+                  <a href="/studentToApply/bill">
+                    <button id="pay"  style=" width: 120px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"  type="button"  name=""  value="pay">  繳費單
+                    </button>
+                  </a>
+                </td>
+                {{/if}}
 
-                  </td>       
+                {{#unless ../approval}}
+                <form action="/studentToApply/delete" method="POST">
                   <td>
                     <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset;" type="submit" name="action" value="delete" > 刪除
                     </button>
                   </td>
                 </form>
+                {{/unless}}
               </tr>
             {{/each}}
           </tbody>

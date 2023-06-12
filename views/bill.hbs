@@ -10,76 +10,71 @@
 </head>
 <body>
   <div class="container">
+    <br>
 <div class="col-md-5">
- <h3 style="text-align: center;">繳費單</h3>
+  <div style="background-color: rgb(8, 11, 0);">
+ <h3 style="text-align: center;color: #ffffff"style="font-weight: bold;">繳費單</h3>
+ </div>
  <hr>
  <div class="row">
-  <div class="col-md-4">
-    姓名 :
+  <div class="col-md-4" style="font-weight: bold;text-align: center;">
+    姓名 : {{student.S_Name}}
   </div>
-  <div class="col-md-4">
-    學號 :
+  <div class="col-md-4"style="font-weight: bold;text-align: center;">
+    學號 : {{student.S_ID}}
   </div>
-  <div class="col-md-4">
-   系別 :
+  <div class="col-md-4"style="font-weight: bold;text-align: center;">
+   系別 : {{student.S_Department}}
   </div>
 </div>
  <br>
 <table  style="border:3px #cccccc solid;" class="table table-bordered">
-  <thead>
+  <thead style="background-color: rgb(184, 185, 188);">
     <tr>
-      <th scope="col">項目</th>
-      <th scope="col">應繳金額</th>   
+      <th scope="col"style="text-align: center;">項目</th>
+      <th scope="col"style="text-align: center;">應繳金額</th>   
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">學費</th>
-      <td>16300</td>     
+      <th scope="row" style="text-align: center;">住宿費</th>
+      <td style="text-align: center;">{{student.D_Cost}}</td>   
     </tr>
     <tr>
-      <th scope="row">雜費</th>
-      <td >10420</td>
+      <th scope="row" style="text-align: center;">電腦與網路通訊使用費</th>
+      <td style="text-align: center;">257</td>    
     </tr>
     <tr>
-      <th scope="row">電腦與網路通訊使用費</th>
-      <td>257</td>    
+      <th scope="row" style="text-align: center;">語言設備使用費</th>
+      <td style="text-align: center;">0</td>
     </tr>
     <tr>
-      <th scope="row">語言設備使用費</th>
-      <td>0</td>
+      <th scope="row"style="text-align: center;">外語設備實習費</th>
+      <td style="text-align: center;">0</td>   
     </tr>
     <tr>
-      <th scope="row">外語設備實習費</th>
-      <td>0</td>   
+      <th scope="row"style="text-align: center;">學分費</th>
+      <td style="text-align: center;">0</td>
     </tr>
     <tr>
-      <th scope="row">學分費</th>
-      <td>0</td>
+      <th scope="row" style="text-align: center;">學生團體保險費</th>
+      <td style="text-align: center;">406</td>  
     </tr>
     <tr>
-      <th scope="row">學生團體保險費</th>
-      <td>406</td>  
+      <th scope="row" style="text-align: center;">健保費</th>
+      <td style="text-align: center;">0</td>  
     </tr>
     <tr>
-      <th scope="row">健保費</th>
-      <td>0</td>  
+      <th scope="row" style="text-align: center;">僑保費</th>
+      <td style="text-align: center;">0</td>  
     </tr>
     <tr>
-      <th scope="row">僑保費</th>
-      <td>0</td>  
+      <th scope="row"style="text-align: center;">外籍保險費</th>
+      <td style="text-align: center;">0</td>  
     </tr>
     <tr>
-      <th scope="row">外籍保險費</th>
-      <td>0</td>  
-    </tr>
-    <tr>
-      <th scope="row">住宿費</th>
-      <td>0</td>   
-    </tr>
-    <tr>
-      <th scope="row">住宿保證金</th>
-      <td>0</td>   
+      <th scope="row" style="text-align: center;">住宿保證金</th>
+      <td style="text-align: center;">1000</td>   
     </tr>
 
   </tbody>

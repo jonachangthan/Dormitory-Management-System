@@ -7,4 +7,6 @@ const router = express.Router();
 //* 撰寫
 router.post('/action',token, managerToApplyController.action);
 
+router.post('/pay',token, managerToApplyController.pay);
+
 module.exports = router;
