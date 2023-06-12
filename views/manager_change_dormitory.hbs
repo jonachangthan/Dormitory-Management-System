@@ -129,9 +129,7 @@
       <button id="form_button" type="submit"name="action"value="change">確認送出</button>
     </div>
   </form><!-- // End form -->
-  {{#if ErrMessage}}
-      <h4 style="color:red" ; class="alert alert-danger mt-4">{{ErrMessage}}</h4>
-  {{/if}}
+ 
 </div><!-- // End #container -->
 
     <br /><br /><br />
@@ -142,21 +140,9 @@
             <div id="top-footer">
               <div class="container-fluid">
                 <div class="row">
-                  {{!-- <div class="col-md-6 contact">
-                    <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>高雄大學網站:</h3>
-                   
-                    <a href="https://www.nuk.edu.tw/" target="_blank" 
-                      >https://www.nuk.edu.tw/</a
-                    >
-                  </div> 
-                   <div class="col-md-6 social">
-                    <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
-                      >https://elearningv4.nuk.edu.tw/</a
-                    >
-                  </div> --}}
+                   {{#if ErrMessage}}
+                        <h4 style="color:red;text-align:center" ; class="alert alert-danger mt-4">{{ErrMessage}}</h4>
+                    {{/if}}
                 </div>
               </div>
             </div>
@@ -164,6 +150,7 @@
         </div>
       </div>
     </footer>
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
