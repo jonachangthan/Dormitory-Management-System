@@ -190,11 +190,6 @@ router.get('/visitor_to_reservation', (req, res) => {
     res.render('visitor_to_reservation');
 });
 
-router.get('/bill', (req, res) => {
-    res.render('bill');
-});
-
-
 //! supervisor
 router.get('/supervisor_equipment', token, (req, res) => {
     getDormitory(req).then(result => {
@@ -306,46 +301,6 @@ router.get('/student_checkout_dormitory', token, (req, res) => {
             })
         }
     })
-});
-router.get('/student_to_apply', token, (req, res) => {
-    if (!req.user.Permission) {
-        let notapplied = true
-        db.query('SELECT * From application Where ?', { A_Student_ID: req.user.UserName }, (error, results) => {
-            results.forEach(element => {
-                element.A_Date = element.A_Date.getFullYear() + '-' + (parseInt(element.A_Date.getMonth()) + 1) + '-' + element.A_Date.getDate()
-                if (element.A_Approval == 2) {
-                    element.A_Approval = "未審核"
-                } else if (element.A_Approval == 1) {
-                    element.A_Approval = "已核可"
-                } else if (element.A_Approval == 0) {
-                    element.A_Approval = "未核可"
-                }
-                if (element.A_Bill == 0) {
-                    element.A_Bill = "未繳交"
-                }
-                else if (element.A_Bill == 1) {
-                    element.A_Bill = "已繳交"
-                }
-            });
-            if (error) {
-                res.render('error', {
-                    err_message: "資料庫錯誤"
-                })
-            }
-            else {
-                if (results.length == 0) {
-                    notapplied = true
-                }
-                else {
-                    notapplied = false
-                }
-                return res.render('student_to_apply', {
-                    message: results,
-                    notapplied: notapplied
-                });
-            }
-        })
-    }
 });
 
 router.get('/student_to_dormitory', token, (req, res) => {

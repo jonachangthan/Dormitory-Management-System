@@ -18,13 +18,13 @@
  <hr>
  <div class="row">
   <div class="col-md-4" style="font-weight: bold;text-align: center;">
-    姓名 :
+    姓名 : {{student.S_Name}}
   </div>
   <div class="col-md-4"style="font-weight: bold;text-align: center;">
-    學號 :
+    學號 : {{student.S_ID}}
   </div>
   <div class="col-md-4"style="font-weight: bold;text-align: center;">
-   系別 :
+   系別 : {{student.S_Department}}
   </div>
 </div>
  <br>
@@ -37,12 +37,8 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row" style="text-align: center;">學費</th>
-      <td style="text-align: center;">16300</td>     
-    </tr>
-    <tr>
-      <th scope="row" style="text-align: center;">雜費</th>
-      <td style="text-align: center;">10420</td>
+      <th scope="row" style="text-align: center;">住宿費</th>
+      <td style="text-align: center;">{{student.D_Cost}}</td>   
     </tr>
     <tr>
       <th scope="row" style="text-align: center;">電腦與網路通訊使用費</th>
@@ -77,12 +73,8 @@
       <td style="text-align: center;">0</td>  
     </tr>
     <tr>
-      <th scope="row" style="text-align: center;">住宿費</th>
-      <td style="text-align: center;">0</td>   
-    </tr>
-    <tr>
       <th scope="row" style="text-align: center;">住宿保證金</th>
-      <td style="text-align: center;">0</td>   
+      <td style="text-align: center;">1000</td>   
     </tr>
 
   </tbody>

@@ -1,20 +1,15 @@
 const db = require('../model/database');
-//const token = require("token.js");
+const searchApply = require('../model/searchApply');
+const sendMail = require('../mail');
 const e = require('express');
 const SqlString = require('mysql/lib/protocol/SqlString');
 
 exports.action = (req, res) => {
-    const { academicYear,action,approval,bill,date,semester,studentID,number,searchSQL} = req.body;
+    const {action, approval, bill, date, studentID, number, searchSQL} = req.body;
     if(action=="search"){
         sql = 'SELECT * FROM application WHERE ';
         if(studentID!=''){
             sql+='A_Student_ID='+studentID+' AND ';
-        }
-        if(academicYear!='選擇學年度'){
-            sql+='A_Academic_Year='+academicYear+' AND ';
-        }
-        if(semester!='選擇學期'){
-            sql+='A_Semester='+'"'+semester+'"'+' AND ';
         }
         if(date!=''){
             sql+='A_Date='+'"'+date+'"'+' AND ';
@@ -30,214 +25,147 @@ exports.action = (req, res) => {
         }else{
             sql = sql.substring(0, sql.length-4);
         }
-        db.query(sql, (error, results) => {         
-            results.forEach(element => {
-                element.A_Date = element.A_Date.getFullYear()+ '-' + (parseInt(element.A_Date.getMonth()) + 1) + '-' + element.A_Date.getDate()
-                if(element.A_Approval==2){
-                    element.A_Approval = "尚未審核"
-                    element.boolean = true
-                }
-                else{
-                    if(element.A_Approval==1){
-                        element.A_Approval = "已核可"
-                    }else{
-                        element.A_Approval = "未核可"
-                    }
-                    element.boolean = false
-                } 
-                if(element.A_Bill==0){
-                    element.A_Bill = "未繳交"
-                }
-                
+        searchApply(sql).then((results) => {
+            res.render('manager_to_apply', {
+                message:results,
+                searchSQL:sql,
             });
-            if (error) {
-                res.render('error', {
-                    err_message: "資料庫錯誤"
-                })
-            }
-            else {
-                return res.render('manager_to_apply', {
-                    message:results,
-                    searchSQL:sql
-                });
-            }
+        }).catch((error) => {
+            console.log(error)
+            res.render('error')
         })
     }
     else if(action=="approval"){ //核准過後 直接隨機分發房間
         db.query('select S_Sex from student where ?', {S_ID:studentID}, (error, results) => {
             if (error) {
-                res.render('error', {
-                    err_message: "資料庫錯誤"
-                })
+                console.log(error)
+                res.render('error')
             }
-            else 
-            {
-                if(results[0].S_Sex=="男"){
-                    sql = 'select D_Number ,D_Building_No FROM dormitory where (D_Building_No=1 or D_Building_No=3 or D_Building_No=5) AND D_Capacity > D_Current_Quantity';
-                }else if(results[0].S_Sex=="女"){
-                    sql = 'select D_Number ,D_Building_No FROM dormitory where (D_Building_No=2 or D_Building_No=4) AND D_Capacity > D_Current_Quantity';
+
+            if(results[0].S_Sex=="男"){
+                sql = 'select D_Number ,D_Building_No FROM dormitory where (D_Building_No=1 or D_Building_No=3 or D_Building_No=5) AND D_Capacity > D_Current_Quantity';
+            }else if(results[0].S_Sex=="女"){
+                sql = 'select D_Number ,D_Building_No FROM dormitory where (D_Building_No=2 or D_Building_No=4) AND D_Capacity > D_Current_Quantity';
+            }
+
+            db.query(sql, (error, rooms)=>{
+                if (error) {
+                    console.log(error)
+                    res.render('error')
                 }
+                if(rooms.length != 0)
+                {
+                    // 隨機選擇房間
+                    let rand = Math.floor(Math.random() * rooms.length);
+                    let choose_dnum = rooms[rand].D_Number;
+                    let choose_building = rooms[rand].D_Building_No;
 
-                db.query(sql, (error, rooms)=>{
-                    if (error) {
-                        res.render('error', {
-                            err_message: "資料庫錯誤"
-                        })
-                    }
-                    else {
-                        if(rooms.length != 0)
-                        {
-                            // 隨機選擇房間
-                            let rand = Math.floor(Math.random() * rooms.length);
-                            let choose_dnum = rooms[rand].D_Number;
-                            let choose_building = rooms[rand].D_Building_No;
-
-                            // 更新宿舍資料表 目前住宿人數+1
-                            db.query('update dormitory set D_Current_Quantity=D_Current_Quantity+1 where ? AND ?', [{D_Number:choose_dnum},{D_Building_No:choose_building}], (error)=>{
-                                if (error) {
-                                    res.render('error', {
-                                        err_message: "資料庫錯誤"
-                                    })
-                                }else{
-                                    // 更新學生資料表 填入分發結果(房間編號、宿舍大樓編號)
-                                    db.query('UPDATE student SET  S_Dormitory_No='+'"'+choose_dnum+'"'+', S_Building_No= '+'"'+choose_building+'"' +"Where S_ID =" +'"'+studentID+'"', (error)=>{
-                                        if (error) {
-                                            res.render('error', {
-                                                err_message: "資料庫錯誤"
-                                            })
-                                        }else{
-                                            db.query('UPDATE application SET A_Approval= 1 WHERE A_Number='+'"'+number+'"', (error, results) => {
-                                                if (error) {
-                                                    console.log(error)
-                                                }
-                                                else {
-                                                    // 依據上一次查詢之條件 再查詢一次
-                                                    db.query(searchSQL, (error, results) => {
-                                                        results.forEach(element => {
-
-                                                            // 對日期進行字串處理(要不然太長)
-                                                            element.A_Date = element.A_Date.getFullYear()+ '-' + (parseInt(element.A_Date.getMonth()) + 1) + '-' + element.A_Date.getDate()
-
-                                                            if(element.A_Approval==2){
-                                                                element.A_Approval = "尚未審核"
-                                                                element.boolean = true
-                                                            }
-                                                            else{
-                                                                if(element.A_Approval==1){
-                                                                    element.A_Approval = "已核可"
-                                                                }else{
-                                                                    element.A_Approval = "未核可"
-                                                                }
-                                                                element.boolean = false
-                                                            }
-                                                            if(element.A_Bill==0){
-                                                                element.A_Bill = "未繳交"
-                                                            } 
-                                                        });
-                                                        if (error) {
-                                                            res.render('error', {
-                                                                err_message: "資料庫錯誤"
-                                                            })
-                                                        }
-                                                        else {
-                                                            return res.render('manager_to_apply', {
-                                                                message:results,
-                                                                searchSQL:searchSQL
-                                                            });
-                                                        }
-                                                    })
-                                                }
-                                            })
-                                        }
-                                    })
-                                }
-                            })
+                    // 更新宿舍資料表 目前住宿人數+1
+                    db.query('update dormitory set D_Current_Quantity=D_Current_Quantity+1 where ? AND ?', [{D_Number:choose_dnum},{D_Building_No:choose_building}], (error)=>{
+                        if (error) {
+                            console.log(error)
+                            res.render('error')
                         }
-                        else //所有房間已滿
-                        {
-                             // 依據上一次查詢之條件 再查詢一次
-                             db.query(searchSQL, (error, results) => {
-                                results.forEach(element => {
-
-                                    // 對日期進行字串處理(要不然太長)
-                                    element.A_Date = element.A_Date.getFullYear()+ '-' + (parseInt(element.A_Date.getMonth()) + 1) + '-' + element.A_Date.getDate()
-
-                                    if(element.A_Approval==2){
-                                        element.A_Approval = "尚未審核"
-                                        element.boolean = true
-                                    }
-                                    else{
-                                        if(element.A_Approval==1){
-                                            element.A_Approval = "已核可"
-                                        }else{
-                                            element.A_Approval = "未核可"
-                                        }
-                                        element.boolean = false
-                                    } 
-                                    if(element.A_Bill==0){
-                                        element.A_Bill = "未繳交"
-                                    }
-                                });
+                        // 更新學生資料表 填入分發結果(房間編號、宿舍大樓編號)
+                        db.query('UPDATE student SET  S_Dormitory_No='+'"'+choose_dnum+'"'+', S_Building_No= '+'"'+choose_building+'"' +"Where S_ID =" +'"'+studentID+'"', (error)=>{
+                            if (error) {
+                                console.log(error)
+                                res.render('error')
+                            }
+                            db.query('UPDATE application SET A_Approval= 1 WHERE A_Number='+'"'+number+'"', (error) => {
                                 if (error) {
-                                    res.render('error', {
-                                        err_message: "資料庫錯誤"
-                                    })
+                                    console.log(error)
+                                    res.render('error')
                                 }
-                                else {
-                                    return res.render('manager_to_apply', {
+                                searchApply(searchSQL).then((results) => {
+                                    res.render('manager_to_apply', {
                                         message:results,
-                                        full_message:"'房間已全數額滿 無法核可新申請",
-                                        searchSQL:searchSQL
+                                        searchSQL:searchSQL,
                                     });
                                 }
+                                ).catch((error) => {
+                                    console.log(error)
+                                    res.render('error')
+                                }
+                                )
                             })
-                        }
-                    }
-                })
-            }
+                        })
+                    })
+                }
+                else //所有房間已滿
+                {
+                    searchApply(searchSQL).then((results) => {
+                        res.render('manager_to_apply', {
+                            message:results,
+                            full_message:"'房間已全數額滿 無法核可新申請",
+                            searchSQL:searchSQL,
+                        });
+                    }).catch((error) => {
+                        console.log(error)
+                        res.render('error')
+                    })
+                }
+            })
         })
     }
     else if(action=="deny"){
         sql = 'UPDATE application SET A_Approval= 0 WHERE A_Number='+'"'+number+'"';
-        db.query(sql, (error, results) => {
+        db.query(sql, (error) => {
             if (error) {
-                res.render('error', {
-                    err_message: "資料庫錯誤"
-                })
+                console.log(error)
+                res.render('error')
             }
-            else {
-                db.query(searchSQL, (error, results) => {
-                    results.forEach(element => {
-                        element.A_Date = element.A_Date.getFullYear()+ '-' + (parseInt(element.A_Date.getMonth()) + 1) + '-' + element.A_Date.getDate()
-                        if(element.A_Approval==2){
-                            element.A_Approval = "尚未審核"
-                            element.boolean = true
-                        }
-                        else{
-                            if(element.A_Approval==1){
-                                element.A_Approval = "已核可"
-                            }else{
-                                element.A_Approval = "未核可"
-                            }
-                            element.boolean = false
-                        } 
-                        if(element.A_Bill==0){
-                            element.A_Bill = "未繳交"
-                        }
-                    });
-                    if (error) {
-                        res.render('error', {
-                            err_message: "資料庫錯誤"
-                        })
-                    }
-                    else {
-                        return res.render('manager_to_apply', {
-                             message:results,
-                             searchSQL:searchSQL
-                        });
-                    }
-                })
+            searchApply(searchSQL).then((results) => {
+                res.render('manager_to_apply', {
+                    message:results,
+                    searchSQL:searchSQL,
+                });
+            }).catch((error) => {
+                console.log(error)
+                res.render('error')
+            })            
+        })
+    }
+}
+exports.pay = (req, res) => {
+    const {action, searchSQL, number, studentID} = req.body;
+    if(action == "pay"){
+        sql = 'UPDATE application SET A_Bill= 1 WHERE A_Number='+'"'+number+'"';
+        db.query(sql, (error) => {
+            if (error) {
+                console.log(error)
+                res.render('error')
             }
+            searchApply(searchSQL).then((results) => {
+                res.render('manager_to_apply', {
+                    message:results,
+                    searchSQL:searchSQL,
+                });
+            }).catch((error) => {
+                console.log(error)
+                res.render('error')
+            })            
+        })
+    }else if(action == "info"){
+        db.query('select S_Email from student where ?', {S_ID:studentID}, (error, results) => {
+            if (error) {
+                console.log(error)
+                res.render('error')
+            }
+
+            let mailSubject = '宿舍費用繳費通知';
+            let content = '親愛的學生您好，您的宿舍費用尚未繳交，請至宿舍管理系統下載繳費單，謝謝。';
+            sendMail(results[0].S_Email, mailSubject, content);
+
+            searchApply(searchSQL).then((results) => {
+                res.render('manager_to_apply', {
+                    message:results,
+                    searchSQL:searchSQL,
+                });
+            }).catch((error) => {
+                console.log(error)
+                res.render('error')
+            })            
         })
     }
 }
