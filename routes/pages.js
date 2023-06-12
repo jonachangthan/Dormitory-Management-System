@@ -307,12 +307,8 @@ router.get('/student_to_apply', token, (req, res) => {
                 })
             }
             else {
-                if (results.length == 0) {
-                    notapplied = true
-                }
-                else {
-                    notapplied = false
-                }
+                notapplied = results.length == 0 ? true : false
+
                 return res.render('student_to_apply', {
                     message: results,
                     notapplied: notapplied
