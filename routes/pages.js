@@ -6,11 +6,17 @@ const router = express.Router();
 
 const readBulletin = require('../model/bulletinRead');
 const readMessage = require('../model/messageRead');
-const getManager = require('../model/student/getManager');
-const getSupervisor = require('../model/student/getSupervisor');
+
+const getManager = require('../model/visitor/getManager');
+const getSupervisor = require('../model/visitor/getSupervisor');
+
 const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
+
+const visitorGetManager = require('../model/visitor/getManager');
+const visitorGetSupervisor = require('../model/visitor/getSupervisor');
+
 
 //* 進入首頁view
 router.get('/', token, (req, res) => {
@@ -166,14 +172,26 @@ router.get('/home_visitor', (req, res) => {
     res.render('home_visitor');
 });
 router.get('/visitor_to_supervisor', (req, res) => {
-    res.render('visitor_to_supervisor');
+    visitorGetSupervisor().then(result => {
+        return res.render('visitor_to_manager', {
+            message: result
+        })
+    })
 });
 router.get('/visitor_to_manager', (req, res) => {
-    res.render('visitor_to_manager');
+    visitorGetManager().then(result => {
+        return res.render('visitor_to_manager', {
+            message: result
+        })
+    })
 });
 
 router.get('/visitor_to_reservation', (req, res) => {
     res.render('visitor_to_reservation');
+});
+
+router.get('/bill', (req, res) => {
+    res.render('bill');
 });
 
 
@@ -185,6 +203,13 @@ router.get('/supervisor_equipment', token, (req, res) => {
                 Dormessage: result
             })
         }
+    })
+});
+router.get('/other_supervisor', token, (req, res) => {
+    getSupervisor().then(result => {
+        return res.render('other_supervisor', {
+            message: result
+        })
     })
 });
 
@@ -216,6 +241,7 @@ router.get('/supervisor_to_manager', token, (req, res) => {
         }
     })
 });
+
 
 router.get('/supervisor_to_message', token, (req, res) => {
     if (req.user.Permission) {
@@ -254,7 +280,7 @@ router.get('/student_to_manager', token, (req, res) => {
 });
 
 router.get('/student_to_supervisor', token, (req, res) => {
-    getDormitory(req).then(result => {
+    getSupervisor().then(result => {
         if (!req.user.Permission) {
             return res.render('student_to_supervisor', {
                 message: result
