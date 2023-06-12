@@ -91,11 +91,11 @@
       </div>
     </header>
 
-    <div id="container" style="background-color: #F2F3EB;">
-
+<div id="container" style="background-color: #F2F3EB;">
   <div class="icon_wrapper">
       <h1>&bull;換宿表單 &bull;</h1>
   </div>
+<hr>
 
   <form action="/managerToChangeDormitory/action" method="post" id="contact_form">
     <div class="name">
@@ -107,9 +107,9 @@
       <input type="text" placeholder="請輸入學生2學號" name="studentID2" id="studentID2" required>
     </div>
 
-    <div class="subject">
+   <div class="subject">
       <label for="subject"></label>
-      <select id="building" name="building" class="form-select">
+      <select id="building" name="building">
       <option selected>選擇大樓</option>
       {{#each Dormessage}}
       <option value={{this.DB_Number}}>{{this.DB_Name}}</option>
@@ -126,12 +126,10 @@
       <input type="text" placeholder="請輸入學生2原始房間" name="room2" id="room2" required>
 
     <div class="submit">
-      <button style=" width: 75px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset; "type="submit"name="action"value="change">確認送出</button>
+      <button id="form_button" type="submit"name="action"value="change">確認送出</button>
     </div>
   </form><!-- // End form -->
-  {{#if ErrMessage}}
-      <h4 style="color:red" ; class="alert alert-danger mt-4">{{ErrMessage}}</h4>
-  {{/if}}
+ 
 </div><!-- // End #container -->
 
     <br /><br /><br />
@@ -142,21 +140,9 @@
             <div id="top-footer">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-6 contact">
-                    <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>高雄大學網站:</h3>
-                   
-                    <a href="https://www.nuk.edu.tw/" target="_blank" 
-                      >https://www.nuk.edu.tw/</a
-                    >
-                  </div>
-                  <div class="col-md-6 social">
-                    <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
-                      >https://elearningv4.nuk.edu.tw/</a
-                    >
-                  </div>
+                   {{#if ErrMessage}}
+                        <h4 style="color:red;text-align:center" ; class="alert alert-danger mt-4">{{ErrMessage}}</h4>
+                    {{/if}}
                 </div>
               </div>
             </div>
@@ -164,6 +150,7 @@
         </div>
       </div>
     </footer>
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
