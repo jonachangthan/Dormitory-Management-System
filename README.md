@@ -1,6 +1,5 @@
 # Dormitory-Management-System
 
-# to-do list
 1. 系統管理員(總務處)： 
     * 所有的宿舍資料的管理，如宿舍大樓、房間資料、設備狀況。 
     * 所有住宿學生的資料管理，如學生資料、住宿的房間等。 
@@ -81,6 +80,3 @@
 	* student_to_dormitory: 顯示所有宿舍房型及價錢
 	* dormitory_detail: 宿舍詳細介紹
 
-## Manager Gmail :
-* account: a1095550manager@gmail.com
-* password: a1095550
