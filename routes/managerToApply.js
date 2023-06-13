@@ -9,4 +9,6 @@ router.post('/action',token, managerToApplyController.action);
 
 router.post('/pay',token, managerToApplyController.pay);
 
+router.post('/informAll', token, managerToApplyController.informAll);
+
 module.exports = router;

@@ -169,3 +169,43 @@ exports.pay = (req, res) => {
         })
     }
 }
+
+exports.informAll = (req, res) => {
+    const searchSQL = req.body.searchSQL;
+    if(searchSQL == ''){
+        res.render('manager_to_apply')
+    }else{
+        db.query(searchSQL, (error, results) => {
+            if (error) {
+                console.log(error)
+                res.render('error')
+            }
+            
+            results.forEach(element => {
+                studentID = element.A_Student_ID;
+                if(element.A_Bill == 0 && element.A_Approval == 1){
+                    db.query('select S_Email from student where ?', {S_ID:studentID}, (error, results) => {
+                        if (error) {
+                            console.log(error)
+                            res.render('error')
+                        }
+            
+                        let mailSubject = '宿舍費用繳費通知';
+                        let content = '親愛的學生您好，您的宿舍費用尚未繳交，請至宿舍管理系統下載繳費單，謝謝。';
+                        sendMail(results[0].S_Email, mailSubject, content);
+                    })
+                }
+            });
+
+            searchApply(searchSQL).then((results) => {
+                res.render('manager_to_apply', {
+                    message:results,
+                    searchSQL:searchSQL,
+                });
+            }).catch((error) => {
+                console.log(error)
+                res.render('error')
+            })
+        })
+    }
+}
