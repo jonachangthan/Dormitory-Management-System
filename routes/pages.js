@@ -21,16 +21,12 @@ const visitorGetSupervisor = require('../model/visitor/getSupervisor');
 //* 進入首頁view
 router.get('/', token, (req, res) => {
     if (req.user.Permission == 1) {
-
         return res.render('home_manager');
-
     }
-    else if(req.user.Permission == 0) {
-
+    else if (req.user.Permission == 0) {
         return res.render('home_student');
-
-    }else if(req.user.Permission == 2){
-        
+    }
+    else if (req.user.Permission == 2) {
         return res.render('home_supervisor');
     }
 });
@@ -173,7 +169,7 @@ router.get('/home_visitor', (req, res) => {
 });
 router.get('/visitor_to_supervisor', (req, res) => {
     visitorGetSupervisor().then(result => {
-        return res.render('visitor_to_manager', {
+        return res.render('visitor_to_supervisor', {
             message: result
         })
     })
@@ -189,6 +185,11 @@ router.get('/visitor_to_manager', (req, res) => {
 router.get('/visitor_to_reservation', (req, res) => {
     res.render('visitor_to_reservation');
 });
+
+router.get('/visitor_dormitory_detail', (req, res) => {
+    res.render('visitor_dormitory_detail');
+});
+
 
 //! supervisor
 router.get('/supervisor_equipment', token, (req, res) => {
@@ -222,9 +223,13 @@ router.get('/supervisor_to_studentAccommodation', token, (req, res) => {
 });
 
 router.get('/supervisor_to_dormitory', token, (req, res) => {
-    if (req.user.Permission) {
-        res.render('supervisor_to_dormitory');
-    }
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('supervisor_to_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
 });
 
 router.get('/supervisor_to_manager', token, (req, res) => {
