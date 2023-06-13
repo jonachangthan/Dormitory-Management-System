@@ -44,6 +44,8 @@ app.use('/managerToEquipmentType', require('./routes/managerToEquipmentType'));
 
 app.use('/managerToDormitory', require('./routes/managerToDormitory'));
 
+app.use('/managerToCheckoutDormitory', require('./routes/managerToCheckoutDormitory'));
+
 app.use('/managerToStudentAccommodation', require('./routes/managerToStudentAccommodation'));
 
 app.use('/managerToChangeDormitory', require('./routes/managerToChangeDormitory'));
@@ -77,6 +79,8 @@ app.use('/studentToApply', require('./routes/studentToApply'));
 app.use('/student_to_apply', require('./routes/studentToApply'));
 
 app.use('/studentToFix', require('./routes/studentToFix'));
+
+app.use('/studentToDormitory', require('./routes/studentToDormitory'));
 
 //app.use('/student_to_manager', require('./routes/studentToManager'));
 

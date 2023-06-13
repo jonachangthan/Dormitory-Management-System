@@ -140,12 +140,24 @@ router.get('/manager_studentAccommodation', token, (req, res) => {
         }
     })
 });
+router.get('/manager_checkout_dormitory', token, (req, res) => {
+    getDormitory(req).then(result => {
+        if (req.user.Permission) {
+            return res.render('manager_checkout_dormitory', {
+                Dormessage: result
+            })
+        }
+    })
+});
 
 router.get('/manager_fix', token, (req, res) => {
     if (req.user.Permission) {
         res.render('manager_fix');
     }
 });
+
+
+
 
 
 router.get('/manager_to_message', token, (req, res) => {
@@ -319,7 +331,7 @@ router.get('/student_to_dormitory', token, (req, res) => {
     getDormitory(req).then(result => {
         if (!req.user.Permission) {
             return res.render('student_to_dormitory', {
-                message: result
+                Dormessage: result
             })
         }
     })

@@ -237,27 +237,20 @@
     <tbody>
       {{#each message}}
       <tr>
-        <form action="/managerToDormitory/action" method="post">
-          <input type="hidden" name="searchSQL" value="{{../searchSQL}}"/>
-          <input type="hidden" name="buildingNumber" value="{{this.DB_Number}}">
-          <input type="hidden" name="roomNumber" value="{{this.D_Number}}">
           {{!-- <input type="hidden" name="type" value="{{this.E_Type}}"> --}}
           <th scope="row" align='center' valign="middle">
-            <input type="text"  class="form-control"name="building" value=" {{this.DB_Name}}" />
+           {{this.DB_Name}}
           </th>
-            <td align='center' valign="middle">
-                <input type="text" class="form-control" name="room" value="{{this.D_Number}}"/>
+            <td  valign="middle">
+                 {{this.D_Number}}
             </td>
-            <td align='center' valign="middle">
-              <div class="form-floating">
-              <input type="text" name="capacity" value="{{this.D_Capacity}}"/>
+            <td  valign="middle">
+             {{this.D_Capacity}}
               </div>
             </td>
-            <td align='center' valign="middle">
-              <input type="text" class="form-control" name="cost" value="{{this.D_Cost}}"/>
+            <td  valign="middle">
+              {{this.D_Cost}}
             </td>
-
-        </form>
       </tr>
       {{/each}}
     </tbody>
