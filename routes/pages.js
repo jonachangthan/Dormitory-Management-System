@@ -297,6 +297,15 @@ router.get('/student_to_manager', token, (req, res) => {
         }
     })
 });
+router.get('/studentAccommodation', token, (req, res) => {
+    getManager().then(result => {
+        if (!req.user.Permission) {
+            return res.render('studentAccommodation', {
+                message: result
+            })
+        }
+    })
+});
 
 router.get('/student_to_supervisor', token, (req, res) => {
     getSupervisor().then(result => {

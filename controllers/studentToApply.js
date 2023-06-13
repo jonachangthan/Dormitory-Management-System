@@ -34,7 +34,7 @@ exports.get = (req, res) => {
         results = [results]
         
         if(!approval){
-            html = `<link href="p1.css" rel="stylesheet" />
+            html = `<link href="/p1.css" rel="stylesheet" />
             <div class="container">
                <div class="progress-container">
                <div id="progress" class="progress"></div>
@@ -138,7 +138,7 @@ exports.apply = (req, res) => {
                         element.A_Bill = "未繳交"
                     }
                 });
-                html = `<link href="p1.css" rel="stylesheet" />
+                html = `<link href="/p1.css" rel="stylesheet" />
                 <div class="container">
                    <div class="progress-container">
                    <div id="progress" class="progress"></div>
