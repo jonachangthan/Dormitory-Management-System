@@ -13,6 +13,8 @@ const getSupervisor = require('../model/visitor/getSupervisor');
 const getViolation = require('../model/student/getViolation');
 const getDormitory = require('../model/student/getDormitory');
 const getEquipment = require('../model/student/getEquipment');
+const getSelfDormitoryInfo = require('../model/student/getSelfDormitoryInfo');
+
 
 const visitorGetManager = require('../model/visitor/getManager');
 const visitorGetSupervisor = require('../model/visitor/getSupervisor');
@@ -298,7 +300,7 @@ router.get('/student_to_manager', token, (req, res) => {
     })
 });
 router.get('/studentAccommodation', token, (req, res) => {
-    getManager().then(result => {
+    getSelfDormitoryInfo(req).then(result => {
         if (!req.user.Permission) {
             return res.render('studentAccommodation', {
                 message: result

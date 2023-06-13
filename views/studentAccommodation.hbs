@@ -96,30 +96,35 @@
         <div class="main">
             <br>
             <table>
+              {{#each message}}
               <tr>
                 <th>學號</th>
-                <td>CSS-Play Inc.</td>
+                <td>{{this.S_ID}}</td>
               </tr>
               <tr>
                 <th>學生姓名</th>
-                <td>1990/3/20</td>
+                <td>{{this.S_Name}}</td>
               </tr>
               <tr>
                 <th>房型</th>
-                <td>500</td>
+                <td>{{this.D_Capacity}}</td>
+              </tr>
+              <tr>
+              <tr>
+                <th>棟別</th>
+                <td>{{this.DB_Name}}</td>
               </tr>
               <tr>
                 <th>房號</th>
-                <td>contact@css-play.com</td>
+                <td>{{this.S_Dormitory_No}}</td>
               </tr>
+              {{#each this.roomate}}
               <tr>
                 <th>同寢室友</th>
-                <td>contact@css-play.com</td>
+                <td>{{this.S_ID}}  {{this.S_Name}}</td>
               </tr>
-              <tr>
-                <th>同寢室友學號</th>   
-                <td></td>
-              </tr>
+              {{/each}}
+              {{/each}}
             </table>
         </div>
     </div>
