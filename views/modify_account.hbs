@@ -9,7 +9,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>查詢人員帳號</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -167,7 +168,9 @@
                   <td>
                     <input type="hidden" name="sql" value="{{../searchSQL}}">
                     <input type="hidden" name="UserName" value="{{this.UserName}}">
-                    <button style=" width: 75px; height: 40px; background-color: #e74a3b; color: #ffffff; border: 2px #d44141 outset; " type="submit"> 刪除</button>
+                    <button class="material-icons" style="font-size:40px;color:red;background-color:unset;border: none"  type="submit" >
+                              delete
+                    </button>
                   </td>
                 </form>
             </tr>
