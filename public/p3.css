@@ -1,0 +1,119 @@
+    /* 顏色說明 */
+
+    * {
+        box-sizing: border-box;
+      }
+      :root {
+        --line-border-fill: #f33252; /*填滿狀態*/
+  --line-border-empty: #f33252; /*未填滿狀態*/
+  --btn-hover: #ec5b73;
+      }
+      /* body {
+      
+        margin: 0;
+        padding: 0;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+      
+      .container {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+      } 
+      
+      /* 進度條容器 */
+      .progress-container {
+        display: flex;
+        justify-content: space-between;
+        position: relative; 
+        /* margin-bottom: 30px; */
+        
+        max-width: 100%;
+        width: 1250px;
+      }
+      
+      /* 預設進度「線條」 */
+      .progress-container::before {
+        content: "";
+        background-color: var(--line-border-empty);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        z-index: -1;
+        transform: translateY(-50%); /*線條往上移動*/
+      }
+      /* 實際進度「線條」 */
+      div.progress {
+        background-color: var(--line-border-fill);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 0%; /*一開始不會有進度，所以設0%*/
+        height: 3px;
+        z-index: -1;
+        transform: translateY(-50%); /*線條往上移動*/
+        transition: width 0.5s linear;
+      }
+      /* 步驟1、2、3、4 */
+      div.circle {
+        color: white;
+        background-color: #f34764;
+        border: 3px solid var(--line-border-empty);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        /* 讓數字置中對齊 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: border 0.5s linear;
+      }
+      /* 正在進行的步驟 */
+      div.circle.active {
+        border: 3px solid var(--line-border-fill);
+      }
+      .btn {
+        color: white;
+        background-color: var(--line-border-fill);
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 8px 30px;
+        font-size: 14px;
+        margin: 5px;
+      }
+      .btn:hover {
+        background-color: var(--btn-hover);
+      }
+      .btn:focus {
+        outline: 0; /*或none*/
+      }
+      .btn:disabled {
+        cursor: not-allow;
+        background-color: var(--line-border-empty);
+      }
+      .circle span {
+          position: absolute;
+          bottom: -20px; /* 调整文本位置 */
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 16px;
+          white-space: nowrap;
+      
+        }
+        .circle {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: gray;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }

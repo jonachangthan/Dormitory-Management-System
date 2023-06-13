@@ -34,17 +34,24 @@ exports.get = (req, res) => {
         results = [results]
         
         if(!approval){
-            html = `<link href="/p.css" rel="stylesheet" />
-                        <div class="container">
-                        <div class="progress-container"> 
-                            <div id="progress" class="progress"></div>
-                            <div class="circle active">1
-                                <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                            </div>
-                            <div class="circle">2</div>
-                            <div class="circle">3</div>
-                        </div>
-                        </div> `
+            html = `<link href="p1.css" rel="stylesheet" />
+            <div class="container">
+               <div class="progress-container">
+               <div id="progress" class="progress"></div>
+               <div class="circle active">
+                 1 
+                 <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
+               </div>
+               <div class="circle" style="  background-color: #215199;border-color: 94b7eb;">
+                 2
+               </div>
+               <div class="circle" style="  background-color: #215199;border-color: 94b7eb;">
+                 3
+               </div>
+             </div>
+           </div> 
+            `
+                        
             return res.render('student_to_apply', {
                 message: results,
                 notapplied: false,
@@ -55,19 +62,19 @@ exports.get = (req, res) => {
         }else if(results[0].A_Approval=="已核可" && results[0].A_Bill=="未繳交"){
                 getStudentDormitoryInfo(req.user.UserName).then(result => {
                     room = result
-                    html = `<link href="/p.css" rel="stylesheet" />
-                            <div class="container">
-                            <div class="progress-container"> 
-                                <div id="progress" class="progress"></div>
-                                <div class="circle active">1
-                                    <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                                </div>
-                                <div class="circle active">2
-                                    <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
-                                </div>
-                                <div class="circle">3</div>
-                            </div>
-                            </div> `
+                    html = `<link href="/p2.css" rel="stylesheet" />
+                    <div class="container">
+                    <div class="progress-container"> 
+                        <div id="progress" class="progress"></div>
+                        <div class="circle active">1
+                            <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
+                        </div>
+                        <div class="circle active">2
+                            <span style="color:black;font-weight:bold">已核可申請 您已分配到 ${room}</span>
+                        </div>
+                        <div class="circle" style=" background-color: #215199;border-color: 94b7eb;">3</div>
+                    </div>
+                    </div> `
                     return res.render('student_to_apply', {
                         message: results,
                         notapplied: false,
@@ -79,7 +86,7 @@ exports.get = (req, res) => {
         else{
             getStudentDormitoryInfo(req.user.UserName).then(result => {
                 room = result
-                html = `<link href="/p.css" rel="stylesheet" />
+                html = `<link href="/p3.css" rel="stylesheet" />
                         <div class="container">
                         <div class="progress-container"> 
                             <div id="progress" class="progress"></div>
@@ -131,17 +138,22 @@ exports.apply = (req, res) => {
                         element.A_Bill = "未繳交"
                     }
                 });
-                html = `<link href="/p.css" rel="stylesheet" />
-                        <div class="container">
-                          <div class="progress-container"> 
-                            <div id="progress" class="progress"></div>
-                            <div class="circle active">1
-                                <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
-                            </div>
-                            <div class="circle">2</div>
-                            <div class="circle">3</div>
-                          </div>
-                        </div> `
+                html = `<link href="p1.css" rel="stylesheet" />
+                <div class="container">
+                   <div class="progress-container">
+                   <div id="progress" class="progress"></div>
+                   <div class="circle active">
+                     1 
+                     <span style="color:black;font-weight:bold">已申請完畢 請等待管理員核可</span>
+                   </div>
+                   <div class="circle" style="  background-color: #215199;border-color: 94b7eb;">
+                     2
+                   </div>
+                   <div class="circle" style="  background-color: #215199;border-color: 94b7eb;">
+                     3
+                   </div>
+                 </div>
+               </div> `
                 return res.render('student_to_apply', {
                     message:results,
                     notapplied:false,
