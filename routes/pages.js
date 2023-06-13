@@ -208,6 +208,13 @@ router.get('/other_supervisor', token, (req, res) => {
         })
     })
 });
+router.get('/other_manager', token, (req, res) => {
+    getSupervisor().then(result => {
+        return res.render('other_manager', {
+            message: result
+        })
+    })
+});
 
 
 router.get('/supervisor_fix', token, (req, res) => {

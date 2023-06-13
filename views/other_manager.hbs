@@ -33,6 +33,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
       <div class="container px-4 px-lg-5">
+        <!-- <a class="navbar-brand" href="index.html">Start Bootstrap</a> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -41,7 +42,7 @@
           aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
+         >
           Menu
           <i class="fas fa-bars"></i>
         </button>
@@ -58,8 +59,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4"
-              href="/other_manager">其他管理員基本資料</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail" >Introduction</a  >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4"
@@ -70,10 +70,7 @@
       </div>
     </nav>
     <!-- Page Header-->
-    <header
-      class="masthead"
-      style="background-image: url('../home-bg.jpg')"
-    >
+    <header class="masthead" style="background-image: url('../home-bg.jpg')" >
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
@@ -85,51 +82,33 @@
       </div>
     </header>
     <!-- Post Content-->
+    <div class="container">
+      <table style="line-height: 30px" class="table table-hover">
+        <!--表示表格中不同直行 (column) 的標題-->
+        <tr style="background-color: #dfd1ef">
+          <!--定義表格的橫列 (row)-->
+          <th scope="col" align='center' valign="middle">管理人員編號</th>
+          <th scope="col" align='center' valign="middle">名稱</th>
+          <th scope="col" align='center' valign="middle">連絡電話</th>
+          <th scope="col" align='center' valign="middle">Email</th>
+        </tr>
 
-    <main class="mb-4">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="my-5">
-              <div style="text-align: center;">
-                <i class="fa-solid fa-user" style="width: 50px;height: 50px;"></i>
-                  {{#each message}}
-                    <form id="contactForm"  action="/manager/action" method="post">
-                      <div class="form-floating">
-                        <input class="form-control" id="name" value="{{this.M_ID}}" type="text" disabled />
-                        <input type="hidden" name="id" value="{{this.M_ID}}">
-                          <label for="name">管理人員編號</label>
-                      </div>
-                      <br />
-                      <div class="form-floating">
-                        <input class="form-control" id="name" value="{{this.M_Name}}" type="text" disabled/>
-                        <input type="hidden" name="name" value="{{this.M_Name}}">
-                          <label for="name">姓名</label>
-                      </div>
-                      <br />
-                      <div class="form-floating">
-                        <input class="form-control" id="phone" name="phone"value="{{this.M_Phone}}" type="tel" />
-                          <label for="phone">連絡電話</label>
-                      </div>
-                      <br />
-                      <div class="form-floating">
-                        <input class="form-control" id="email" name="email"value="{{this.M_Email}}" type="text" />
-                          <label for="email">Email</label>
-                      </div>
-                      <br />
-                      <button class="btn btn-primary text-uppercase" id="submitButton" type="submit" name="action"  value="update" >
-                      更新基本資料
-                      </button>
-                    </form>
-                  {{/each}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+        <tbody>
+           {{#each message}} 
+          <tr>
+            <th scope="row" align='center' valign="middle">{{this.M_ID}}</th>
+            <td >{{this.M_Name}}</td>
+            <td >{{this.M_Phone}}</td>
+            <td >{{this.M_Email}}</td>
+          </tr>      
+          {{/each}} 
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
     <a href="#top" class="top" style="float: right;display: none;" id="up"><i  style="width: 50px;height: 50px;"class="fa-regular fa-circle-up"></i></a>
     <!-- Footer-->
+    <br /><br /><br /><br /><br /><br /> <br /><br /><br /><br /><br /><br />
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -163,6 +142,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="script.js"></script>
-    <script src="manager.js"></script>
   </body>
 </html>
