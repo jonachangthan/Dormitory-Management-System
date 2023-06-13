@@ -1,293 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>高雄大學宿舍管理系統</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script
-      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google fonts-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-      <div class="container px-4 px-lg-5">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto py-4 py-lg-0">
-            <li class="list-inline-item">
-              <a href="/" class="home">
-                <span class="fa-stack fa-lg">
-                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
-                  style="width: 50px; height: 50px;color:#ffffff"
-                  class="fa-solid fa-house-user"
-                ></button>
-                </span>
-              </a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail" >Introduction</a >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4"href="/login">Log out</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>公告及留言板</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+    rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <div class="container px-4 px-lg-5">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+          <li class="list-inline-item">
+            <a href="/" class="home">
+              <span class="fa-stack fa-lg">
+                <button data-bs-toggle="tooltip" data-bs-placement="top" title="返回首頁"
+                  style="width: 50px; height: 50px;color:#ffffff" class="fa-solid fa-house-user"></button>
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="/dormitory_detail">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="/login">Log out</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <!-- Page Header-->
-    <header class="masthead" style="background-image: url('../b.webp')">
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="site-heading">
-              <h1>公告及留言板</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content-->
-    <div class="container">
-      <div class="col-md-12">
-        <div id="Main">
-          <div>
-            <p align="center" style="color: #000000; font-weight: bold; font-size: 20px">
-              公告
-            </p>
-          </div>
-
-          <div class="box">
-            <table class="table table-hover">
-              <thead style="position:sticky;top: 0;">
-                <tr>
-                   <th width="10%" scope="col" style="background-color: #dfd1ef">
-                    No
-                  </th>
-                  <th width="40%" scope="col" style="background-color: #dfd1ef">
-                    標題
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    管理人員編號
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    日期
-                  </th>
-                  <th width="20%" scope="col" style="background-color: #dfd1ef">
-                    時間
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {{#each Bmessage}}
-                <tr>
-                  <th scope="row">{{this.B_Number}}</th>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button
-                      type="button"
-                      style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#m{{this.B_Number}}">
-                      {{this.B_Title}}
-                    </button>
-                    <div class="modal fade" id="m{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
-                            </h5>
-                          </div>
-                          <div class="modal-body">
-                            {{this.B_Content}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{{this.B_Manager_ID}}</td>
-                  <td>{{this.B_Date}}</td>
-                  <td>{{this.B_Time}}</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <br /><br />
-        <div id="Main">
-          <div>
-            <p align="center" style="color: #000000; font-weight: bold; font-size: 20px" >
-              留言板
-            </p>
-          </div>
-          <div style="text-align: left">
-            <button
-              type="button"
-              style=" width: 100px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"data-bs-toggle="modal"data-bs-target="#exampleModal"data-bs-whatever="@mdo">撰寫留言
-            </button>
-          </div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold" >
-                    撰寫處
-                  </h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="/message/write" method="POST">
-                <div class="modal-body">          
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label" style="color: #335495; font-weight: bold" >標題:</label>
-                      <input type="text" class="form-control" id="title" name="title"/>
-                    </div>
-                    <div class="mb-3">
-                      <label for="message-text" class="col-form-label" style="color: #335495; font-weight: bold" >內容:</label>
-                      <textarea class="form-control" id="content" name="content"></textarea>
-                    </div>                
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > Close</button>
-                  <button type="submit" class="btn btn-primary">Send message</button>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="box">
-            <table class="table table-hover">
-              <thead style="position:sticky;top: 0;">
-                <tr>
-                  <th width="2%" scope="col" style="background-color: #dfd1ef">
-                    No
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    標題
-                  </th>
-                  <th width="15%" scope="col" style="background-color: #dfd1ef">
-                    學號
-                  </th>
-                  <th width="10%" scope="col" style="background-color: #dfd1ef">
-                    日期
-                  </th>
-                  <th width="8%" scope="col" style="background-color: #dfd1ef">
-                    時間
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                 {{#each Mmessage}} 
-                <tr>
-                  <th scope="row">{{this.M_Number}}</th>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button
-                      type="button"
-                      style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;height: 40px;text-decoration: underline "
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#m{{this.M_Number}}">
-                      {{this.M_Title}}
-                    </button>
-                    <div class="modal fade" id="m{{this.M_Number}}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
-                              留言內容
-                            </h5>
-                          </div>
-                          <div class="modal-body">
-                            {{this.M_Content}}
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{{this.M_Student_ID}}</td>
-                  <td>{{this.M_Date}}</td>
-                  <td>{{this.M_Time}}</td>
-                </tr>
-                 {{/each}} 
-                <tr></tr>
-              </tbody>
-            </table>
+    </div>
+  </nav>
+  <!-- Page Header-->
+  <header class="masthead" style="background-image: url('../b.webp')">
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="site-heading">
+            <h1>公告及留言板</h1>
           </div>
         </div>
       </div>
     </div>
-    <br />
-    <br />
-    <br />
-    <a href="#top" class="top" style="float: right;display: none;" id="up"><i style="width: 50px; height: 50px; "class="fa-regular fa-circle-up"></i></a>
-    <!-- Footer-->
-    <footer class="border-top" >
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div id="top-footer">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-6 contact">
-                    <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>高雄大學網站:</h3>
-                   
-                    <a href="https://www.nuk.edu.tw/" target="_blank" 
-                      >https://www.nuk.edu.tw/</a
-                    >
+  </header>
+
+  <!-- Main Content-->
+  <div class="container">
+    <div class="col-md-12">
+      <div id="Main">
+        <div>
+          <div style="background-color: rgb(173, 171, 224);">
+            <h3 style="text-align: center;color: #1d004a" style="font-weight: bold;">公告</h3>
+          </div>
+        </div>
+
+        <div class="box">
+          <table class="table table-hover">
+            <thead style="position:sticky;top: 0;">
+              <tr>
+                <th width="5%" scope="col" style="background-color: #dfd1ef">
+                  No
+                </th>
+                <th width="45%" scope="col" style="background-color: #dfd1ef">
+                  標題
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  管理人員編號
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  日期
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  時間
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {{#each Bmessage}}
+              <tr>
+                <th scope="row">{{this.B_Number}}</th>
+                <td>
+                  <!-- Button trigger modal -->
+                  <button type="button"
+                    style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;cursor: pointer; height: 40px; text-decoration: underline"
+                    class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#m{{this.B_Number}}">
+                    {{this.B_Title}}
+                  </button>
+                  <div class="modal fade" id="m{{this.B_Number}}" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">
+                            留言內容
+                          </h5>
+                        </div>
+                        <div class="modal-body">
+                          {{this.B_Content}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-6 social">
-                    <i class="fa-solid fa-chalkboard-user" style="display: inline;float: left;width: 30px;height: 30px;"></i>
-                    <h3>moodle平台:</h3>
-                    <a href="https://elearningv4.nuk.edu.tw/" target="_blank"
-                      >https://elearningv4.nuk.edu.tw/</a
-                    >
+                </td>
+                <td>{{this.B_Manager_ID}}</td>
+                <td>{{this.B_Date}}</td>
+                <td>{{this.B_Time}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br /><br />
+      <div id="Main">
+        <div>
+          <div style="background-color: rgb(173, 171, 224);">
+            <h3 style="text-align: center;color: #1d004a" style="font-weight: bold;">留言板</h3>
+          </div>
+        </div>
+        <div style="text-align: left">
+          <button type="button"
+            style=" width: 100px; height: 40px; background-color: #335495; color: #ffffff; border: 2px #335495 outset;"
+            data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">撰寫留言
+          </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #000000; font-weight: bold">
+                  撰寫處
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="/message/write" method="POST">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label"
+                      style="color: #335495; font-weight: bold">標題:</label>
+                    <input type="text" class="form-control" id="title" name="title" />
                   </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label"
+                      style="color: #335495; font-weight: bold">內容:</label>
+                    <textarea class="form-control" id="content" name="content"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close</button>
+                  <button type="submit" class="btn btn-primary">Send message</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="box">
+          <table class="table table-hover">
+            <thead style="position:sticky;top: 0;">
+              <tr>
+                <th width="5%" scope="col" style="background-color: #dfd1ef">
+                  No
+                </th>
+                <th width="45%" scope="col" style="background-color: #dfd1ef">
+                  標題
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  學號
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  日期
+                </th>
+                <th width="20%" scope="col" style="background-color: #dfd1ef">
+                  時間
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each Mmessage}}
+              <tr>
+                <th scope="row">{{this.M_Number}}</th>
+                <td>
+                  <!-- Button trigger modal -->
+                  <button type="button"
+                    style=" border: 0; padding-top: 10px; background-color: #eeecd9; color: rgb(0, 0, 0); border-radius: 10px; width:400px; font-size:20px;height: 40px;text-decoration: underline "
+                    class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#m{{this.M_Number}}">
+                    {{this.M_Title}}
+                  </button>
+                  <div class="modal fade" id="m{{this.M_Number}}" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">
+                            留言內容
+                          </h5>
+                        </div>
+                        <div class="modal-body">
+                          {{this.M_Content}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>{{this.M_Student_ID}}</td>
+                <td>{{this.M_Date}}</td>
+                <td>{{this.M_Time}}</td>
+              </tr>
+              {{/each}}
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <a href="#top" class="top" style="float: right;display: none;" id="up"><i style="width: 50px; height: 50px; "
+      class="fa-regular fa-circle-up"></i></a>
+  <!-- Footer-->
+  <footer class="border-top">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div id="top-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6 contact">
+                  <i class="fa-solid fa-paperclip" style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                  <h3>高雄大學網站:</h3>
+
+                  <a href="https://www.nuk.edu.tw/" target="_blank">https://www.nuk.edu.tw/</a>
+                </div>
+                <div class="col-md-6 social">
+                  <i class="fa-solid fa-chalkboard-user"
+                    style="display: inline;float: left;width: 30px;height: 30px;"></i>
+                  <h3>moodle平台:</h3>
+                  <a href="https://elearningv4.nuk.edu.tw/" target="_blank">https://elearningv4.nuk.edu.tw/</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="script.js"></script>
-  </body>
+    </div>
+  </footer>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="script.js"></script>
+</body>
+
 </html>
